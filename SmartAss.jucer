@@ -47,7 +47,7 @@
         <FILE id="STiR3l" name="Utilities.cpp" compile="1" resource="0" file="../HybridApi/Utilities/Utilities.cpp"/>
         <FILE id="JKvv02" name="Utilities.h" compile="0" resource="0" file="../HybridApi/Utilities/Utilities.h"/>
       </GROUP>
-      <FILE id="ojMq4A" name="README.md" compile="0" resource="1" file="../HybridApi/README.md"/>
+      <FILE id="ojMq4A" name="README.md" compile="0" resource="0" file="../HybridApi/README.md"/>
     </GROUP>
     <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
       <FILE id="afYO85" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
