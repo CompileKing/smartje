@@ -6,3 +6,11 @@ Builds/MacOSX/SmartAss\.xcodeproj/project\.xcworkspace/xcuserdata/
 Builds/iOS/SmartAss\.xcodeproj/xcuserdata/
 
 Builds/iOS/SmartAss\.xcodeproj/project\.xcworkspace/xcuserdata/
+
+Builds/MacOSX/build/Debug/
+
+Builds/MacOSX/build/Release/
+
+Builds/iOS/build/Debug/
+
+Builds/iOS/build/Release/
