@@ -53,6 +53,58 @@
 			isa = PBXBuildFile;
 			fileRef = 2D2769CBFF9426920840E053;
 		};
+		C6CE5BE3FC2EB5530537E316 = {
+			isa = PBXBuildFile;
+			fileRef = 39FCA3F8442112B73B50976C;
+		};
+		B166F7D0B7A057D7C5DBE7AF = {
+			isa = PBXBuildFile;
+			fileRef = B3E7F0C69502E0ADF96BE45A;
+		};
+		41C06378DDA327C4C1C3F6E4 = {
+			isa = PBXBuildFile;
+			fileRef = 3E6DD0E3767B3F85ADB90B36;
+		};
+		0403C36AF519CB1A7331099A = {
+			isa = PBXBuildFile;
+			fileRef = 08024A386EEC400B9433FCDC;
+		};
+		3B823F7BDDF99109C8C83B52 = {
+			isa = PBXBuildFile;
+			fileRef = 4E6BCE9701F4C88DF99D5512;
+		};
+		A49D148285AA8F6541110FC7 = {
+			isa = PBXBuildFile;
+			fileRef = BF02A401419650F6EFE5B13E;
+		};
+		C640B629BFAAAB606BA259B0 = {
+			isa = PBXBuildFile;
+			fileRef = 3539390C062BFCF10049DC26;
+		};
+		EF022E7AB470D4B31EDAC64B = {
+			isa = PBXBuildFile;
+			fileRef = D2944C8D53B46A2C62874CF1;
+		};
+		90A6A742C5D442F34A0CE5E0 = {
+			isa = PBXBuildFile;
+			fileRef = 569629E32BA0DB32C31FD45F;
+		};
+		B7CDA8B423761393E2776C12 = {
+			isa = PBXBuildFile;
+			fileRef = C8F83E13AAB50B9D5555DEAC;
+		};
+		4EEDA09D3CF751F5AF238BDC = {
+			isa = PBXBuildFile;
+			fileRef = 6EC15F3897394330FADE471B;
+		};
+		638EB470BD0B1A08B63FFE44 = {
+			isa = PBXBuildFile;
+			fileRef = 72FD5EE059240ADE54BCF579;
+		};
+		06561C66C80D70DD149AEC79 = {
+			isa = PBXBuildFile;
+			fileRef = E2AB8645BCA05E9026F6F77B;
+		};
 		D8560F1A4FC877968E8EA248 = {
 			isa = PBXBuildFile;
 			fileRef = BE6646B36E5C13C445B31E0E;
@@ -60,6 +112,10 @@
 		D9C0B87C5C4E6F8206328DDE = {
 			isa = PBXBuildFile;
 			fileRef = 3E7D2A96EB42E1C595A380A2;
+		};
+		00A031EDE7DD6346BE91A481 = {
+			isa = PBXBuildFile;
+			fileRef = 3FDCE7360FC11DBA86FA4084;
 		};
 		C37764077406A95CB62564FA = {
 			isa = PBXBuildFile;
@@ -109,6 +165,13 @@
 			isa = PBXBuildFile;
 			fileRef = 1C9AC9EB47755AF0D3FCE314;
 		};
+		08024A386EEC400B9433FCDC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PathButton.cpp;
+			path = ../../../HybridApi/Arena/Slice/PathButton.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		08A7171F87508B2AD2033596 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -123,11 +186,32 @@
 			path = "~/JUCE/modules/juce_opengl";
 			sourceTree = "<absolute>";
 		};
+		166EE2EE18923D157BD52E69 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SliceParser.h;
+			path = ../../../HybridApi/Arena/Slice/SliceParser.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		1C9AC9EB47755AF0D3FCE314 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_opengl.mm";
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		1D29109B62CB310CB7E067B1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file.md;
+			name = README.md;
+			path = ../../../HybridApi/README.md;
+			sourceTree = "SOURCE_ROOT";
+		};
+		2012AE8A76AD66DA9BFBA58E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FileWatcher.h;
+			path = ../../../HybridApi/File/FileWatcher.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		229B129C2CA2A8A747F4572C = {
@@ -151,6 +235,13 @@
 			path = System/Library/Frameworks/Cocoa.framework;
 			sourceTree = SDKROOT;
 		};
+		2CF87511709E945921C9B04D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Utilities.h;
+			path = ../../../HybridApi/Utilities/Utilities.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2D2769CBFF9426920840E053 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file.nib;
@@ -164,6 +255,34 @@
 			name = Carbon.framework;
 			path = System/Library/Frameworks/Carbon.framework;
 			sourceTree = SDKROOT;
+		};
+		3539390C062BFCF10049DC26 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Thumb.cpp;
+			path = ../../../HybridApi/Arena/Thumb/Thumb.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		39FCA3F8442112B73B50976C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Clip.cpp;
+			path = ../../../HybridApi/Arena/Clip/Clip.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3A60400BCD4F0FE9F85A2B0C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ResXmlParser.h;
+			path = ../../../HybridApi/Arena/ResXmlParser.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3E6DD0E3767B3F85ADB90B36 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = OscIpAndPort.cpp;
+			path = ../../../HybridApi/Arena/Osc/OscIpAndPort.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		3E7D2A96EB42E1C595A380A2 = {
 			isa = PBXFileReference;
@@ -179,6 +298,20 @@
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		3FDCE7360FC11DBA86FA4084 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BinaryData.cpp;
+			path = ../../JuceLibraryCode/BinaryData.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		4AA7E5A94B493265C4FAC7FA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ThumbParser.h;
+			path = ../../../HybridApi/Arena/Thumb/ThumbParser.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		4C92DD2F3B060091BF1785C1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -192,6 +325,20 @@
 			name = Accelerate.framework;
 			path = System/Library/Frameworks/Accelerate.framework;
 			sourceTree = SDKROOT;
+		};
+		4E22EF0D0568023F1D4C36C1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ClipParser.h;
+			path = ../../../HybridApi/Arena/Clip/ClipParser.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		4E6BCE9701F4C88DF99D5512 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Slice.cpp;
+			path = ../../../HybridApi/Arena/Slice/Slice.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		4FDCC1FC149B08159942A34C = {
 			isa = PBXFileReference;
@@ -214,6 +361,13 @@
 			path = "~/JUCE/modules/juce_gui_extra";
 			sourceTree = "<absolute>";
 		};
+		569629E32BA0DB32C31FD45F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ResXmlParser.cpp;
+			path = ../../../HybridApi/Arena/ResXmlParser.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		5F68E5AAB9B2E82837385F7D = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -228,6 +382,20 @@
 			path = "~/JUCE/modules/juce_audio_basics";
 			sourceTree = "<absolute>";
 		};
+		6EC15F3897394330FADE471B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = FileLess.cpp;
+			path = ../../../HybridApi/File/FileLess.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		72FD5EE059240ADE54BCF579 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = FileWatcher.cpp;
+			path = ../../../HybridApi/File/FileWatcher.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		75ABAC1BD2E7E58F47B3D1E3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -235,11 +403,32 @@
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		7B1A4AF61484962BCCE4F5DE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Thumb.h;
+			path = ../../../HybridApi/Arena/Thumb/Thumb.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		83FEE859AFFEDD457829F60A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FileLess.h;
+			path = ../../../HybridApi/File/FileLess.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		8D14494CFE3D4149ADD1E0D3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = AppConfig.h;
 			path = ../../JuceLibraryCode/AppConfig.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		8F5A3CCAD8C49C2F96C113CF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Clip.h;
+			path = ../../../HybridApi/Arena/Clip/Clip.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		911DA8A02C1DD06290ACDA0E = {
@@ -256,6 +445,13 @@
 			path = "~/JUCE/modules/juce_events";
 			sourceTree = "<absolute>";
 		};
+		95EC076C5E2A72F5A440FE22 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = OscIpAndPort.h;
+			path = ../../../HybridApi/Arena/Osc/OscIpAndPort.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		95F708BFD6AB70384DA0F99B = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -269,6 +465,20 @@
 			name = "juce_data_structures";
 			path = "~/JUCE/modules/juce_data_structures";
 			sourceTree = "<absolute>";
+		};
+		99FCF3F5C60EEEBAA1432B55 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FileHelper.h;
+			path = ../../../HybridApi/File/FileHelper.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		A2E5706E993A8F67B7A0B7CF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BinaryData.h;
+			path = ../../JuceLibraryCode/BinaryData.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		AE1B8D1F138C1217405E84B8 = {
 			isa = PBXFileReference;
@@ -298,6 +508,27 @@
 			path = System/Library/Frameworks/IOKit.framework;
 			sourceTree = SDKROOT;
 		};
+		B3E7F0C69502E0ADF96BE45A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ClipParser.cpp;
+			path = ../../../HybridApi/Arena/Clip/ClipParser.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B4DA2468B30A0C3309877237 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = earcut.hpp;
+			path = ../../../HybridApi/Arena/Slice/earcut.hpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B5EF269681E915BEBD83DDB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Slice.h;
+			path = ../../../HybridApi/Arena/Slice/Slice.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		BC292EE17D808D177D06B2D2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -326,6 +557,13 @@
 			path = "../../JuceLibraryCode/include_juce_events.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		BF02A401419650F6EFE5B13E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = SliceParser.cpp;
+			path = ../../../HybridApi/Arena/Slice/SliceParser.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		C51500A11DD7081D656C6FC4 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -339,6 +577,13 @@
 			name = "juce_audio_processors";
 			path = "~/JUCE/modules/juce_audio_processors";
 			sourceTree = "<absolute>";
+		};
+		C8F83E13AAB50B9D5555DEAC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = FileHelper.cpp;
+			path = ../../../HybridApi/File/FileHelper.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		CB43784D525D6BB21B946A2B = {
 			isa = PBXFileReference;
@@ -354,6 +599,20 @@
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
 		};
+		CCADB8FBC956BCD812068409 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PathButton.h;
+			path = ../../../HybridApi/Arena/Slice/PathButton.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D2944C8D53B46A2C62874CF1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ThumbParser.cpp;
+			path = ../../../HybridApi/Arena/Thumb/ThumbParser.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D63FE44D37E66BD92DA48DF5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -366,6 +625,13 @@
 			lastKnownFileType = text.plist.xml;
 			name = "Info-App.plist";
 			path = "Info-App.plist";
+			sourceTree = "SOURCE_ROOT";
+		};
+		E2AB8645BCA05E9026F6F77B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Utilities.cpp;
+			path = ../../../HybridApi/Utilities/Utilities.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		E4D8D56F7B027BD30D9E41C1 = {
@@ -403,6 +669,97 @@
 			path = "~/JUCE/modules/juce_cryptography";
 			sourceTree = "<absolute>";
 		};
+		9DD49DB8F632E6E717C2D892 = {
+			isa = PBXGroup;
+			children = (
+				39FCA3F8442112B73B50976C,
+				8F5A3CCAD8C49C2F96C113CF,
+				B3E7F0C69502E0ADF96BE45A,
+				4E22EF0D0568023F1D4C36C1,
+			);
+			name = Clip;
+			sourceTree = "<group>";
+		};
+		C24B0DB5423339ECFC06E550 = {
+			isa = PBXGroup;
+			children = (
+				3E6DD0E3767B3F85ADB90B36,
+				95EC076C5E2A72F5A440FE22,
+			);
+			name = Osc;
+			sourceTree = "<group>";
+		};
+		AD94F3363907A9A2B44B7AB6 = {
+			isa = PBXGroup;
+			children = (
+				B4DA2468B30A0C3309877237,
+				08024A386EEC400B9433FCDC,
+				CCADB8FBC956BCD812068409,
+				4E6BCE9701F4C88DF99D5512,
+				B5EF269681E915BEBD83DDB6,
+				BF02A401419650F6EFE5B13E,
+				166EE2EE18923D157BD52E69,
+			);
+			name = Slice;
+			sourceTree = "<group>";
+		};
+		0F85117925D1630DC17F2475 = {
+			isa = PBXGroup;
+			children = (
+				3539390C062BFCF10049DC26,
+				7B1A4AF61484962BCCE4F5DE,
+				D2944C8D53B46A2C62874CF1,
+				4AA7E5A94B493265C4FAC7FA,
+			);
+			name = Thumb;
+			sourceTree = "<group>";
+		};
+		BE000F288B9E090B456209DF = {
+			isa = PBXGroup;
+			children = (
+				9DD49DB8F632E6E717C2D892,
+				C24B0DB5423339ECFC06E550,
+				AD94F3363907A9A2B44B7AB6,
+				0F85117925D1630DC17F2475,
+				569629E32BA0DB32C31FD45F,
+				3A60400BCD4F0FE9F85A2B0C,
+			);
+			name = Arena;
+			sourceTree = "<group>";
+		};
+		C62733002823EF7C862C19F5 = {
+			isa = PBXGroup;
+			children = (
+				C8F83E13AAB50B9D5555DEAC,
+				99FCF3F5C60EEEBAA1432B55,
+				6EC15F3897394330FADE471B,
+				83FEE859AFFEDD457829F60A,
+				72FD5EE059240ADE54BCF579,
+				2012AE8A76AD66DA9BFBA58E,
+			);
+			name = File;
+			sourceTree = "<group>";
+		};
+		1E1B286961902AF045C23512 = {
+			isa = PBXGroup;
+			children = (
+				E2AB8645BCA05E9026F6F77B,
+				2CF87511709E945921C9B04D,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		399C905DD4F060BA28982FEF = {
+			isa = PBXGroup;
+			children = (
+				BE000F288B9E090B456209DF,
+				C62733002823EF7C862C19F5,
+				1E1B286961902AF045C23512,
+				1D29109B62CB310CB7E067B1,
+			);
+			name = HybridApi;
+			sourceTree = "<group>";
+		};
 		636DCE28980EEA5D94827712 = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +773,7 @@
 		F5B21D65D547EA7F07C726D6 = {
 			isa = PBXGroup;
 			children = (
+				399C905DD4F060BA28982FEF,
 				636DCE28980EEA5D94827712,
 			);
 			name = SmartAss;
@@ -444,6 +802,8 @@
 			isa = PBXGroup;
 			children = (
 				8D14494CFE3D4149ADD1E0D3,
+				3FDCE7360FC11DBA86FA4084,
+				A2E5706E993A8F67B7A0B7CF,
 				BC292EE17D808D177D06B2D2,
 				4C92DD2F3B060091BF1785C1,
 				75ABAC1BD2E7E58F47B3D1E3,
@@ -718,8 +1078,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6CE5BE3FC2EB5530537E316,
+				B166F7D0B7A057D7C5DBE7AF,
+				41C06378DDA327C4C1C3F6E4,
+				0403C36AF519CB1A7331099A,
+				3B823F7BDDF99109C8C83B52,
+				A49D148285AA8F6541110FC7,
+				C640B629BFAAAB606BA259B0,
+				EF022E7AB470D4B31EDAC64B,
+				90A6A742C5D442F34A0CE5E0,
+				B7CDA8B423761393E2776C12,
+				4EEDA09D3CF751F5AF238BDC,
+				638EB470BD0B1A08B63FFE44,
+				06561C66C80D70DD149AEC79,
 				D8560F1A4FC877968E8EA248,
 				D9C0B87C5C4E6F8206328DDE,
+				00A031EDE7DD6346BE91A481,
 				C37764077406A95CB62564FA,
 				1697E32CA02F3489ABBAFD8F,
 				138C955DB1CE5A40268DF71E,

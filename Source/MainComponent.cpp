@@ -7,6 +7,7 @@
 */
 
 #include "MainComponent.h"
+#include "../../HybridApi/Utilities/Utilities.h"
 
 //==============================================================================
 MainComponent::MainComponent()
