@@ -9,8 +9,8 @@
 #include "MainComponent.h"
 #include "../../HybridApi/Utilities/Utilities.h"
 
-int screenSizeX = 1920;
-int screenSizeY = 1080;
+int screenSizeX = 1920/2;
+int screenSizeY = 1080/2;
 
 //==============================================================================
 MainComponent::MainComponent()
@@ -48,32 +48,27 @@ void MainComponent::paint (Graphics& g)
         float width =     (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)])*screenSizeX;
         float height =    (rect.yArrayPtr[(4*i+3)] - rect.yArrayPtr[(4*i+1)])*screenSizeY;
         
-        float makeColor = i * 0.05;
+        float makeColor = i * 0.05 + .3;
         cout << makeColor << endl;
 
         auto sliceColor1  =  Colour::fromHSV (makeColor,    // hue
                                               1.f,    // saturation
                                               1.f,    // brightness
-                                              1.0f);   // alpha,   // red
+                                              0.6f);   // alpha,   // red
         
         
         auto sliceColor2  =  Colour::fromHSV (makeColor,    // hue
                                               1.f,    // saturation
                                               0.7f,    // brightness
-                                              1.0f);   // alpha,   // red
-        
+                                              0.6f);   // alpha,   // red
         
         
         Rectangle<float> slice (x,y,width,height);
         g.fillCheckerBoard (slice, 10, 10, sliceColor1, sliceColor2);
         
-
-        
-        
-    
-        
-        
-        
+        g.setFont (20.0f);
+        g.setColour (Colours::white);
+        g.drawText("smartAss", x, y, width, height,Justification::centred);
         g.setColour (Colours::black);
         g.drawRect(x, y, width, height);
         
