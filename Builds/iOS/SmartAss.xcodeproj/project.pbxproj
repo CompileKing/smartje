@@ -121,6 +121,14 @@
 			isa = PBXBuildFile;
 			fileRef = E2AB8645BCA05E9026F6F77B;
 		};
+		19356AE37EF2501179CA571C = {
+			isa = PBXBuildFile;
+			fileRef = 9965C8B19F93DCFC41A18A7F;
+		};
+		F1303233EF9BB420434C0E61 = {
+			isa = PBXBuildFile;
+			fileRef = 3D644A4DBD944BB617931E4A;
+		};
 		D8560F1A4FC877968E8EA248 = {
 			isa = PBXBuildFile;
 			fileRef = BE6646B36E5C13C445B31E0E;
@@ -289,6 +297,13 @@
 			path = System/Library/Frameworks/CoreText.framework;
 			sourceTree = SDKROOT;
 		};
+		3D644A4DBD944BB617931E4A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = pugixml.cpp;
+			path = ../../Source/Pugi/pugixml.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		3E6DD0E3767B3F85ADB90B36 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -387,6 +402,13 @@
 			path = "~/JUCE/modules/juce_gui_basics";
 			sourceTree = "<absolute>";
 		};
+		63383F6508D8C9EF6D2BAA20 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ReadConvertAss.h;
+			path = ../../Source/ReadConvertAss/ReadConvertAss.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		69A1117F59759F5706B166E6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -436,6 +458,13 @@
 			path = System/Library/Frameworks/AVFoundation.framework;
 			sourceTree = SDKROOT;
 		};
+		832EB876405D8CECC870E588 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = pugiconfig.hpp;
+			path = ../../Source/Pugi/pugiconfig.hpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		83FEE859AFFEDD457829F60A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -476,6 +505,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = OscIpAndPort.h;
 			path = ../../../HybridApi/Arena/Osc/OscIpAndPort.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		9965C8B19F93DCFC41A18A7F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ReadConvertAss.cpp;
+			path = ../../Source/ReadConvertAss/ReadConvertAss.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		999652849CEEF92C07A46BFC = {
@@ -547,6 +583,13 @@
 			name = Foundation.framework;
 			path = System/Library/Frameworks/Foundation.framework;
 			sourceTree = SDKROOT;
+		};
+		B9FD743586AC2F11F348D664 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = pugixml.hpp;
+			path = ../../Source/Pugi/pugixml.hpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		BC292EE17D808D177D06B2D2 = {
 			isa = PBXFileReference;
@@ -786,9 +829,30 @@
 			name = HybridApi;
 			sourceTree = "<group>";
 		};
+		1CE971422C1081AFB417CBE8 = {
+			isa = PBXGroup;
+			children = (
+				9965C8B19F93DCFC41A18A7F,
+				63383F6508D8C9EF6D2BAA20,
+			);
+			name = ReadConvertAss;
+			sourceTree = "<group>";
+		};
+		58441D941D6C04BE058EAF7C = {
+			isa = PBXGroup;
+			children = (
+				832EB876405D8CECC870E588,
+				3D644A4DBD944BB617931E4A,
+				B9FD743586AC2F11F348D664,
+			);
+			name = Pugi;
+			sourceTree = "<group>";
+		};
 		636DCE28980EEA5D94827712 = {
 			isa = PBXGroup;
 			children = (
+				1CE971422C1081AFB417CBE8,
+				58441D941D6C04BE058EAF7C,
 				4FDCC1FC149B08159942A34C,
 				BE6646B36E5C13C445B31E0E,
 				3E7D2A96EB42E1C595A380A2,
@@ -1130,6 +1194,8 @@
 				4EEDA09D3CF751F5AF238BDC,
 				638EB470BD0B1A08B63FFE44,
 				06561C66C80D70DD149AEC79,
+				19356AE37EF2501179CA571C,
+				F1303233EF9BB420434C0E61,
 				D8560F1A4FC877968E8EA248,
 				D9C0B87C5C4E6F8206328DDE,
 				C37764077406A95CB62564FA,

@@ -2,6 +2,7 @@
 
 <JUCERPROJECT id="KSRKVX" name="SmartAss" projectType="guiapp" jucerVersion="5.4.3">
   <MAINGROUP id="L7JLSU" name="SmartAss">
+    <GROUP id="{ADAB4E25-F904-4672-B498-FE52C03CAAE5}" name="Pugi"/>
     <GROUP id="{AC676626-6CAC-52F3-C728-154ADB213CB5}" name="HybridApi">
       <GROUP id="{6CBBB24A-D01D-2DC2-7B1D-1E1896D31CE4}" name="Arena">
         <GROUP id="{7F57D8BE-9BB0-CF88-C14E-F5CBBFB896CE}" name="Clip">
@@ -50,6 +51,17 @@
       <FILE id="ojMq4A" name="README.md" compile="0" resource="0" file="../HybridApi/README.md"/>
     </GROUP>
     <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
+      <GROUP id="{EF48B41A-C404-9A3E-E9C8-2E75AD3EA040}" name="ReadConvertAss">
+        <FILE id="yjYNV1" name="ReadConvertAss.cpp" compile="1" resource="0"
+              file="Source/ReadConvertAss/ReadConvertAss.cpp"/>
+        <FILE id="uoKKxL" name="ReadConvertAss.h" compile="0" resource="0"
+              file="Source/ReadConvertAss/ReadConvertAss.h"/>
+      </GROUP>
+      <GROUP id="{6F8EDFE8-E4CF-EC17-6BD5-93146DAC86C7}" name="Pugi">
+        <FILE id="tLFvbw" name="pugiconfig.hpp" compile="0" resource="0" file="Source/Pugi/pugiconfig.hpp"/>
+        <FILE id="jcd14s" name="pugixml.cpp" compile="1" resource="0" file="Source/Pugi/pugixml.cpp"/>
+        <FILE id="KM9D7s" name="pugixml.hpp" compile="0" resource="0" file="Source/Pugi/pugixml.hpp"/>
+      </GROUP>
       <FILE id="afYO85" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="CfTTrm" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
