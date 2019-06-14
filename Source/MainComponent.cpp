@@ -9,8 +9,8 @@
 #include "MainComponent.h"
 #include "../../HybridApi/Utilities/Utilities.h"
 
-int screenSizeX = 600;
-int screenSizeY = 400;
+int screenSizeX = 800;
+int screenSizeY = 1000;
 
 //==============================================================================
 MainComponent::MainComponent()
@@ -39,21 +39,23 @@ void MainComponent::paint (Graphics& g)
      */
     
     g.setColour (Colours::sandybrown);
+    
     for (int i=0;i<rect.sIndex;i++)
     {
-        /*
-            rect.xArrayPtr[(4*i)],  rect.yArrayPtr[(4*i)],      //top left
-            rect.xArrayPtr[(4*i+1)],rect.yArrayPtr[(4*i+1)],    //top right
-            rect.xArrayPtr[(4*i+2)],rect.yArrayPtr[(4*i+2)],    //bottom right
-            rect.xArrayPtr[(4*i+3)],rect.yArrayPtr[(4*i+3)],    //bottom left
-         */
+   
+        float x =         rect.xArrayPtr[(4*i)]*screenSizeX;
+        float y =         rect.yArrayPtr[(4*i)]*screenSizeY;
+        float width =     (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)])*screenSizeX;
+        float height =    (rect.yArrayPtr[(4*i+3)] - rect.yArrayPtr[(4*i+1)])*screenSizeY;
         
-        int x =         rect.xArrayPtr[(4*i)]*screenSizeX;
-        int y =         rect.yArrayPtr[(4*i)]*screenSizeY;
-        int width =     (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)])*screenSizeY;
-        int height =    (rect.yArrayPtr[(4*i+2)] - rect.yArrayPtr[(4*i+1)])*screenSizeY;
+        Rectangle<float> slice (x,y,width,height);
+        g.fillCheckerBoard (slice, 10, 10, Colours::sandybrown, Colours::saddlebrown);
         
-        g.drawRect(x,y,width,height);
+        g.setColour (Colours::black);
+        g.drawRect(x, y, width, height);
+        
+        
+        //g.drawRect(x,y,width,height);
         
         
     }
