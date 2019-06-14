@@ -40,11 +40,11 @@ public:
     
     void getInputRect();
     
-    double xArray[1000];
-    double *xArrayPtr = xArray;
+    float xArray[1000];
+    float *xArrayPtr = xArray;
     
-    double yArray[1000];
-    double *yArrayPtr = yArray;
+    float yArray[1000];
+    float *yArrayPtr = yArray;
     
     bool isFileLoaded;
     
