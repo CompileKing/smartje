@@ -33,10 +33,7 @@ void MainComponent::paint (Graphics& g)
     
     g.fillAll (Colours::darkgrey);
     g.setColour (Colours::darkblue);
-    /*
-    g.setFont (14.0f);
-    g.drawText ("jemoeder" , getLocalBounds(), Justification::centred, true);
-     */
+
     
     g.setColour (Colours::sandybrown);
     
@@ -48,23 +45,22 @@ void MainComponent::paint (Graphics& g)
         float width =     (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)])*screenSizeX;
         float height =    (rect.yArrayPtr[(4*i+3)] - rect.yArrayPtr[(4*i+1)])*screenSizeY;
         
-        float makeColor = i * 0.05 + .3;
-        cout << makeColor << endl;
+        float sliceColor = (i*0.1)/(rect.sIndex*0.1);
+        cout << sliceColor << endl;
 
-        auto sliceColor1  =  Colour::fromHSV (makeColor,    // hue
+        auto tileColor1  =  Colour::fromHSV (sliceColor,    // hue
                                               1.f,    // saturation
                                               1.f,    // brightness
                                               0.6f);   // alpha,   // red
         
         
-        auto sliceColor2  =  Colour::fromHSV (makeColor,    // hue
+        auto tileColor2  =  Colour::fromHSV (sliceColor,    // hue
                                               1.f,    // saturation
                                               0.7f,    // brightness
                                               0.6f);   // alpha,   // red
         
-        
         Rectangle<float> slice (x,y,width,height);
-        g.fillCheckerBoard (slice, 10, 10, sliceColor1, sliceColor2);
+        g.fillCheckerBoard (slice, 10, 10, tileColor1, tileColor2);
         
         g.setFont (20.0f);
         g.setColour (Colours::white);
@@ -73,21 +69,10 @@ void MainComponent::paint (Graphics& g)
         g.drawRect(x, y, width, height);
         
         
-        //g.drawRect(x,y,width,height);
         
-        
+    
     }
-    
 
-
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 void MainComponent::resized()
