@@ -111,8 +111,8 @@ void InputRect::getInputRect()
                 {
                     for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every v child
                     {
-                        xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;  // get x attribute and fill xArray and normalise with comp width
-                        yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;  // get y attribute and fill yArray and normalise with comp height
+                        xArray[vIndex] =  (value.attribute("x").as_double() / compResX);  // get x attribute and fill xArray and normalise with comp width
+                        yArray[vIndex] =  (value.attribute("y").as_double() / compResY);  // get y attribute and fill yArray and normalise with comp height
                         
                         vIndex++;   // vector index increment
                     }

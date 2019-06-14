@@ -33,25 +33,31 @@ void MainComponent::paint (Graphics& g)
     
     g.fillAll (Colours::darkgrey);
     g.setColour (Colours::darkblue);
+    /*
     g.setFont (14.0f);
     g.drawText ("jemoeder" , getLocalBounds(), Justification::centred, true);
+     */
     
     g.setColour (Colours::sandybrown);
     for (int i=0;i<rect.sIndex;i++)
     {
-        
-        
-        float verts[] =
-        {
+        /*
             rect.xArrayPtr[(4*i)],  rect.yArrayPtr[(4*i)],      //top left
             rect.xArrayPtr[(4*i+1)],rect.yArrayPtr[(4*i+1)],    //top right
             rect.xArrayPtr[(4*i+2)],rect.yArrayPtr[(4*i+2)],    //bottom right
             rect.xArrayPtr[(4*i+3)],rect.yArrayPtr[(4*i+3)],    //bottom left
-        };
-        g.drawRect(verts[1],verts[2],verts[3],verts[4]);
-        cout << verts[1] << verts[2] << verts[3] << verts[4] << endl;
-
+         */
+        
+        int x =         rect.xArrayPtr[(4*i)]*screenSizeX;
+        int y =         rect.yArrayPtr[(4*i)]*screenSizeY;
+        int width =     (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)])*screenSizeY;
+        int height =    (rect.yArrayPtr[(4*i+2)] - rect.yArrayPtr[(4*i+1)])*screenSizeY;
+        
+        g.drawRect(x,y,width,height);
+        
+        
     }
+    
 
 
     
