@@ -39,6 +39,8 @@ public:
     int sIndex = 0;
     
     void getInputRect();
+    string sliceName;
+    
     
     float xArray[1000];
     float *xArrayPtr = xArray;

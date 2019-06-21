@@ -7,7 +7,7 @@
 */
 
 #include "MainComponent.h"
-#include "../../HybridApi/Utilities/Utilities.h"
+
 
 int screenSizeX = 1920;
 int screenSizeY = 1080;
@@ -18,60 +18,75 @@ MainComponent::MainComponent()
     
     rect.getInputRect();
     setSize (screenSizeX, screenSizeY);
+    addMouseListener(this, true);
     
 }
+
+
 
 MainComponent::~MainComponent()
 {
 }
 
+
+
+
+
+
+void MainComponent::mouseDrag (const MouseEvent& e)
+{
+    
+    // e.position, e.mods, e.pressure
+    
+    
+    clickColour = e.position.y / getHeight() * 5.;
+    cout << clickColour << endl;
+    repaint();
+}
+
+ 
+
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
     
-    g.fillAll (Colours::darkgrey);
+    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.2, 1.f));
 
     for (int i=0;i<rect.sIndex;i++)
     {
-        /*
-        float x =         rect.xArrayPtr[(4*i)] * screenSizeX;
-        float y =         rect.yArrayPtr[(4*i)] * screenSizeY;
-        float width =     (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)]) * screenSizeX;
-        float height =    (rect.xArrayPtr[(4*i+1)] - rect.xArrayPtr[(4*i)]) * screenSizeX;
-         */
-        
-        float sliceColor = (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
+        float sliceColor = (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
         auto tileColor1  =  Colour::fromHSV (sliceColor,    // hue
-                                              1.f,    // saturation
-                                              1.f,    // brightness
-                                              0.8f);   // alpha,   // red
+                                              1.f,          // saturation
+                                              1.f,          // brightness
+                                              0.6f);        // alpha,
         
-        /*
-        auto tileColor2  =  Colour::fromHSV (sliceColor,    // hue
-                                              1.f,    // saturation
-                                              0.7f,    // brightness
-                                              0.6f);   // alpha,   // red
-        */
-
-        Path path;
-        path.startNewSubPath (Point<float> (rect.xArrayPtr[(4*i)]   * screenSizeX , rect.yArrayPtr[(4*i)]   * screenSizeY));
-        path.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+1] * screenSizeX , rect.yArrayPtr[(4*i)+1] * screenSizeY));
-        path.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+2] * screenSizeX , rect.yArrayPtr[(4*i)+2] * screenSizeY));
-        path.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+3] * screenSizeX , rect.yArrayPtr[(4*i)+3] * screenSizeY));
+        Path path; // paint every slice as a path with a diffirent hue
+        path.startNewSubPath (Point<float> (rect.xArrayPtr[(4*i)]   * screenSizeX * clickColour, rect.yArrayPtr[(4*i)]   * screenSizeY * clickColour));
+        path.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+1] * screenSizeX * clickColour, rect.yArrayPtr[(4*i)+1] * screenSizeY * clickColour));
+        path.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+2] * screenSizeX * clickColour, rect.yArrayPtr[(4*i)+2] * screenSizeY * clickColour));
+        path.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+3] * screenSizeX * clickColour, rect.yArrayPtr[(4*i)+3] * screenSizeY * clickColour));
         path.closeSubPath();
         g.setColour(tileColor1);
         g.fillPath (path);
         
-        // rotation =  <InputRect orientation="0.25306850671768188477">
-        // Point<float> center = path.getBounds().getCentre();
-        
-        g.setColour(Colour::fromHSV(1, 0, 0.2, 1));
+        Path stroke; // paint an black outline and a cross over the slices
+        stroke.startNewSubPath (Point<float> (rect.xArrayPtr[(4*i)]   * screenSizeX * clickColour, rect.yArrayPtr[(4*i)]   * screenSizeY * clickColour));
+        stroke.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+2] * screenSizeX * clickColour, rect.yArrayPtr[(4*i)+2] * screenSizeY * clickColour));
+        stroke.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+1] * screenSizeX * clickColour , rect.yArrayPtr[(4*i)+1] * screenSizeY * clickColour));
+        stroke.lineTo (Point<float>          (rect.xArrayPtr[(4*i)+3] * screenSizeX * clickColour, rect.yArrayPtr[(4*i)+3] * screenSizeY * clickColour));
+        stroke.closeSubPath();
+        g.setColour(Colour::fromHSV(1., 1., 0., 1.));
+        g.strokePath(stroke, PathStrokeType(1.));
+        g.strokePath(path, PathStrokeType(1.));
+    
+        g.setColour(Colour::fromHSV(1, 0, 0.2, 1)); // paint a black textbox in the center
         Rectangle<float> slice (path.getBounds().getCentreX()-30,path.getBounds().getCentreY()-20,60,40);
         g.fillRect(slice);
 
-        g.setFont (20.0f);
+        g.setFont (20.0f); // paint the text overlay
         g.setColour (Colours::white);
-        g.drawText("hey", path.getBounds(), Justification::centred);
+        string text = "slice";
+        g.drawText(text, path.getBounds(), Justification::centred);
 
     }
 

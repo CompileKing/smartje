@@ -32,6 +32,9 @@ private:
     // Your private member variables go here...
     
     InputRect rect;
+    
+    void mouseDrag (const MouseEvent& e) override;
+    float clickColour;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

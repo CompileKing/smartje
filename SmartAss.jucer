@@ -3,54 +3,11 @@
 <JUCERPROJECT id="KSRKVX" name="SmartAss" projectType="guiapp" jucerVersion="5.4.3">
   <MAINGROUP id="L7JLSU" name="SmartAss">
     <GROUP id="{ADAB4E25-F904-4672-B498-FE52C03CAAE5}" name="Pugi"/>
-    <GROUP id="{AC676626-6CAC-52F3-C728-154ADB213CB5}" name="HybridApi">
-      <GROUP id="{6CBBB24A-D01D-2DC2-7B1D-1E1896D31CE4}" name="Arena">
-        <GROUP id="{7F57D8BE-9BB0-CF88-C14E-F5CBBFB896CE}" name="Clip">
-          <FILE id="qRepUb" name="Clip.cpp" compile="1" resource="0" file="../HybridApi/Arena/Clip/Clip.cpp"/>
-          <FILE id="G65o8x" name="Clip.h" compile="0" resource="0" file="../HybridApi/Arena/Clip/Clip.h"/>
-          <FILE id="UHD4z1" name="ClipParser.cpp" compile="1" resource="0" file="../HybridApi/Arena/Clip/ClipParser.cpp"/>
-          <FILE id="L4TpwP" name="ClipParser.h" compile="0" resource="0" file="../HybridApi/Arena/Clip/ClipParser.h"/>
-        </GROUP>
-        <GROUP id="{EE4C764B-CEE4-4B52-9EFD-560F3E753801}" name="Osc">
-          <FILE id="O39xIs" name="OscIpAndPort.cpp" compile="1" resource="0"
-                file="../HybridApi/Arena/Osc/OscIpAndPort.cpp"/>
-          <FILE id="Uld441" name="OscIpAndPort.h" compile="0" resource="0" file="../HybridApi/Arena/Osc/OscIpAndPort.h"/>
-        </GROUP>
-        <GROUP id="{66E8C3A1-A237-7AFA-331E-60554BCC7573}" name="Slice">
-          <FILE id="wqhLbh" name="earcut.hpp" compile="0" resource="0" file="../HybridApi/Arena/Slice/earcut.hpp"/>
-          <FILE id="vnVQlR" name="PathButton.cpp" compile="1" resource="0" file="../HybridApi/Arena/Slice/PathButton.cpp"/>
-          <FILE id="jTe7Xw" name="PathButton.h" compile="0" resource="0" file="../HybridApi/Arena/Slice/PathButton.h"/>
-          <FILE id="FfEuQR" name="Slice.cpp" compile="1" resource="0" file="../HybridApi/Arena/Slice/Slice.cpp"/>
-          <FILE id="NE19mA" name="Slice.h" compile="0" resource="0" file="../HybridApi/Arena/Slice/Slice.h"/>
-          <FILE id="V1773P" name="SliceParser.cpp" compile="1" resource="0" file="../HybridApi/Arena/Slice/SliceParser.cpp"/>
-          <FILE id="SeyaJc" name="SliceParser.h" compile="0" resource="0" file="../HybridApi/Arena/Slice/SliceParser.h"/>
-        </GROUP>
-        <GROUP id="{19CCB11B-E901-6519-3502-565D29C983D2}" name="Thumb">
-          <FILE id="HisPF6" name="Thumb.cpp" compile="1" resource="0" file="../HybridApi/Arena/Thumb/Thumb.cpp"/>
-          <FILE id="xwn9Br" name="Thumb.h" compile="0" resource="0" file="../HybridApi/Arena/Thumb/Thumb.h"/>
-          <FILE id="paslus" name="ThumbParser.cpp" compile="1" resource="0" file="../HybridApi/Arena/Thumb/ThumbParser.cpp"/>
-          <FILE id="I9zBrU" name="ThumbParser.h" compile="0" resource="0" file="../HybridApi/Arena/Thumb/ThumbParser.h"/>
-        </GROUP>
-        <FILE id="KAZXsO" name="ResXmlParser.cpp" compile="1" resource="0"
-              file="../HybridApi/Arena/ResXmlParser.cpp"/>
-        <FILE id="aJauV1" name="ResXmlParser.h" compile="0" resource="0" file="../HybridApi/Arena/ResXmlParser.h"/>
-      </GROUP>
-      <GROUP id="{81DBF5F6-61CE-8101-5AC2-6BB7CDBD40C0}" name="File">
-        <FILE id="q9V2Sj" name="FileHelper.cpp" compile="1" resource="0" file="../HybridApi/File/FileHelper.cpp"/>
-        <FILE id="APkf2L" name="FileHelper.h" compile="0" resource="0" file="../HybridApi/File/FileHelper.h"/>
-        <FILE id="zCx78o" name="FileLess.cpp" compile="1" resource="0" file="../HybridApi/File/FileLess.cpp"/>
-        <FILE id="h1T3fB" name="FileLess.h" compile="0" resource="0" file="../HybridApi/File/FileLess.h"/>
-        <FILE id="sDtJ6K" name="FileWatcher.cpp" compile="1" resource="0" file="../HybridApi/File/FileWatcher.cpp"/>
-        <FILE id="BaizL3" name="FileWatcher.h" compile="0" resource="0" file="../HybridApi/File/FileWatcher.h"/>
-      </GROUP>
-      <GROUP id="{F672BA8F-FB24-22AD-F362-9E31FC31DC1E}" name="Source"/>
-      <GROUP id="{C5FAD3A9-E6A3-359F-5BEC-FD3B01B24578}" name="Utilities">
-        <FILE id="STiR3l" name="Utilities.cpp" compile="1" resource="0" file="../HybridApi/Utilities/Utilities.cpp"/>
-        <FILE id="JKvv02" name="Utilities.h" compile="0" resource="0" file="../HybridApi/Utilities/Utilities.h"/>
-      </GROUP>
-      <FILE id="ojMq4A" name="README.md" compile="0" resource="0" file="../HybridApi/README.md"/>
-    </GROUP>
     <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
+      <GROUP id="{328102A2-20E4-C5A4-9FA4-148CDD0B1811}" name="MultiTouch">
+        <FILE id="n7kbtd" name="MultiTouch.cpp" compile="1" resource="0" file="Source/MultiTouch/MultiTouch.cpp"/>
+        <FILE id="QtXwUM" name="MultiTouch.h" compile="0" resource="0" file="Source/MultiTouch/MultiTouch.h"/>
+      </GROUP>
       <GROUP id="{EF48B41A-C404-9A3E-E9C8-2E75AD3EA040}" name="ReadConvertAss">
         <FILE id="yjYNV1" name="ReadConvertAss.cpp" compile="1" resource="0"
               file="Source/ReadConvertAss/ReadConvertAss.cpp"/>
