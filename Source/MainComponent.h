@@ -40,7 +40,9 @@ public:
 			return;
 
 		auto fileText = fileToRead.loadFileAsString();
-		auto filePath = fileToRead.getFullPathName();
+        auto filePath = fileToRead.getFullPathName();
+        rect.getInputRect(filePath.toStdString());
+        
 		std::cout << filePath << std::endl;
 	}
 

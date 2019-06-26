@@ -25,7 +25,7 @@
 
 
 
-void InputRect::getInputRect()
+void InputRect::getInputRect(std::string assFile)
 {
 #ifdef _WIN64
     string homePath1;
@@ -104,8 +104,7 @@ void InputRect::getInputRect()
     {
         for (pugi::xml_node screen: doc.child("XmlState").child("ScreenSetup").child("screens").children("Screen")) // for every Screen
         {
-            if (strncmp (screen.attribute("name").as_string(),"Tracer",6) == 0) // for every Screen called Tracer
-            {
+            
                 for (pugi::xml_node slice: screen.child("layers").children("Slice"))    // for every slice
                     
                 {
@@ -118,7 +117,7 @@ void InputRect::getInputRect()
                     }
                     sIndex++;    // screen index increment
                 }
-            }
+            
         }
     }
     

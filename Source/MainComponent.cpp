@@ -16,7 +16,7 @@ int screenSizeY = 540;
 MainComponent::MainComponent()
 {
     
-    rect.getInputRect();
+    
     setSize (screenSizeX, screenSizeY);
     addMouseListener(this, true);
     

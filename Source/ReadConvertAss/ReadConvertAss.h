@@ -38,7 +38,7 @@ public:
     int vIndex = 0;
     int sIndex = 0;
     
-    void getInputRect();
+    void getInputRect(std::string assFile);
     string sliceName;
     
     
