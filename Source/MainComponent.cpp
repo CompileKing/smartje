@@ -9,8 +9,8 @@
 #include "MainComponent.h"
 
 
-int screenSizeX = 1920;
-int screenSizeY = 1080;
+int screenSizeX = 960;
+int screenSizeY = 540;
 
 //==============================================================================
 MainComponent::MainComponent()
@@ -19,6 +19,20 @@ MainComponent::MainComponent()
     rect.getInputRect();
     setSize (screenSizeX, screenSizeY);
     addMouseListener(this, true);
+    
+    fileComp.reset(new FilenameComponent("fileComp",
+                                         {},                       // current file
+                                         false,                    // can edit file name,
+                                         false,                    // is directory,
+                                         false,                    // is for saving,
+                                         {},                       // browser wildcard suffix,
+                                         {},                       // enforced suffix,
+                                         "Select file to open"));  // text when nothing selected
+    addAndMakeVisible(fileComp.get());
+    fileComp->addListener(this);
+    fileComp->setBounds(10, 10, 240, 40);
+    
+    setSize(600, 400);
     
 }
 
@@ -94,7 +108,5 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-    // This is called when the MainComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
+	 
 }
