@@ -11,6 +11,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ReadConvertAss/ReadConvertAss.h"
 
+using namespace std;
+
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
@@ -42,8 +44,9 @@ public:
 		auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString());
+        repaint();
         
-		std::cout << filePath << std::endl;
+        
 	}
 
 
@@ -56,8 +59,9 @@ private:
     InputRect rect;
     
     void mouseDrag (const MouseEvent& e) override;
-    float clickColour;
-	std::unique_ptr<FilenameComponent> fileComp;
+    float dragUp;
+    float dragDown;
+	unique_ptr<FilenameComponent> fileComp;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
