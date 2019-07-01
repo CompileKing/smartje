@@ -10,6 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ReadConvertAss/ReadConvertAss.h"
+#include "MultiTouch/MultiTouch.h"
 
 using namespace std;
 
@@ -60,7 +61,7 @@ private:
     
     void mouseDrag (const MouseEvent& e) override;
     float dragUp;
-    float dragDown;
+    
 	unique_ptr<FilenameComponent> fileComp;
 
 

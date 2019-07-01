@@ -69,6 +69,7 @@ public:
             {
                 if (lastPoint != Point<float>())
                 {
+                   /*
                     Path newSegment;
                     newSegment.startNewSubPath (lastPoint);
                     newSegment.lineTo (newPoint);
@@ -77,6 +78,7 @@ public:
                     
                     PathStrokeType (diameter, PathStrokeType::curved, PathStrokeType::rounded).createStrokedPath (newSegment, newSegment);
                     path.addPath (newSegment);
+                    */
                 }
                 
                 lastPoint = newPoint;
@@ -96,6 +98,7 @@ public:
     
     void drawTrail (Trail& trail, Graphics& g)
     {
+        /*
         g.setColour (trail.colour);
         g.fillPath (trail.path);
         
@@ -126,6 +129,7 @@ public:
                                     (int) trail.currentPosition.y - 60,
                                     400, 20),
                     Justification::centredTop, false);
+         */
     }
     
     Trail* getTrail (const MouseInputSource& source)

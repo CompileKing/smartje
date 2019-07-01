@@ -49,11 +49,9 @@ MainComponent::~MainComponent()
 
 void MainComponent::mouseDrag (const MouseEvent& e)
 {
-    dragUp = ((e.position.x / getWidth()*5) + 1);
-    dragDown = 2 - (e.position.x / getWidth() + 1);
-    cout << "dragUp: " << dragUp << endl;
-    cout << "////////////////////" << endl;
-    cout << "dragDown: " << dragDown << endl;
+    dragUp = ((e.position.x / getWidth()*10) + 1);
+    
+    
     repaint();
 }
 
@@ -63,7 +61,7 @@ void MainComponent::mouseDrag (const MouseEvent& e)
 void MainComponent::paint (Graphics& g)
 {
     
-    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.2, 1.f));
+    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.05, 1.f));
 
     for (int i=0;i<rect.sIndex;i++)
     {
@@ -115,7 +113,7 @@ void MainComponent::paint (Graphics& g)
 
         g.setFont (20.0f); // paint the text overlay
         g.setColour (Colours::white);
-        string text = "slice";
+        String text = "slice";
         g.drawText(text, path.getBounds(), Justification::centred);
         
 
