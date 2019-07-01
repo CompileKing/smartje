@@ -24,10 +24,11 @@ public:
     
     void paint (Graphics& g) override
     {
-        
+        /*
         g.setFont (14.0f);
         g.drawFittedText ("Drag here with as many fingers as you have!",
                           getLocalBounds().reduced (30), Justification::centred, 4);
+        */
         
         for (auto* trail : trails)
             drawTrail (*trail, g);

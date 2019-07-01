@@ -46,14 +46,13 @@ MainComponent::~MainComponent()
 }
 
 
-
-void MainComponent::mouseDrag (const MouseEvent& e)
+/*
+void MainComponent::mouseDragOne (const MouseEvent& e)
 {
     dragUp = ((e.position.x / getWidth()*10) + 1);
-    
-    
     repaint();
 }
+ */
 
  
 
@@ -61,7 +60,7 @@ void MainComponent::mouseDrag (const MouseEvent& e)
 void MainComponent::paint (Graphics& g)
 {
     
-    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.05, 1.f));
+    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.4, 1.f));
 
     for (int i=0;i<rect.sIndex;i++)
     {
@@ -118,6 +117,25 @@ void MainComponent::paint (Graphics& g)
         
 
     }
+    
+    for (auto* trail : trails)
+    {
+
+        drawTrail (*trail, g);
+        if (getIndex(*trail) == 0)
+        {
+            position0 = getPosition(*trail);
+        }
+        if (getIndex(*trail) == 1)
+        {
+            position1 = getPosition(*trail);
+        }
+
+        sourceDistance = position0.getDistanceFrom(position1);
+        cout << sourceDistance << endl;
+
+    }
+    
 
 }
 

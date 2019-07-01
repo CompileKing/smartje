@@ -35,7 +35,7 @@ void InputRect::getInputRect(std::string assFile)
     
     cout << endl;
     cout << endl;
-    cout << "//////////////////////////////////////////////////////////////////////////////" <<endl;
+    cout << "/////////////////////////////////////PUGI/////////////////////////////////////" <<endl;
     cout << endl;
     cout << "pugi from param: " << assFile << endl;
     
