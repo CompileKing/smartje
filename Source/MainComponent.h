@@ -73,8 +73,6 @@ public:
         
         for (auto* trail : trails) // get distance for 2 fingers
         {
-            
-            // drawTrail (*trail, g);
             if (getIndex(*trail) == 0)
             {
                 position0 = getPosition(*trail);
@@ -86,7 +84,6 @@ public:
             
             sourceDistance = position0.getDistanceFrom(position1);
             cout << sourceDistance << endl;
-            
         }
     }
     
@@ -124,38 +121,7 @@ public:
     
     OwnedArray<Trail> trails;
     
-    void drawTrail (Trail& trail, Graphics& g)
-    {
-        
-        g.setColour (trail.colour);
-        g.fillPath (trail.path);
-        
-        auto radius = 40.0f;
-        
-        g.setColour (Colours::black);
-        g.drawEllipse (trail.currentPosition.x - radius,
-                       trail.currentPosition.y - radius,
-                       radius * 2.0f, radius * 2.0f, 2.0f);
-        
-        
-        g.setFont (14.0f);
-        
-        String desc ("Mouse #");
-        desc << trail.source.getIndex();
-        
-        
-        auto pressure = trail.source.getCurrentPressure();
-        
-        if (pressure > 0.0f && pressure < 1.0f)
-            desc << "  (pressure: " << (int) (pressure * 100.0f) << "%)";
-        
-        
-        g.drawText (desc,
-                    Rectangle<int> ((int) trail.currentPosition.x - 200,
-                                    (int) trail.currentPosition.y - 60,
-                                    400, 20),
-                    Justification::centredTop, false);
-    }
+    
     
     int getIndex(Trail& trail)
     {

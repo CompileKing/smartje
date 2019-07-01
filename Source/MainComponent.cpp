@@ -46,16 +46,6 @@ MainComponent::~MainComponent()
 }
 
 
-/*
-void MainComponent::mouseDragOne (const MouseEvent& e)
-{
-    dragUp = ((e.position.x / getWidth()*10) + 1);
-    repaint();
-}
- */
-
- 
-
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
