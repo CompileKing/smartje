@@ -71,20 +71,31 @@ public:
         t->pushPoint (e.position, e.mods, e.pressure);
         repaint();
         
+        fingers = 0;
+        
         for (auto* trail : trails) // get distance for 2 fingers
         {
-            if (getIndex(*trail) == 0)
-            {
-                position0 = getPosition(*trail);
-            }
-            if (getIndex(*trail) == 1)
-            {
-                position1 = getPosition(*trail);
-            }
+            fingers++;
             
-            sourceDistance = position0.getDistanceFrom(position1);
-            cout << sourceDistance << endl;
+            if (fingers == 2)
+            {
+                if (getIndex(*trail) == 0)
+                {
+                    position0 = getPosition(*trail);
+                }
+                if (getIndex(*trail) == 1)
+                {
+                    position1 = getPosition(*trail);
+                }
+                sourceDistance = abs(position0.getDistanceFrom(position1));
+            }
+            if (fingers == 1)
+            {
+                moveX = e.getPosition().x;
+                moveY = e.getPosition().y;
+            }
         }
+        
     }
     
     void mouseUp (const MouseEvent& e) override
@@ -140,9 +151,10 @@ public:
         for (auto* trail : trails)
         {
             if (trail->source == source)
+            {
                 return trail;
+            }
         }
-        
         return nullptr;
     }
     
@@ -160,6 +172,9 @@ private:
     Point<float> position0;
     Point<float> position1;
     float sourceDistance = 0.f;
+    int fingers = 0;
+    float moveX = 0;
+    float moveY = 0;
     
     
     float dragUp;
