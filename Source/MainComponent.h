@@ -81,7 +81,7 @@ public:
                 {
                     position1 = getPosition(*trail);
                 }
-                sourceDistance = abs(position0.getDistanceFrom(position1));
+                sourceDistance = abs(position0.getDistanceFrom(position1)-60);
             }
         }
         // cout << "fingers: " << fingers << endl;
@@ -89,11 +89,11 @@ public:
         {
             float xPos = e.getPosition().x;
             float yPos = e.getPosition().y;
-            moveX = ((xPos/getWidth()*2.f-1.f)*2.f)*(sourceDistance/getWidth()*-1.f)*-1.f;
-            moveY = ((yPos/getHeight()*2.f-1.f)*2.f)*(sourceDistance/getWidth()*-1.f)*-1.f;
+            moveX = ((xPos/getWidth()*2.f-1.f)*3.f)*(sourceDistance/getWidth()*-1.f);
+            moveY = ((yPos/getHeight()*2.f-1.f)*3.f)*(sourceDistance/getWidth()*-1.f);
             
             
-            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
+//            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
         }
         
         repaint();

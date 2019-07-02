@@ -101,14 +101,22 @@ void MainComponent::paint (Graphics& g)
         g.strokePath(stroke, PathStrokeType(1.));
         g.strokePath(path, PathStrokeType(1.));
     
-        g.setColour(Colour::fromHSV(1, 0, 0.2, 1)); // paint a black textbox in the center
-        Rectangle<float> slice (path.getBounds().getCentreX()-30,path.getBounds().getCentreY()-20,60,40);
+        g.setColour(Colour::fromHSV(1, 0, 0.2, 0.8)); // paint a black textbox in the center
+        Rectangle<float> slice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/5),
+                                path.getBounds().getCentreY()-(path.getBounds().getHeight()/5),
+                                path.getBounds().getWidth()/2.5,
+                                path.getBounds().getHeight()/2.5);
         g.fillRect(slice);
 
-        g.setFont (20.0f); // paint the text overlay
+        g.setFont (15.0f); // paint the text overlay
         g.setColour (Colours::white);
-        String text = "slice";
-        g.drawText(text, path.getBounds(), Justification::centred);
+        String name = "slice name";
+        g.drawText(name, slice, Justification::centredTop);
+        String size = "420 x 48";
+        g.drawText(size, slice, Justification::centred);
+        String info = "extra info";
+        g.drawText(info, slice, Justification::centredBottom);
+        
         
     }
 
