@@ -67,7 +67,7 @@ public:
         
         
         t->pushPoint (e.position, e.mods, e.pressure);
-        repaint();
+        
         
         if (fingers == 1)
         {
@@ -84,12 +84,19 @@ public:
                 sourceDistance = abs(position0.getDistanceFrom(position1));
             }
         }
-        cout << "fingers: " << fingers << endl;
+        // cout << "fingers: " << fingers << endl;
         if (fingers == 0)
         {
-            moveX = e.getPosition().x;
-            moveY =  e.getPosition().y;
+            float xPos = e.getPosition().x;
+            float yPos = e.getPosition().y;
+            moveX = ((xPos/getWidth()*2.f-1.f)*2.f)*(sourceDistance/getWidth()*-1.f)*-1.f;
+            moveY = ((yPos/getHeight()*2.f-1.f)*2.f)*(sourceDistance/getWidth()*-1.f)*-1.f;
+            
+            
+            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
         }
+        
+        repaint();
     }
     
     
