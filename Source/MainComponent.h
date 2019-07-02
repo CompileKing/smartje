@@ -46,15 +46,11 @@ public:
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString());
         repaint();
-        
-        
     }
     
     //=============================================================================
     //                              multiTouchDemoStuff
     //=============================================================================
-    
-    
     
     
     void mouseDrag (const MouseEvent& e) override
@@ -67,17 +63,15 @@ public:
             t->path.startNewSubPath (e.position);
             trails.add (t);
         }
+        //else fingers = 1;
+        
         
         t->pushPoint (e.position, e.mods, e.pressure);
         repaint();
         
-        fingers = 0;
-        
-        for (auto* trail : trails) // get distance for 2 fingers
+        if (fingers == 1)
         {
-            fingers++;
-            
-            if (fingers == 2)
+            for (auto* trail : trails) // get distance for 2 fingers
             {
                 if (getIndex(*trail) == 0)
                 {
@@ -89,19 +83,21 @@ public:
                 }
                 sourceDistance = abs(position0.getDistanceFrom(position1));
             }
-            if (fingers == 1)
-            {
-                moveX = e.getPosition().x;
-                moveY = e.getPosition().y;
-            }
         }
-        
+        cout << "fingers: " << fingers << endl;
+        if (fingers == 0)
+        {
+            moveX = e.getPosition().x;
+            moveY =  e.getPosition().y;
+        }
     }
+    
     
     void mouseUp (const MouseEvent& e) override
     {
         trails.removeObject (getTrail (e.source));
         repaint();
+        fingers = 0;
     }
     
     struct Trail
@@ -133,7 +129,6 @@ public:
     OwnedArray<Trail> trails;
     
     
-    
     int getIndex(Trail& trail)
     {
         int currentIndex = 0;
@@ -154,14 +149,10 @@ public:
             {
                 return trail;
             }
+            else fingers = 1;
         }
         return nullptr;
     }
-    
-    
-    
-    
-    
     
 private:
     //==============================================================================
@@ -173,6 +164,7 @@ private:
     Point<float> position1;
     float sourceDistance = 0.f;
     int fingers = 0;
+    
     float moveX = 0;
     float moveY = 0;
     

@@ -17,9 +17,6 @@ int screenSizeY = 640;
 //==============================================================================
 MainComponent::MainComponent()
 {
-    
-    
-    
     addMouseListener(this, true);
     
     fileComp.reset(new FilenameComponent("fileComp",
@@ -36,7 +33,6 @@ MainComponent::MainComponent()
     
     setSize(screenSizeX, screenSizeY);
     dragUp = 1;
-    
 }
 
 
@@ -49,7 +45,6 @@ MainComponent::~MainComponent()
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
-    
     dragUp = (sourceDistance / getWidth()) * 10.f;
     
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0.4, 1.f));
@@ -77,10 +72,7 @@ void MainComponent::paint (Graphics& g)
         path.closeSubPath();
         g.setColour(tileColor1);
         g.fillPath (path);
-        
-        
-        
-        
+
         Path stroke; // paint an black outline and a cross over the slices
         stroke.startNewSubPath (Point<float> ( ((rect.xArrayPtr[(4*i)]*dragUp)*0.5+0.5)*getWidth()+moveX ,
                                                ((rect.yArrayPtr[(4*i)]*dragUp)*0.5+0.5)*getHeight()+moveY ));
@@ -106,8 +98,6 @@ void MainComponent::paint (Graphics& g)
         g.setColour (Colours::white);
         String text = "slice";
         g.drawText(text, path.getBounds(), Justification::centred);
-        
-
     }
 
 }
