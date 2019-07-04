@@ -4,10 +4,6 @@
   <MAINGROUP id="L7JLSU" name="SmartAss">
     <GROUP id="{ADAB4E25-F904-4672-B498-FE52C03CAAE5}" name="Pugi"/>
     <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
-      <GROUP id="{328102A2-20E4-C5A4-9FA4-148CDD0B1811}" name="MultiTouch">
-        <FILE id="n7kbtd" name="MultiTouch.cpp" compile="1" resource="0" file="Source/MultiTouch/MultiTouch.cpp"/>
-        <FILE id="QtXwUM" name="MultiTouch.h" compile="0" resource="0" file="Source/MultiTouch/MultiTouch.h"/>
-      </GROUP>
       <GROUP id="{EF48B41A-C404-9A3E-E9C8-2E75AD3EA040}" name="ReadConvertAss">
         <FILE id="yjYNV1" name="ReadConvertAss.cpp" compile="1" resource="0"
               file="Source/ReadConvertAss/ReadConvertAss.cpp"/>

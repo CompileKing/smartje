@@ -65,21 +65,22 @@ void InputRect::getInputRect(std::string assFile)
     {
         for (pugi::xml_node screen: doc.child("XmlState").child("ScreenSetup").child("screens").children("Screen")) // for every Screen
         {
-            
-                for (pugi::xml_node slice: screen.child("layers").children("Slice"))    // for every slice
-                    
+            for (pugi::xml_node slice: screen.child("layers").children("Slice"))    // for every slice
+            {
+                for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every v child
                 {
-                    for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every v child
-                    {
-                        xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;  // get x attribute and fill xArray and normalise with comp width
-                        yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;  
-                        
-                        vIndex++;   // vector index increment
-                        
-                    }
-                    sIndex++;    // screen index increment
+                    xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
+                    yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                    vIndex++;   // vector index increment
                 }
-            
+                sIndex++;    // screen index increment
+                
+                for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every v child
+                {
+                    xArrayOut[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
+                    yArrayOut[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                }
+            }
         }
     }
     

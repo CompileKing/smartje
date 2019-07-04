@@ -53,10 +53,6 @@
 			isa = PBXBuildFile;
 			fileRef = 2D2769CBFF9426920840E053;
 		};
-		06E2EF14806349E6BEC520F0 = {
-			isa = PBXBuildFile;
-			fileRef = FFFA51D49F2C91B00B508929;
-		};
 		19356AE37EF2501179CA571C = {
 			isa = PBXBuildFile;
 			fileRef = 9965C8B19F93DCFC41A18A7F;
@@ -422,13 +418,6 @@
 			path = "~/JUCE/modules/juce_graphics";
 			sourceTree = "<absolute>";
 		};
-		E5ACEEB2B521A51B607215F3 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = MultiTouch.h;
-			path = ../../Source/MultiTouch/MultiTouch.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		E94A92FC8764E219AD4D5DA2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -457,22 +446,6 @@
 			path = "~/JUCE/modules/juce_cryptography";
 			sourceTree = "<absolute>";
 		};
-		FFFA51D49F2C91B00B508929 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = MultiTouch.cpp;
-			path = ../../Source/MultiTouch/MultiTouch.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		9989631D183AECE264289DD7 = {
-			isa = PBXGroup;
-			children = (
-				FFFA51D49F2C91B00B508929,
-				E5ACEEB2B521A51B607215F3,
-			);
-			name = MultiTouch;
-			sourceTree = "<group>";
-		};
 		1CE971422C1081AFB417CBE8 = {
 			isa = PBXGroup;
 			children = (
@@ -495,7 +468,6 @@
 		636DCE28980EEA5D94827712 = {
 			isa = PBXGroup;
 			children = (
-				9989631D183AECE264289DD7,
 				1CE971422C1081AFB417CBE8,
 				58441D941D6C04BE058EAF7C,
 				4FDCC1FC149B08159942A34C,
@@ -810,7 +782,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06E2EF14806349E6BEC520F0,
 				19356AE37EF2501179CA571C,
 				F1303233EF9BB420434C0E61,
 				D8560F1A4FC877968E8EA248,

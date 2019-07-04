@@ -10,7 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ReadConvertAss/ReadConvertAss.h"
-#include "MultiTouch/MultiTouch.h"
+
 
 using namespace std;
 
@@ -45,6 +45,7 @@ public:
         auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString());
+        sourceDistance = (getWidth()/10);
         repaint();
     }
     

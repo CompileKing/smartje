@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		05904358953182FA7C5859D0 /* include_juce_audio_processors.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8D1F138C1217405E84B8 /* include_juce_audio_processors.mm */; };
-		06E2EF14806349E6BEC520F0 /* MultiTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFFA51D49F2C91B00B508929 /* MultiTouch.cpp */; };
 		138C955DB1CE5A40268DF71E /* include_juce_audio_formats.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75ABAC1BD2E7E58F47B3D1E3 /* include_juce_audio_formats.mm */; };
 		1697E32CA02F3489ABBAFD8F /* include_juce_audio_devices.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C92DD2F3B060091BF1785C1 /* include_juce_audio_devices.mm */; };
 		19356AE37EF2501179CA571C /* ReadConvertAss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9965C8B19F93DCFC41A18A7F /* ReadConvertAss.cpp */; };
@@ -89,12 +88,10 @@
 		D977F9504B0875051040DA90 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		DA422229B4B6299E9B8E3B7A /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
 		E4D8D56F7B027BD30D9E41C1 /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_graphics; path = "~/JUCE/modules/juce_graphics"; sourceTree = "<absolute>"; };
-		E5ACEEB2B521A51B607215F3 /* MultiTouch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MultiTouch.h; path = ../../Source/MultiTouch/MultiTouch.h; sourceTree = SOURCE_ROOT; };
 		E94A92FC8764E219AD4D5DA2 /* juce_audio_formats */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_audio_formats; path = "~/JUCE/modules/juce_audio_formats"; sourceTree = "<absolute>"; };
 		EB7C5428E86EA3539A5BC390 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F0E8AC3655BA813283883375 /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
 		FA82DB50D997E1E7C9ACA199 /* juce_cryptography */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_cryptography; path = "~/JUCE/modules/juce_cryptography"; sourceTree = "<absolute>"; };
-		FFFA51D49F2C91B00B508929 /* MultiTouch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MultiTouch.cpp; path = ../../Source/MultiTouch/MultiTouch.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +190,6 @@
 		636DCE28980EEA5D94827712 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9989631D183AECE264289DD7 /* MultiTouch */,
 				1CE971422C1081AFB417CBE8 /* ReadConvertAss */,
 				58441D941D6C04BE058EAF7C /* Pugi */,
 				4FDCC1FC149B08159942A34C /* MainComponent.h */,
@@ -201,15 +197,6 @@
 				3E7D2A96EB42E1C595A380A2 /* Main.cpp */,
 			);
 			name = Source;
-			sourceTree = "<group>";
-		};
-		9989631D183AECE264289DD7 /* MultiTouch */ = {
-			isa = PBXGroup;
-			children = (
-				FFFA51D49F2C91B00B508929 /* MultiTouch.cpp */,
-				E5ACEEB2B521A51B607215F3 /* MultiTouch.h */,
-			);
-			name = MultiTouch;
 			sourceTree = "<group>";
 		};
 		A7E68E14F6C5AAFC5D598CB2 /* Products */ = {
@@ -349,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06E2EF14806349E6BEC520F0 /* MultiTouch.cpp in Sources */,
 				19356AE37EF2501179CA571C /* ReadConvertAss.cpp in Sources */,
 				F1303233EF9BB420434C0E61 /* pugixml.cpp in Sources */,
 				D8560F1A4FC877968E8EA248 /* MainComponent.cpp in Sources */,

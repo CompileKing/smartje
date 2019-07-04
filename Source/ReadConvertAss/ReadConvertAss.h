@@ -48,6 +48,12 @@ public:
     float yArray[1000];
     float *yArrayPtr = yArray;
     
+    float xArrayOut[1000];
+    float *xArrayOutPtr = xArray;
+    
+    float yArrayOut[1000];
+    float *yArrayOutPtr = yArray;
+    
     bool isFileLoaded;
     
     bool result1;
