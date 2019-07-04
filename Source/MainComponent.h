@@ -20,7 +20,8 @@ using namespace std;
  your controls and content.
  */
 class MainComponent   : public Component,
-public FilenameComponentListener
+public FilenameComponentListener,
+public Button::Listener
 {
 public:
     //==============================================================================
@@ -39,7 +40,7 @@ public:
     
     void readFile(const File& fileToRead)
     {
-        if (!fileToRead.existsAsFile()) // [1]
+        if (!fileToRead.existsAsFile())
             return;
         
         auto fileText = fileToRead.loadFileAsString();
@@ -49,6 +50,19 @@ public:
         repaint();
     }
     
+    void buttonClicked (Button* button) override
+    {
+        if (button == &button1)
+        {
+            drawInputMap = true;
+        }
+        if (button == &button2)
+        {
+            drawInputMap = false;
+        }
+        
+    }
+
     //=============================================================================
     //                              multiTouchDemoStuff
     //=============================================================================
@@ -92,7 +106,6 @@ public:
             float yPos = e.getPosition().y;
             moveX = ((xPos/getWidth()*2.f-1.f)*3.f)*(sourceDistance/getWidth()*-1.f);
             moveY = ((yPos/getHeight()*2.f-1.f)*3.f)*(sourceDistance/getWidth()*-1.f);
-            
             
 //            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
         }
@@ -175,10 +188,24 @@ private:
     
     float moveX = 0;
     float moveY = 0;
-    
-    
+
     float dragUp;
     
+    float drawV1x;
+    float drawV2x;
+    float drawV3x;
+    float drawV4x;
+    
+    float drawV1y;
+    float drawV2y;
+    float drawV3y;
+    float drawV4y;
+    
+    TextButton button1;
+    TextButton button2;
+    
+    bool drawInputMap = true;
+
     unique_ptr<FilenameComponent> fileComp;
     
     

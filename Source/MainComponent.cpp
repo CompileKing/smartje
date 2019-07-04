@@ -32,7 +32,16 @@ MainComponent::MainComponent()
     fileComp->setBounds(10, 10, 240, 40);
     
     setSize(screenSizeX, screenSizeY);
-    dragUp = 1;
+    
+    addAndMakeVisible(button1);
+    button1.setButtonText("Input Map");
+    button1.setBounds (260, 10, 160, 40);
+    button1.addListener(this);
+    
+    addAndMakeVisible(button2);
+    button2.setButtonText("Output Map");
+    button2.setBounds (430, 10, 160, 40);
+    button2.addListener(this);
 }
 
 
@@ -56,8 +65,36 @@ void MainComponent::paint (Graphics& g)
                                               1.f,           // saturation
                                               1.f,           // brightness
                                               0.6f);         // alpha,
-        
+        if (drawInputMap)
+        {
+            drawV1x = rect.xArrayPtr[(4*i)];
+            drawV1y = rect.yArrayPtr[(4*i)];
+            
+            drawV2x = rect.xArrayPtr[(4*i+1)];
+            drawV2y = rect.yArrayPtr[(4*i+1)];
+            
+            drawV3x = rect.xArrayPtr[(4*i+2)];
+            drawV3y = rect.yArrayPtr[(4*i+2)];
+            
+            drawV4x = rect.xArrayPtr[(4*i+3)];
+            drawV4y = rect.yArrayPtr[(4*i+3)];
+        }
+        else
+        {
+            drawV1x = rect.xArrayOutPtr[(4*i)];
+            drawV1y = rect.yArrayOutPtr[(4*i)];
+            
+            drawV2x = rect.xArrayOutPtr[(4*i+1)];
+            drawV2y = rect.yArrayOutPtr[(4*i+1)];
+            
+            drawV3x = rect.xArrayOutPtr[(4*i+2)];
+            drawV3y = rect.yArrayOutPtr[(4*i+2)];
+            
+            drawV4x = rect.xArrayOutPtr[(4*i+3)];
+            drawV4y = rect.yArrayOutPtr[(4*i+3)];
+        }
        
+        
         Path path; // paint every slice as a path with a diffirent hue
         path.startNewSubPath (Point<float>
                      ( (((rect.xArrayPtr[(4*i)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
@@ -100,7 +137,7 @@ void MainComponent::paint (Graphics& g)
         g.setColour(Colour::fromHSV(1., 1., 0., 1.));
         g.strokePath(stroke, PathStrokeType(1.));
         g.strokePath(path, PathStrokeType(1.));
-    
+
         g.setColour(Colour::fromHSV(1, 0, 0.2, 0.8)); // paint a black textbox in the center
         Rectangle<float> slice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/5),
                                 path.getBounds().getCentreY()-(path.getBounds().getHeight()/5),
@@ -118,6 +155,8 @@ void MainComponent::paint (Graphics& g)
         g.drawText(info, slice, Justification::centredBottom);
         
         
+        
+        
     }
 
 }
@@ -126,3 +165,5 @@ void MainComponent::resized()
 {
 	 
 }
+
+
