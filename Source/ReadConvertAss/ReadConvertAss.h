@@ -36,6 +36,7 @@ public:
     int compResY;
     
     int vIndex = 0;
+    int vIndexOut = 0;
     int sIndex = 0;
     
     void getInputRect(std::string assFile);
@@ -49,10 +50,10 @@ public:
     float *yArrayPtr = yArray;
     
     float xArrayOut[1000];
-    float *xArrayOutPtr = xArray;
+    float *xArrayOutPtr = xArrayOut;
     
     float yArrayOut[1000];
-    float *yArrayOutPtr = yArray;
+    float *yArrayOutPtr = yArrayOut;
     
     bool isFileLoaded;
     

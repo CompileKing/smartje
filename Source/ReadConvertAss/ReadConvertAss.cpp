@@ -77,8 +77,9 @@ void InputRect::getInputRect(std::string assFile)
                 
                 for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every v child
                 {
-                    xArrayOut[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
-                    yArrayOut[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                    xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
+                    yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                    vIndexOut++;
                 }
             }
         }

@@ -93,46 +93,46 @@ void MainComponent::paint (Graphics& g)
             drawV4x = rect.xArrayOutPtr[(4*i+3)];
             drawV4y = rect.yArrayOutPtr[(4*i+3)];
         }
+        cout << "drawInputMap?: " << drawInputMap << endl;
        
         
         Path path; // paint every slice as a path with a diffirent hue
         path.startNewSubPath (Point<float>
-                     ( (((rect.xArrayPtr[(4*i)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV1x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         
         path.lineTo (Point<float>
-                     ( (((rect.xArrayPtr[(4*i+1)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i+1)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV2x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         
         path.lineTo (Point<float>
-                     ( (((rect.xArrayPtr[(4*i+2)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i+2)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV3x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         
         path.lineTo (Point<float>
-                     ( (((rect.xArrayPtr[(4*i+3)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i+3)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         path.closeSubPath();
         g.setColour(tileColor1);
         g.fillPath (path);
 
         
-        
         Path stroke; // paint an black outline and a cross over the slices
         stroke.startNewSubPath (Point<float>
-                     ( (((rect.xArrayPtr[(4*i)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV1x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         
         stroke.lineTo (Point<float>
-                     ( (((rect.xArrayPtr[(4*i+2)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i+2)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV3x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         
         stroke.lineTo (Point<float>
-                     ( (((rect.xArrayPtr[(4*i+1)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i+1)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV2x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         
         stroke.lineTo (Point<float>
-                     ( (((rect.xArrayPtr[(4*i+3)]+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((rect.yArrayPtr[(4*i+3)]+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                     ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
+                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         stroke.closeSubPath();
         g.setColour(Colour::fromHSV(1., 1., 0., 1.));
         g.strokePath(stroke, PathStrokeType(1.));
