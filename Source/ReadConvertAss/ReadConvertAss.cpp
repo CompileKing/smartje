@@ -65,21 +65,37 @@ void InputRect::getInputRect(std::string assFile)
     {
         for (pugi::xml_node screen: doc.child("XmlState").child("ScreenSetup").child("screens").children("Screen")) // for every Screen
         {
-            for (pugi::xml_node slice: screen.child("layers").children("Slice"))    // for every slice
+            // cout << "screenName: " << screen.attribute("name").as_string() << endl;
+            screenIndex++; // slice index increment
+            
+            for (pugi::xml_node screenParam: screen.child("Params").children("Param"))
             {
-                for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every v child
+                const char * str1 = screenParam.attribute("name").as_string();
+                const char * str2 = "Enabled";
+                int strncmpResult = strncmp(str1, str2, sizeof(str2));
+                if (strncmpResult == 0)
                 {
-                    xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
-                    yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
-                    vIndex++;   // vector index increment
-                }
-                sIndex++;    // screen index increment
-                
-                for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every v child
-                {
-                    xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
-                    yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
-                    vIndexOut++;
+                    if (screenParam.attribute("value").as_int() == 1)
+                    {
+                        for (pugi::xml_node slice: screen.child("layers").children("Slice"))
+                            
+                        {
+                            for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every v child
+                            {
+                                xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
+                                yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                                vIndex++;   // vector index increment
+                            }
+                            sIndex++;    // slice index increment
+                            
+                            for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every v child
+                            {
+                                xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
+                                yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                                vIndexOut++;
+                            }
+                        }
+                    }
                 }
             }
         }

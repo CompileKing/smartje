@@ -45,7 +45,6 @@ MainComponent::MainComponent()
 }
 
 
-
 MainComponent::~MainComponent()
 {
 }
@@ -93,7 +92,6 @@ void MainComponent::paint (Graphics& g)
             drawV4x = rect.xArrayOutPtr[(4*i+3)];
             drawV4y = rect.yArrayOutPtr[(4*i+3)];
         }
-        cout << "drawInputMap?: " << drawInputMap << endl;
        
         
         Path path; // paint every slice as a path with a diffirent hue
@@ -137,6 +135,8 @@ void MainComponent::paint (Graphics& g)
         g.setColour(Colour::fromHSV(1., 1., 0., 1.));
         g.strokePath(stroke, PathStrokeType(1.));
         g.strokePath(path, PathStrokeType(1.));
+        
+        
 
         g.setColour(Colour::fromHSV(1, 0, 0.2, 0.8)); // paint a black textbox in the center
         Rectangle<float> slice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/5),
@@ -153,10 +153,7 @@ void MainComponent::paint (Graphics& g)
         g.drawText(size, slice, Justification::centred);
         String info = "extra info";
         g.drawText(info, slice, Justification::centredBottom);
-        
-        
-        
-        
+   
     }
 
 }

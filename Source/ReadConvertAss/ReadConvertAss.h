@@ -38,6 +38,9 @@ public:
     int vIndex = 0;
     int vIndexOut = 0;
     int sIndex = 0;
+    int screenIndex = 0;
+    
+    int screenIndexArray[8];
     
     void getInputRect(std::string assFile);
     string sliceName;
