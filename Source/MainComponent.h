@@ -48,6 +48,10 @@ public:
         rect.getInputRect(filePath.toStdString());
         sourceDistance = (getWidth()/10);
         repaint();
+        for (int i =0; i<rect.screenIndex; i++)
+        {
+            cout << "screenName: " << rect.screenNameArray[i] << endl;
+        }
     }
     
     void buttonClicked (Button* button) override

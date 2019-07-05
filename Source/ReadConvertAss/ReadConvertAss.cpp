@@ -18,21 +18,8 @@
 #endif
 
 
-//=====================================================================================
-//                       get the ASS path from the preferences file
-//=====================================================================================
-
-
-
-
 void InputRect::getInputRect(std::string assFile)
 {
-    
-    //=====================================================================================
-    //                       retrieved ASS PATH as string assPath
-    //=====================================================================================
-    
-    
     cout << endl;
     cout << endl;
     cout << "/////////////////////////////////////PUGI/////////////////////////////////////" <<endl;
@@ -53,9 +40,7 @@ void InputRect::getInputRect(std::string assFile)
     cout << "//////////////////////////////////////////////////////////////////////////////" <<endl;
     cout << endl;
     cout << endl;
-    
-    
-    
+
     compResX = doc.child("XmlState").child("ScreenSetup").child("CurrentCompositionTextureSize").attribute("width").as_int();
     compResY = doc.child("XmlState").child("ScreenSetup").child("CurrentCompositionTextureSize").attribute("height").as_int();
     
@@ -65,22 +50,21 @@ void InputRect::getInputRect(std::string assFile)
     {
         for (pugi::xml_node screen: doc.child("XmlState").child("ScreenSetup").child("screens").children("Screen")) // for every Screen
         {
-            // cout << "screenName: " << screen.attribute("name").as_string() << endl;
-            screenIndex++; // slice index increment
-            
+            screenNameArray[screenIndex] = screen.attribute("name").as_string();
             for (pugi::xml_node screenParam: screen.child("Params").children("Param"))
             {
                 const char * str1 = screenParam.attribute("name").as_string();
                 const char * str2 = "Enabled";
-                int strncmpResult = strncmp(str1, str2, sizeof(str2));
+                int strncmpResult = strncmp(str1, str2, sizeof(&str2));
                 if (strncmpResult == 0)
                 {
                     if (screenParam.attribute("value").as_int() == 1)
                     {
-                        for (pugi::xml_node slice: screen.child("layers").children("Slice"))
-                            
+                        screenIndex++; // slice index increment
+                        for (pugi::xml_node slice: screen.child("layers").children("Slice")) // for every slice
                         {
-                            for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every v child
+                            
+                            for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every input vextor
                             {
                                 xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
                                 yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
@@ -88,7 +72,7 @@ void InputRect::getInputRect(std::string assFile)
                             }
                             sIndex++;    // slice index increment
                             
-                            for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every v child
+                            for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every output vector
                             {
                                 xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
                                 yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;

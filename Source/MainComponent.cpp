@@ -42,6 +42,8 @@ MainComponent::MainComponent()
     button2.setButtonText("Output Map");
     button2.setBounds (430, 10, 160, 40);
     button2.addListener(this);
+    
+    
 }
 
 

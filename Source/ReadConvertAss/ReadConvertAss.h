@@ -16,12 +16,13 @@
 #include "../Pugi/pugixml.hpp"
 #include <iostream>
 #include <string>
+#include "../JuceLibraryCode/JuceHeader.h"
 
 
 using namespace std;
 
 
-class InputRect
+class InputRect : public Component
 {
 private:
     
@@ -31,7 +32,7 @@ private:
     
 public:
     
-    string assPath;
+    
     int compResX;
     int compResY;
     
@@ -41,9 +42,10 @@ public:
     int screenIndex = 0;
     
     int screenIndexArray[8];
+    String screenNameArray[8];
     
     void getInputRect(std::string assFile);
-    string sliceName;
+    String sliceName;
     
     
     float xArray[1000];
@@ -62,6 +64,8 @@ public:
     
     bool result1;
     bool result2;
+    
+    
     
     
     
