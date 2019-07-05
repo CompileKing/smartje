@@ -63,6 +63,8 @@ void InputRect::getInputRect(std::string assFile)
                         sliceIndex = 0;
                         for (pugi::xml_node slice: screen.child("layers").children("Slice")) // for every slice
                         {
+                            sliceName = slice.child("Params").child("Param").attribute("value").as_string();
+                            sliceNameArray[sIndex] = sliceName;
                             
                             for (pugi::xml_node value: slice.child("InputRect").children("v"))  // for every input vextor
                             {

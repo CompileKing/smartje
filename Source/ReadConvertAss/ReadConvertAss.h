@@ -44,10 +44,10 @@ public:
     int screenIndex = 0;
     int screenIndexArray[8];
     String screenNameArray[8];
-
-    void getInputRect(std::string assFile);
+    String sliceNameArray[1000];
     String sliceName;
     
+    void getInputRect(std::string assFile);
     
     float xArray[1000];
     float *xArrayPtr = xArray;

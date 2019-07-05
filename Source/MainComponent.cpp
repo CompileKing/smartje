@@ -149,7 +149,7 @@ void MainComponent::paint (Graphics& g)
 
         g.setFont (15.0f); // paint the text overlay
         g.setColour (Colours::white);
-        String name = "slice name";
+        String name = rect.sliceNameArray[i];
         g.drawText(name, slice, Justification::centredTop);
         String size = "420 x 48";
         g.drawText(size, slice, Justification::centred);
