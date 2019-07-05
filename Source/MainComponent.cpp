@@ -64,13 +64,17 @@ void MainComponent::paint (Graphics& g)
         cout << "is slice enabled: " << rect.sliceEnabledArray[i] << endl;
          */
         
-        float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
+        float compWidth = rect.compResX; // get the right aspect ratio for the input map
+        float compHeight = rect.compResY;
+        drawTheRightHeight = getWidth() * (compHeight / compWidth);
         
+        drawTheNormalHeight = getWidth() * 0.5625; // get the normal 16:9 aspect ratio for the output map
+
+        float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
         if (rect.sliceEnabledArray[i] == 1) // change opacity of slice based on if a slice is enabled in the xml
             sliceOpacity = 0.6f;
         else
             sliceOpacity = 0.1f;
-        
         auto tileColor1  =  Colour::fromHSV (sliceColor,     // hue
                                               1.f,           // saturation
                                               1.f,           // brightness
@@ -108,19 +112,19 @@ void MainComponent::paint (Graphics& g)
         Path path; // paint every slice as a path with a diffirent hue
         path.startNewSubPath (Point<float>
                      ( (((drawV1x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         
         path.lineTo (Point<float>
                      ( (((drawV2x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         
         path.lineTo (Point<float>
                      ( (((drawV3x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         
         path.lineTo (Point<float>
                      ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         path.closeSubPath();
         g.setColour(tileColor1);
         g.fillPath (path);
@@ -129,19 +133,19 @@ void MainComponent::paint (Graphics& g)
         Path stroke; // paint an black outline and a cross over the slices
         stroke.startNewSubPath (Point<float>
                      ( (((drawV1x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         
         stroke.lineTo (Point<float>
                      ( (((drawV3x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         
         stroke.lineTo (Point<float>
                      ( (((drawV2x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         
         stroke.lineTo (Point<float>
                      ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
+                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
         stroke.closeSubPath();
         g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
         g.strokePath(stroke, PathStrokeType(1.));

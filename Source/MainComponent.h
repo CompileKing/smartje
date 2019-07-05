@@ -209,6 +209,9 @@ private:
     float drawV3y;
     float drawV4y;
     
+    float drawTheRightHeight;
+    float drawTheNormalHeight;
+    
     TextButton button1;
     TextButton button2;
     
