@@ -28,6 +28,8 @@ void InputRect::getInputRect(std::string assFile)
     
     vIndex = 0;
     sIndex = 0;
+    screenIndex = 0;
+    sliceIndex = 0;
 
     pugi::xml_document doc;
     pugi::xml_parse_result

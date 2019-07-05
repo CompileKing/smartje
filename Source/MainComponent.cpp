@@ -55,23 +55,22 @@ void MainComponent::paint (Graphics& g)
 {
     dragUp = (sourceDistance / getWidth()) * 10.f;
     
-    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.4, 1.f));
+    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.1, 1.f));
 
     for (int i=0;i<rect.sIndex;i++) // for every slice
     {
+        /*
         cout << "name of slice: " << rect.sliceNameArray[i] << endl;
         cout << "is slice enabled: " << rect.sliceEnabledArray[i] << endl;
+         */
         
         float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
         
         if (rect.sliceEnabledArray[i] == 1) // change opacity of slice based on if a slice is enabled in the xml
-        {
             sliceOpacity = 0.6f;
-        }
         else
-        {
             sliceOpacity = 0.1f;
-        }
+        
         auto tileColor1  =  Colour::fromHSV (sliceColor,     // hue
                                               1.f,           // saturation
                                               1.f,           // brightness

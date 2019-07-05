@@ -50,8 +50,10 @@ public:
         repaint();
         for (int i =0; i<rect.screenIndex; i++)
         {
+            /*
             cout << "screenName: " << rect.screenNameArray[i] << endl;
             cout << "screenIndexArray: " << rect.screenIndexArray[i] << endl;
+             */
         }
     }
     

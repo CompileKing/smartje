@@ -39,32 +39,32 @@ public:
     int vIndex = 0;
     int vIndexOut = 0;
     int sIndex = 0;
-    
     int sliceIndex = 0;
     int screenIndex = 0;
+    
+    int sliceEnabledArray[10000];
     int screenIndexArray[8];
     String screenNameArray[8];
-    String sliceNameArray[1000];
+    String sliceNameArray[10000];
     String sliceName;
-    int sliceEnabledArray[1000];
     
     int sliceX;
     int sliceY;
-    int sliceXarray[1000];
-    int sliceYarray[1000];
+    int sliceXarray[10000];
+    int sliceYarray[10000];
     
     void getInputRect(std::string assFile);
     
-    float xArray[1000];
+    float xArray[10000];
     float *xArrayPtr = xArray;
     
-    float yArray[1000];
+    float yArray[10000];
     float *yArrayPtr = yArray;
     
-    float xArrayOut[1000];
+    float xArrayOut[10000];
     float *xArrayOutPtr = xArrayOut;
     
-    float yArrayOut[1000];
+    float yArrayOut[10000];
     float *yArrayOutPtr = yArrayOut;
     
     bool isFileLoaded;
