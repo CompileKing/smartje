@@ -42,8 +42,6 @@ MainComponent::MainComponent()
     button2.setButtonText("Output Map");
     button2.setBounds (430, 10, 160, 40);
     button2.addListener(this);
-    
-    
 }
 
 
@@ -59,8 +57,10 @@ void MainComponent::paint (Graphics& g)
     
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0.4, 1.f));
 
-    for (int i=0;i<rect.sIndex;i++)
+    for (int i=0;i<rect.sIndex;i++) // one for loop to draw them all (slices i mean slices)
     {
+        
+        
         float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
         auto tileColor1  =  Colour::fromHSV (sliceColor,     // hue
                                               1.f,           // saturation
@@ -141,20 +141,25 @@ void MainComponent::paint (Graphics& g)
         
 
         g.setColour(Colour::fromHSV(1, 0, 0.2, 0.8)); // paint a black textbox in the center
-        Rectangle<float> slice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/5),
-                                path.getBounds().getCentreY()-(path.getBounds().getHeight()/5),
-                                path.getBounds().getWidth()/2.5,
-                                path.getBounds().getHeight()/2.5);
-        g.fillRect(slice);
+        Rectangle<float> backSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
+                                path.getBounds().getCentreY()-(path.getBounds().getHeight()/4),
+                                path.getBounds().getWidth()/2,
+                                path.getBounds().getHeight()/2);
+        g.fillRect(backSlice);
+        
+        Rectangle<float> textSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/5),
+                                    path.getBounds().getCentreY()-(path.getBounds().getHeight()/5),
+                                    path.getBounds().getWidth()/2.5,
+                                    path.getBounds().getHeight()/2.5);
 
         g.setFont (15.0f); // paint the text overlay
         g.setColour (Colours::white);
         String name = rect.sliceNameArray[i];
-        g.drawText(name, slice, Justification::centredTop);
+        g.drawText(name, textSlice, Justification::centredTop);
         String size = "420 x 48";
-        g.drawText(size, slice, Justification::centred);
+        g.drawText(size, textSlice, Justification::centred);
         String info = "extra info";
-        g.drawText(info, slice, Justification::centredBottom);
+        g.drawText(info, textSlice, Justification::centredBottom);
    
     }
 

@@ -84,7 +84,6 @@ void InputRect::getInputRect(std::string assFile)
                             screenIndexArray[screenIndex] = sliceIndex;
                         }
                         screenIndex++;
-                        
                     }
                 }
             }

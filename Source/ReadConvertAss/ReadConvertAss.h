@@ -47,6 +47,11 @@ public:
     String sliceNameArray[1000];
     String sliceName;
     
+    int sliceX;
+    int sliceY;
+    int sliceXarray[1000];
+    int sliceYarray[1000];
+    
     void getInputRect(std::string assFile);
     
     float xArray[1000];
@@ -63,7 +68,6 @@ public:
     
     bool isFileLoaded;
     
-    bool result1;
     bool result2;
     
     

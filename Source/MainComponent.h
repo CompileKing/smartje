@@ -209,6 +209,15 @@ private:
     TextButton button1;
     TextButton button2;
     
+    TextButton screenBtn1;
+    TextButton screenBtn2;
+    TextButton screenBtn3;
+    TextButton screenBtn4;
+    TextButton screenBtn5;
+    TextButton screenBtn6;
+    TextButton screenBtn7;
+    TextButton screenBtn8;
+    
     bool drawInputMap = true;
 
     unique_ptr<FilenameComponent> fileComp;
