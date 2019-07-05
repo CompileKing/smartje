@@ -26,10 +26,12 @@ void InputRect::getInputRect(std::string assFile)
     cout << endl;
     cout << "pugi from param: " << assFile << endl;
     
-    vIndex = 0;
-    sIndex = 0;
-    screenIndex = 0;
-    sliceIndex = 0;
+     vIndex = 0;
+     vIndexOut = 0;
+     sIndex = 0;
+     sliceIndex = 0;
+     screenIndex = 0;
+    
 
     pugi::xml_document doc;
     pugi::xml_parse_result
@@ -88,8 +90,12 @@ void InputRect::getInputRect(std::string assFile)
                             
                             for (pugi::xml_node value: slice.child("OutputRect").children("v"))  // for every output vector
                             {
-                                xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
-                                yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                                /*
+                                 om goed te kunnen normaliseren moet ik eerst de output weten van elk scherm, dit is terug te vinden in de xml als 'OutputDevice', deze parent heeft een paar complicaties maar uit deze parent kan ik attributes halen width en height van een screen, deze moeten inplaats van 1920. en 1080.
+                                 */
+                                
+                                xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / 1920.f) * 2. - 1.;
+                                yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / 1080.f) * 2. - 1.;
                                 vIndexOut++;
                             }
                             sliceIndex++;

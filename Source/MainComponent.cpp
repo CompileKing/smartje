@@ -42,6 +42,8 @@ MainComponent::MainComponent()
     button2.setButtonText("Output Map");
     button2.setBounds (430, 10, 160, 40);
     button2.addListener(this);
+    
+    
 }
 
 
@@ -81,50 +83,49 @@ void MainComponent::paint (Graphics& g)
                                               sliceOpacity);         // alpha,
         if (drawInputMap)
         {
-            drawV1x = rect.xArrayPtr[(4*i)];
-            drawV1y = rect.yArrayPtr[(4*i)];
+            drawV1x = (((rect.xArrayPtr[(4*i)]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV1y = (((rect.yArrayPtr[(4*i)]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
             
-            drawV2x = rect.xArrayPtr[(4*i+1)];
-            drawV2y = rect.yArrayPtr[(4*i+1)];
+            drawV2x = (((rect.xArrayPtr[(4*i)+1]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV2y = (((rect.yArrayPtr[(4*i)+1]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
             
-            drawV3x = rect.xArrayPtr[(4*i+2)];
-            drawV3y = rect.yArrayPtr[(4*i+2)];
+            drawV3x = (((rect.xArrayPtr[(4*i)+2]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV3y = (((rect.yArrayPtr[(4*i)+2]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
             
-            drawV4x = rect.xArrayPtr[(4*i+3)];
-            drawV4y = rect.yArrayPtr[(4*i+3)];
+            drawV4x = (((rect.xArrayPtr[(4*i)+3]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV4y = (((rect.yArrayPtr[(4*i)+3]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
+            // cout << "the right height: " << drawTheRightHeight << endl;
         }
         else
         {
-            drawV1x = rect.xArrayOutPtr[(4*i)];
-            drawV1y = rect.yArrayOutPtr[(4*i)];
+            drawV1x = (((rect.xArrayOutPtr[(4*i)]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV1y = (((rect.yArrayOutPtr[(4*i)]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
             
-            drawV2x = rect.xArrayOutPtr[(4*i+1)];
-            drawV2y = rect.yArrayOutPtr[(4*i+1)];
+            drawV2x = (((rect.xArrayOutPtr[(4*i)+1]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV2y = (((rect.yArrayOutPtr[(4*i)+1]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
             
-            drawV3x = rect.xArrayOutPtr[(4*i+2)];
-            drawV3y = rect.yArrayOutPtr[(4*i+2)];
+            drawV3x = (((rect.xArrayOutPtr[(4*i)+2]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV3y = (((rect.yArrayOutPtr[(4*i)+2]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
             
-            drawV4x = rect.xArrayOutPtr[(4*i+3)];
-            drawV4y = rect.yArrayOutPtr[(4*i+3)];
+            drawV4x = (((rect.xArrayOutPtr[(4*i)+3]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
+            drawV4y = (((rect.yArrayOutPtr[(4*i)+3]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
+            // cout << "the normal height: " << drawTheNormalHeight << endl;
         }
-       
         
+
         Path path; // paint every slice as a path with a diffirent hue
         path.startNewSubPath (Point<float>
-                     ( (((drawV1x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
-        
+                     ( drawV1x ,
+                       drawV1y ));
         path.lineTo (Point<float>
-                     ( (((drawV2x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
-        
+                     ( drawV2x ,
+                       drawV2y ));
         path.lineTo (Point<float>
-                     ( (((drawV3x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
-        
+                     ( drawV3x ,
+                       drawV3y ));
         path.lineTo (Point<float>
-                     ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
+                     ( drawV4x ,
+                       drawV4y ));
         path.closeSubPath();
         g.setColour(tileColor1);
         g.fillPath (path);
@@ -132,20 +133,17 @@ void MainComponent::paint (Graphics& g)
         
         Path stroke; // paint an black outline and a cross over the slices
         stroke.startNewSubPath (Point<float>
-                     ( (((drawV1x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV1y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
-        
+                     ( drawV1x ,
+                       drawV1y ));
         stroke.lineTo (Point<float>
-                     ( (((drawV3x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV3y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
-        
+                     ( drawV3x ,
+                       drawV3y ));
         stroke.lineTo (Point<float>
-                     ( (((drawV2x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV2y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
-        
+                     ( drawV2x ,
+                       drawV2y ));
         stroke.lineTo (Point<float>
-                     ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
-                       (((drawV4y+moveY)*dragUp)*0.5+0.5)*drawTheRightHeight ));
+                     ( drawV4x ,
+                       drawV4y ));
         stroke.closeSubPath();
         g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
         g.strokePath(stroke, PathStrokeType(1.));
