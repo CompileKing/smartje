@@ -46,6 +46,7 @@ public:
     String screenNameArray[8];
     String sliceNameArray[1000];
     String sliceName;
+    int sliceEnabledArray[1000];
     
     int sliceX;
     int sliceY;

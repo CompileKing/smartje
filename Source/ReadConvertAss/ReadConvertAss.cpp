@@ -63,6 +63,16 @@ void InputRect::getInputRect(std::string assFile)
                         sliceIndex = 0;
                         for (pugi::xml_node slice: screen.child("layers").children("Slice")) // for every slice
                         {
+                            for (pugi::xml_node sliceParam: slice.child("Params").children("Param"))
+                            {
+                                const char * str1 = sliceParam.attribute("name").as_string();
+                                const char * str2 = "Enabled";
+                                int strncmpResult = strncmp(str1, str2, sizeof(&str2));
+                                if (strncmpResult == 0)
+                                {
+                                    sliceEnabledArray[sIndex] = sliceParam.attribute("value").as_int();
+                                }
+                            }
                             sliceName = slice.child("Params").child("Param").attribute("value").as_string();
                             sliceNameArray[sIndex] = sliceName;
                             

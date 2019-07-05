@@ -57,15 +57,25 @@ void MainComponent::paint (Graphics& g)
     
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0.4, 1.f));
 
-    for (int i=0;i<rect.sIndex;i++) // one for loop to draw them all (slices i mean slices)
+    for (int i=0;i<rect.sIndex;i++) // for every slice
     {
-        
+        cout << "name of slice: " << rect.sliceNameArray[i] << endl;
+        cout << "is slice enabled: " << rect.sliceEnabledArray[i] << endl;
         
         float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
+        
+        if (rect.sliceEnabledArray[i] == 1) // change opacity of slice based on if a slice is enabled in the xml
+        {
+            sliceOpacity = 0.6f;
+        }
+        else
+        {
+            sliceOpacity = 0.1f;
+        }
         auto tileColor1  =  Colour::fromHSV (sliceColor,     // hue
                                               1.f,           // saturation
                                               1.f,           // brightness
-                                              0.6f);         // alpha,
+                                              sliceOpacity);         // alpha,
         if (drawInputMap)
         {
             drawV1x = rect.xArrayPtr[(4*i)];
@@ -134,13 +144,13 @@ void MainComponent::paint (Graphics& g)
                      ( (((drawV4x+moveX)*dragUp)*0.5+0.5)*getWidth() ,
                        (((drawV4y+moveY)*dragUp)*0.5+0.5)*getHeight() ));
         stroke.closeSubPath();
-        g.setColour(Colour::fromHSV(1., 1., 0., 1.));
+        g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
         g.strokePath(stroke, PathStrokeType(1.));
         g.strokePath(path, PathStrokeType(1.));
         
         
 
-        g.setColour(Colour::fromHSV(1, 0, 0.2, 0.8)); // paint a black textbox in the center
+        g.setColour(Colour::fromHSV(1, 0, 0.2, sliceOpacity)); // paint a black textbox in the center
         Rectangle<float> backSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
                                 path.getBounds().getCentreY()-(path.getBounds().getHeight()/4),
                                 path.getBounds().getWidth()/2,
@@ -153,7 +163,7 @@ void MainComponent::paint (Graphics& g)
                                     path.getBounds().getHeight()/2.5);
 
         g.setFont (15.0f); // paint the text overlay
-        g.setColour (Colours::white);
+        g.setColour(Colour::fromFloatRGBA(1., 1., 1., sliceOpacity*1.666666));
         String name = rect.sliceNameArray[i];
         g.drawText(name, textSlice, Justification::centredTop);
         String size = "420 x 48";

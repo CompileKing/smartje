@@ -189,6 +189,7 @@ private:
     Point<float> position0;
     Point<float> position1;
     float sourceDistance = 0.f;
+    float sliceOpacity = 0.f;
     int fingers = 0;
     
     float moveX = 0;
