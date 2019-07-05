@@ -60,7 +60,7 @@ void InputRect::getInputRect(std::string assFile)
                 {
                     if (screenParam.attribute("value").as_int() == 1)
                     {
-                        screenIndex++; // slice index increment
+                        sliceIndex = 0;
                         for (pugi::xml_node slice: screen.child("layers").children("Slice")) // for every slice
                         {
                             
@@ -78,7 +78,11 @@ void InputRect::getInputRect(std::string assFile)
                                 yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
                                 vIndexOut++;
                             }
+                            sliceIndex++;
+                            screenIndexArray[screenIndex] = sliceIndex;
                         }
+                        screenIndex++;
+                        
                     }
                 }
             }

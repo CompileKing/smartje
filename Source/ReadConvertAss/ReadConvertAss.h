@@ -39,11 +39,12 @@ public:
     int vIndex = 0;
     int vIndexOut = 0;
     int sIndex = 0;
-    int screenIndex = 0;
     
+    int sliceIndex = 0;
+    int screenIndex = 0;
     int screenIndexArray[8];
     String screenNameArray[8];
-    
+
     void getInputRect(std::string assFile);
     String sliceName;
     
