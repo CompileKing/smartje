@@ -38,7 +38,7 @@ public:
             readFile(fileComp->getCurrentFile());
     }
     
-    void readFile(const File& fileToRead)
+    void readFile(const File& fileToRead) //what happends when a file gets read
     {
         if (!fileToRead.existsAsFile())
             return;
@@ -48,8 +48,18 @@ public:
         rect.getInputRect(filePath.toStdString());
         sourceDistance = (getWidth()/10);
         repaint();
+        
         for (int i =0; i<rect.screenIndex; i++)
         {
+            auto* tb = new ToggleButton (rect.screenNameArray[i]);
+            
+            tb->setRadioGroupId (1234);
+            tb->setBounds (10, 50 + i * 22, 180, 22);
+            tb->setTooltip ("A set of mutually-exclusive radio buttons");
+            
+            if (i == 0)
+                tb->setToggleState (true, dontSendNotification);
+            addAndMakeVisible(tb);
             /*
             cout << "screenName: " << rect.screenNameArray[i] << endl;
             cout << "screenIndexArray: " << rect.screenIndexArray[i] << endl;
@@ -67,7 +77,6 @@ public:
         {
             drawInputMap = false;
         }
-        
     }
 
     //=============================================================================
@@ -215,14 +224,7 @@ private:
     TextButton button1;
     TextButton button2;
     
-    TextButton screenBtn1;
-    TextButton screenBtn2;
-    TextButton screenBtn3;
-    TextButton screenBtn4;
-    TextButton screenBtn5;
-    TextButton screenBtn6;
-    TextButton screenBtn7;
-    TextButton screenBtn8;
+    
     
     bool drawInputMap = true;
 

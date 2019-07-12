@@ -41,9 +41,7 @@ MainComponent::MainComponent()
     addAndMakeVisible(button2);
     button2.setButtonText("Output Map");
     button2.setBounds (430, 10, 160, 40);
-    button2.addListener(this);
-    
-    
+    button2.addListener(this);    
 }
 
 
@@ -56,7 +54,6 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     dragUp = (sourceDistance / getWidth()) * 10.f;
-    
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0.1, 1.f));
 
     for (int i=0;i<rect.sIndex;i++) // for every slice

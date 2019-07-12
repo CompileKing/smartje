@@ -42,11 +42,11 @@ public:
     int sliceIndex = 0;
     int screenIndex = 0;
     
-    int sliceEnabledArray[10000];
-    int screenIndexArray[8];
-    String screenNameArray[8];
-    String sliceNameArray[10000];
-    String sliceName;
+    int sliceEnabledArray[10000]; //tells which slices are enabled
+    int screenIndexArray[8]; // shows how many slices there are per screen
+    String screenNameArray[8]; // names of all of the screens
+    String sliceNameArray[10000]; //names of all the slices
+    String sliceName; //slice name variable
     
     int sliceX;
     int sliceY;
