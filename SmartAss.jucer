@@ -4,6 +4,7 @@
   <MAINGROUP id="L7JLSU" name="SmartAss">
     <GROUP id="{ADAB4E25-F904-4672-B498-FE52C03CAAE5}" name="Pugi"/>
     <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
+      <FILE id="rd5a84" name="shimlaIcon.png" compile="0" resource="1" file="Source/icon/shimlaIcon.png"/>
       <GROUP id="{EF48B41A-C404-9A3E-E9C8-2E75AD3EA040}" name="ReadConvertAss">
         <FILE id="yjYNV1" name="ReadConvertAss.cpp" compile="1" resource="0"
               file="Source/ReadConvertAss/ReadConvertAss.cpp"/>
@@ -22,7 +23,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" smallIcon="rd5a84" bigIcon="rd5a84">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
@@ -43,7 +44,8 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="landscape" iPadScreenOrientation="landscape"
-                  UIFileSharingEnabled="0" UISupportsDocumentBrowser="1">
+                  UIFileSharingEnabled="0" UISupportsDocumentBrowser="1" smallIcon="rd5a84"
+                  bigIcon="rd5a84">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
