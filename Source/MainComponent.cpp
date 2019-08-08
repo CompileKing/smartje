@@ -41,7 +41,41 @@ MainComponent::MainComponent()
     addAndMakeVisible(button2);
     button2.setButtonText("Output Map");
     button2.setBounds (430, 10, 160, 40);
-    button2.addListener(this);    
+    button2.addListener(this);
+    
+    addAndMakeVisible(screen1);
+    addAndMakeVisible(screen2);
+    addAndMakeVisible(screen3);
+    addAndMakeVisible(screen4);
+    addAndMakeVisible(screen5);
+    addAndMakeVisible(screen6);
+    addAndMakeVisible(screen7);
+    addAndMakeVisible(screen8);
+    screen1.setBounds (10, 60, 180, 22);
+    screen2.setBounds (10, 60 + (22 * 1), 180, 22);
+    screen3.setBounds (10, 60 + (22 * 2), 180, 22);
+    screen4.setBounds (10, 60 + (22 * 3), 180, 22);
+    screen5.setBounds (10, 60 + (22 * 4), 180, 22);
+    screen6.setBounds (10, 60 + (22 * 5), 180, 22);
+    screen7.setBounds (10, 60 + (22 * 6), 180, 22);
+    screen8.setBounds (10, 60 + (22 * 7), 180, 22);
+    screen1.setRadioGroupId (GenderButtons);
+    screen2.setRadioGroupId (GenderButtons);
+    screen3.setRadioGroupId (GenderButtons);
+    screen4.setRadioGroupId (GenderButtons);
+    screen5.setRadioGroupId (GenderButtons);
+    screen6.setRadioGroupId (GenderButtons);
+    screen7.setRadioGroupId (GenderButtons);
+    screen8.setRadioGroupId (GenderButtons);
+    screen1.onClick = [this] { updateToggleState (&screen1, 1); };
+    screen2.onClick = [this] { updateToggleState (&screen2, 2); };
+    screen3.onClick = [this] { updateToggleState (&screen3, 3); };
+    screen4.onClick = [this] { updateToggleState (&screen4, 4); };
+    screen5.onClick = [this] { updateToggleState (&screen5, 5); };
+    screen6.onClick = [this] { updateToggleState (&screen6, 6); };
+    screen7.onClick = [this] { updateToggleState (&screen7, 7); };
+    screen8.onClick = [this] { updateToggleState (&screen8, 8); };
+
 }
 
 
@@ -54,7 +88,7 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     dragUp = (sourceDistance / getWidth()) * 10.f;
-    g.fillAll (Colour::fromHSV(0.f, 0.f, 0.1, 1.f));
+    g.fillAll (Colour::fromHSV(0.f, 0.f, 0., 0.1f));
 
     for (int i=0;i<rect.sIndex;i++) // for every slice
     {

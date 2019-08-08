@@ -45,28 +45,32 @@ public:
         
         auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
-        rect.getInputRect(filePath.toStdString());
+        rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
         sourceDistance = (getWidth()/10);
         repaint();
+
         
-        for (int i =0; i<rect.screenIndex; i++)
-        {
-            auto* tb = new ToggleButton (rect.screenNameArray[i]);
-            
-            tb->setRadioGroupId (1234);
-            tb->setBounds (10, 50 + i * 22, 180, 22);
-            tb->setTooltip ("A set of mutually-exclusive radio buttons");
-            
-            if (i == 0)
-                tb->setToggleState (true, dontSendNotification);
-            addAndMakeVisible(tb);
-            /*
-            cout << "screenName: " << rect.screenNameArray[i] << endl;
-            cout << "screenIndexArray: " << rect.screenIndexArray[i] << endl;
-             */
-        }
+        /*
+         for (int i =0; i<rect.screenIndex; i++) // create screen toggles
+         {
+         auto* tb = new ToggleButton (rect.screenNameArray[i]);
+         
+         tb->setRadioGroupId (1234);
+         tb->setBounds (10, 50 + i * 22, 180, 22);
+         tb->setTooltip ("A set of mutually-exclusive radio buttons");
+         
+         if (i == 0)
+         tb->setToggleState (true, dontSendNotification);
+         addAndMakeVisible(tb);
+         
+         cout << "screenName: " << rect.screenNameArray[i] << endl;
+         cout << "screenIndexArray: " << rect.screenIndexArray[i] << endl;
+         }
+         */
+
     }
     
+    // check the input/ouput map toggles
     void buttonClicked (Button* button) override
     {
         if (button == &button1)
@@ -77,6 +81,16 @@ public:
         {
             drawInputMap = false;
         }
+        repaint();
+        cout << "drawInputMap? " << drawInputMap << endl;
+    }
+    // check the screen toggles
+    void updateToggleState (Button* button, int index)
+    {
+        auto state = button->getToggleState();
+        if (state)
+            cout << index << endl;
+        
     }
 
     //=============================================================================
@@ -224,7 +238,22 @@ private:
     TextButton button1;
     TextButton button2;
     
+    ToggleButton    screen1 { "Screen 1" },
+                    screen2 { "Screen 2" },
+                    screen3 { "Screen 3" },
+                    screen4 { "Screen 4" },
+                    screen5 { "Screen 5" },
+                    screen6 { "Screen 6" },
+                    screen7 { "Screen 7" },
+                    screen8 { "Screen 8" };
     
+    int toggledIndex;
+    
+    enum RadioButtonIds
+    {
+        GenderButtons = 1001
+    };
+
     
     bool drawInputMap = true;
 
