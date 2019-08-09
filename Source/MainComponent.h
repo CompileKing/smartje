@@ -47,10 +47,13 @@ public:
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
         sourceDistance = (getWidth()/10);
-        repaint();
-
+        sliceOffset = 0;
+        sliceMax = rect.sIndex;
         
-        /*
+        repaint();
+        
+
+        /* // fucken, dynamic radiogroup toggles...    a boy can dream
          for (int i =0; i<rect.screenIndex; i++) // create screen toggles
          {
          auto* tb = new ToggleButton (rect.screenNameArray[i]);
@@ -76,21 +79,34 @@ public:
         if (button == &button1)
         {
             drawInputMap = true;
+            sliceOffset = 0;
+            sliceMax = rect.sIndex;
         }
         if (button == &button2)
         {
             drawInputMap = false;
+            updateToggleState(&screen1, 1);
         }
         repaint();
-        cout << "drawInputMap? " << drawInputMap << endl;
+        // cout << "drawInputMap? " << drawInputMap << endl;
     }
     // check the screen toggles
     void updateToggleState (Button* button, int index)
     {
         auto state = button->getToggleState();
         if (state)
-            cout << index << endl;
-        
+        {
+            int sum = 0;
+            for (int i=0;i<index;i++)
+            {
+                sum += rect.screenIndexArray[i-1];
+            }
+            sliceOffset = sum;
+            sliceMax = rect.screenIndexArray[index-1] + sum;
+            
+            cout << "sliceOffset: " << sliceOffset << endl;
+            cout << "sliceMax: " << sliceMax << endl;
+        }
     }
 
     //=============================================================================
@@ -234,6 +250,9 @@ private:
     
     float drawTheRightHeight;
     float drawTheNormalHeight;
+    
+    int sliceOffset;
+    int sliceMax;
     
     TextButton button1;
     TextButton button2;

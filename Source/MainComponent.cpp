@@ -51,6 +51,7 @@ MainComponent::MainComponent()
     addAndMakeVisible(screen6);
     addAndMakeVisible(screen7);
     addAndMakeVisible(screen8);
+    
     screen1.setBounds (10, 60, 180, 22);
     screen2.setBounds (10, 60 + (22 * 1), 180, 22);
     screen3.setBounds (10, 60 + (22 * 2), 180, 22);
@@ -59,6 +60,7 @@ MainComponent::MainComponent()
     screen6.setBounds (10, 60 + (22 * 5), 180, 22);
     screen7.setBounds (10, 60 + (22 * 6), 180, 22);
     screen8.setBounds (10, 60 + (22 * 7), 180, 22);
+    
     screen1.setRadioGroupId (GenderButtons);
     screen2.setRadioGroupId (GenderButtons);
     screen3.setRadioGroupId (GenderButtons);
@@ -67,6 +69,7 @@ MainComponent::MainComponent()
     screen6.setRadioGroupId (GenderButtons);
     screen7.setRadioGroupId (GenderButtons);
     screen8.setRadioGroupId (GenderButtons);
+    
     screen1.onClick = [this] { updateToggleState (&screen1, 1); };
     screen2.onClick = [this] { updateToggleState (&screen2, 2); };
     screen3.onClick = [this] { updateToggleState (&screen3, 3); };
@@ -90,7 +93,7 @@ void MainComponent::paint (Graphics& g)
     dragUp = (sourceDistance / getWidth()) * 10.f;
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0., 0.1f));
 
-    for (int i=0;i<rect.sIndex;i++) // for every slice
+    for (int i=sliceOffset;i<sliceMax;i++) // for every slice
     {
         /*
         cout << "name of slice: " << rect.sliceNameArray[i] << endl;
