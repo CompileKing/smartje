@@ -35,12 +35,12 @@ MainComponent::MainComponent()
     
     addAndMakeVisible(button1);
     button1.setButtonText("Input Map");
-    button1.setBounds (260, 10, 160, 40);
+    button1.setBounds (260, 10, 130, 40);
     button1.addListener(this);
     
     addAndMakeVisible(button2);
     button2.setButtonText("Output Map");
-    button2.setBounds (430, 10, 160, 40);
+    button2.setBounds (410, 10, 130, 40);
     button2.addListener(this);
     
     addAndMakeVisible(screen1);
@@ -78,6 +78,17 @@ MainComponent::MainComponent()
     screen6.onClick = [this] { updateToggleState (&screen6, 6); };
     screen7.onClick = [this] { updateToggleState (&screen7, 7); };
     screen8.onClick = [this] { updateToggleState (&screen8, 8); };
+    
+    screen1.setVisible(0);
+    screen2.setVisible(0);
+    screen3.setVisible(0);
+    screen4.setVisible(0);
+    screen5.setVisible(0);
+    screen6.setVisible(0);
+    screen7.setVisible(0);
+    screen8.setVisible(0);
+    
+    
 
 }
 

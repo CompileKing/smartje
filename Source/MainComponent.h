@@ -81,11 +81,27 @@ public:
             drawInputMap = true;
             sliceOffset = 0;
             sliceMax = rect.sIndex;
+            screen1.setVisible(0);
+            screen2.setVisible(0);
+            screen3.setVisible(0);
+            screen4.setVisible(0);
+            screen5.setVisible(0);
+            screen6.setVisible(0);
+            screen7.setVisible(0);
+            screen8.setVisible(0);
         }
         if (button == &button2)
         {
             drawInputMap = false;
             updateToggleState(&screen1, 1);
+            screen1.setVisible(1);
+            screen2.setVisible(1);
+            screen3.setVisible(1);
+            screen4.setVisible(1);
+            screen5.setVisible(1);
+            screen6.setVisible(1);
+            screen7.setVisible(1);
+            screen8.setVisible(1);
         }
         repaint();
         // cout << "drawInputMap? " << drawInputMap << endl;
@@ -150,8 +166,8 @@ public:
         {
             float xPos = e.getPosition().x;
             float yPos = e.getPosition().y;
-            moveX = ((xPos/getWidth()*2.f-1.f)*3.f)*(sourceDistance/getWidth()*-1.f);
-            moveY = ((yPos/getHeight()*2.f-1.f)*3.f)*(sourceDistance/getWidth()*-1.f);
+            moveX = ((xPos/getWidth()*2.f-1.f)*8.f)*(sourceDistance/getWidth()*-1.f)*0.5;
+            moveY = ((yPos/getHeight()*2.f-1.f)*8.f)*(sourceDistance/getWidth()*-1.f)*0.5;
             
 //            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
         }
