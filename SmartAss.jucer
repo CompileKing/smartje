@@ -44,7 +44,7 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="landscape" iPadScreenOrientation="landscape"
-                  UIFileSharingEnabled="0" UISupportsDocumentBrowser="1" smallIcon="rd5a84"
+                  UIFileSharingEnabled="1" UISupportsDocumentBrowser="1" smallIcon="rd5a84"
                   bigIcon="rd5a84">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
