@@ -40,6 +40,8 @@ public:
     
     void readFile(const File& fileToRead) //what happends when a file gets read
     {
+        button1.setVisible(1);
+        button2.setVisible(1);
         if (!fileToRead.existsAsFile())
             return;
         
@@ -93,7 +95,8 @@ public:
         if (button == &button2)
         {
             drawInputMap = false;
-            updateToggleState(&screen1, 1);
+            sliceOffset = 0;
+            sliceMax = rect.screenIndexArray[0];
             screen1.setVisible(1);
             screen2.setVisible(1);
             screen3.setVisible(1);

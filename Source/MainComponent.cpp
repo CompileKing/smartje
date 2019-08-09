@@ -34,13 +34,15 @@ MainComponent::MainComponent()
     setSize(screenSizeX, screenSizeY);
     
     addAndMakeVisible(button1);
+    button1.setVisible(0);
     button1.setButtonText("Input Map");
     button1.setBounds (260, 10, 130, 40);
     button1.addListener(this);
     
     addAndMakeVisible(button2);
+    button2.setVisible(0);
     button2.setButtonText("Output Map");
-    button2.setBounds (410, 10, 130, 40);
+    button2.setBounds (400, 10, 130, 40);
     button2.addListener(this);
     
     addAndMakeVisible(screen1);
@@ -101,31 +103,32 @@ MainComponent::~MainComponent()
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
+    
     dragUp = (sourceDistance / getWidth()) * 10.f;
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0., 0.1f));
-
-    for (int i=sliceOffset;i<sliceMax;i++) // for every slice
+    
+    
+    // for every selected slice
+    for (int i=sliceOffset;i<sliceMax;i++)
     {
-        /*
-        cout << "name of slice: " << rect.sliceNameArray[i] << endl;
-        cout << "is slice enabled: " << rect.sliceEnabledArray[i] << endl;
-         */
         
-        float compWidth = rect.compResX; // get the right aspect ratio for the input map
+        
+        // get the right aspect ratio for the input map
+        float compWidth = rect.compResX;
         float compHeight = rect.compResY;
         drawTheRightHeight = getWidth() * (compHeight / compWidth);
         
-        drawTheNormalHeight = getWidth() * 0.5625; // get the normal 16:9 aspect ratio for the output map
-
-        float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;// create a different colour for each slice
-        if (rect.sliceEnabledArray[i] == 1) // change opacity of slice based on if a slice is enabled in the xml
+        // get the normal 16:9 aspect ratio for the output map
+        drawTheNormalHeight = getWidth() * 0.5625;
+        
+        // create a different colour for each slice
+        float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
+        // change opacity of slice based on if a slice is enabled in the xml
+        if (rect.sliceEnabledArray[i] == 1)
             sliceOpacity = 0.6f;
         else
             sliceOpacity = 0.1f;
-        auto tileColor1  =  Colour::fromHSV (sliceColor,     // hue
-                                              1.f,           // saturation
-                                              1.f,           // brightness
-                                              sliceOpacity);         // alpha,
+        auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
         if (drawInputMap)
         {
             drawV1x = (((rect.xArrayPtr[(4*i)]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
@@ -157,8 +160,8 @@ void MainComponent::paint (Graphics& g)
             // cout << "the normal height: " << drawTheNormalHeight << endl;
         }
         
-
-        Path path; // paint every slice as a path with a diffirent hue
+        // paint every slice as a path with a diffirent hue
+        Path path;
         path.startNewSubPath (Point<float>
                      ( drawV1x ,
                        drawV1y ));
@@ -175,8 +178,8 @@ void MainComponent::paint (Graphics& g)
         g.setColour(tileColor1);
         g.fillPath (path);
 
-        
-        Path stroke; // paint an black outline and a cross over the slices
+        // paint an black outline and a cross over the slices
+        Path stroke;
         stroke.startNewSubPath (Point<float>
                      ( drawV1x ,
                        drawV1y ));
@@ -194,9 +197,9 @@ void MainComponent::paint (Graphics& g)
         g.strokePath(stroke, PathStrokeType(1.));
         g.strokePath(path, PathStrokeType(1.));
         
-        
 
-        g.setColour(Colour::fromHSV(1, 0, 0.2, sliceOpacity)); // paint a black textbox in the center
+        // paint a black textbox in the center
+        g.setColour(Colour::fromHSV(1, 0, 0.2, sliceOpacity));
         Rectangle<float> backSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
                                 path.getBounds().getCentreY()-(path.getBounds().getHeight()/4),
                                 path.getBounds().getWidth()/2,
@@ -208,7 +211,8 @@ void MainComponent::paint (Graphics& g)
                                     path.getBounds().getWidth()/2.5,
                                     path.getBounds().getHeight()/2.5);
 
-        g.setFont (15.0f); // paint the text overlay
+        // paint the text overlay
+        g.setFont (15.0f);
         g.setColour(Colour::fromFloatRGBA(1., 1., 1., sliceOpacity*1.666666));
         String name = rect.sliceNameArray[i];
         g.drawText(name, textSlice, Justification::centredTop);
@@ -216,6 +220,14 @@ void MainComponent::paint (Graphics& g)
         g.drawText(size, textSlice, Justification::centred);
         String info = "extra info";
         g.drawText(info, textSlice, Justification::centredBottom);
+        
+        // paint an radiogroup rect for visibility
+        if (!drawInputMap)
+        {
+            g.setColour(Colour::fromHSV(0.572, 0.26, 0.24, 0.8));
+            g.fillRect(10, 40, 100, 214);
+        }
+        
    
     }
 
