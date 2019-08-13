@@ -26,12 +26,16 @@ void InputRect::getInputRect(std::string assFile)
     cout << endl;
     cout << "pugi from param: " << assFile << endl;
     
-     vIndex = 0;
-     vIndexOut = 0;
-     sIndex = 0;
-     sliceIndex = 0;
-     screenIndex = 0;
-    
+    // reset all values
+    vIndex = 0;
+    vIndexOut = 0;
+    sIndex = 0;
+    sliceIndex = 0;
+    screenIndex = 0;
+    for (int i=0;i<8;i++)
+    {
+        screenIndexArray[i] = 0;
+    }
 
     pugi::xml_document doc;
     pugi::xml_parse_result

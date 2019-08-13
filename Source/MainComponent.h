@@ -51,27 +51,15 @@ public:
         sourceDistance = (getWidth()/10);
         sliceOffset = 0;
         sliceMax = rect.sIndex;
-        
+
         repaint();
         
-
-        /* // fucken, dynamic radiogroup toggles...    a boy can dream
-         for (int i =0; i<rect.screenIndex; i++) // create screen toggles
-         {
-         auto* tb = new ToggleButton (rect.screenNameArray[i]);
-         
-         tb->setRadioGroupId (1234);
-         tb->setBounds (10, 50 + i * 22, 180, 22);
-         tb->setTooltip ("A set of mutually-exclusive radio buttons");
-         
-         if (i == 0)
-         tb->setToggleState (true, dontSendNotification);
-         addAndMakeVisible(tb);
-         
-         cout << "screenName: " << rect.screenNameArray[i] << endl;
-         cout << "screenIndexArray: " << rect.screenIndexArray[i] << endl;
-         }
-         */
+        cout << "screenIndexArray: " << endl;
+        for (int i=0;i<8;i++)
+        {
+            cout << rect.screenIndexArray[i];
+        }
+        cout << endl;
 
     }
     
