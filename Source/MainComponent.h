@@ -162,6 +162,8 @@ public:
                     position1 = getPosition(*trail);
                 }
                 sourceDistance = abs(position0.getDistanceFrom(position1)-60);
+                
+                
             }
         }
         // cout << "fingers: " << fingers << endl;
@@ -184,6 +186,7 @@ public:
         trails.removeObject (getTrail (e.source));
         repaint();
         fingers = 0;
+        oldZoom = zoomInOut;
     }
     
     struct Trail
@@ -255,7 +258,9 @@ private:
     float moveX = 0;
     float moveY = 0;
 
-    float dragUp;
+    float zoomInOut;
+    float oldZoom;
+    float lastZoomFrame;
     
     float drawV1x;
     float drawV2x;

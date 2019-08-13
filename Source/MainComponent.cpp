@@ -104,10 +104,23 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     
-    dragUp = (sourceDistance / getWidth()) * 10.f;
+    zoomInOut = (sourceDistance / getWidth()) * 10.f;
+    
+    if (zoomInOut > lastZoomFrame)
+    {
+        
+    }
+
+    if (zoomInOut < lastZoomFrame)
+    {
+        
+    }
+
+    lastZoomFrame = zoomInOut;
+
+
+    // draw Background Colour
     g.fillAll (Colour::fromHSV(0.f, 0.f, 0., 0.1f));
-    
-    
     // for every selected slice
     for (int i=sliceOffset;i<sliceMax;i++)
     {
@@ -131,32 +144,32 @@ void MainComponent::paint (Graphics& g)
         auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
         if (drawInputMap)
         {
-            drawV1x = (((rect.xArrayPtr[(4*i)]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV1y = (((rect.yArrayPtr[(4*i)]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
+            drawV1x = (((rect.xArrayPtr[(4*i)]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV1y = (((rect.yArrayPtr[(4*i)]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
             
-            drawV2x = (((rect.xArrayPtr[(4*i)+1]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV2y = (((rect.yArrayPtr[(4*i)+1]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
+            drawV2x = (((rect.xArrayPtr[(4*i)+1]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV2y = (((rect.yArrayPtr[(4*i)+1]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
             
-            drawV3x = (((rect.xArrayPtr[(4*i)+2]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV3y = (((rect.yArrayPtr[(4*i)+2]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
+            drawV3x = (((rect.xArrayPtr[(4*i)+2]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV3y = (((rect.yArrayPtr[(4*i)+2]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
             
-            drawV4x = (((rect.xArrayPtr[(4*i)+3]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV4y = (((rect.yArrayPtr[(4*i)+3]+moveY)*dragUp)*0.5f+0.5f)*drawTheRightHeight;
+            drawV4x = (((rect.xArrayPtr[(4*i)+3]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV4y = (((rect.yArrayPtr[(4*i)+3]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
             // cout << "the right height: " << drawTheRightHeight << endl;
         }
         else
         {
-            drawV1x = (((rect.xArrayOutPtr[(4*i)]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV1y = (((rect.yArrayOutPtr[(4*i)]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
+            drawV1x = (((rect.xArrayOutPtr[(4*i)]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV1y = (((rect.yArrayOutPtr[(4*i)]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
             
-            drawV2x = (((rect.xArrayOutPtr[(4*i)+1]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV2y = (((rect.yArrayOutPtr[(4*i)+1]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
+            drawV2x = (((rect.xArrayOutPtr[(4*i)+1]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV2y = (((rect.yArrayOutPtr[(4*i)+1]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
             
-            drawV3x = (((rect.xArrayOutPtr[(4*i)+2]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV3y = (((rect.yArrayOutPtr[(4*i)+2]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
+            drawV3x = (((rect.xArrayOutPtr[(4*i)+2]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV3y = (((rect.yArrayOutPtr[(4*i)+2]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
             
-            drawV4x = (((rect.xArrayOutPtr[(4*i)+3]+moveX)*dragUp)*0.5f+0.5f)*getWidth();
-            drawV4y = (((rect.yArrayOutPtr[(4*i)+3]+moveY)*dragUp)*0.5f+0.5f)*drawTheNormalHeight;
+            drawV4x = (((rect.xArrayOutPtr[(4*i)+3]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            drawV4y = (((rect.yArrayOutPtr[(4*i)+3]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
             // cout << "the normal height: " << drawTheNormalHeight << endl;
         }
         
