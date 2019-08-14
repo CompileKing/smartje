@@ -78,10 +78,25 @@ void InputRect::getInputRect(std::string assFile)
                         screenNameArray[screenIndex] = screen.attribute("name").as_string();
                         
                         // get width and height of every screen
-                        screenResX = screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("width").as_float();
+                        if (screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("width").as_float() > 0)
+                        {
+                            screenResX = screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("width").as_float();
+                        }
+                        else
+                        {
+                            screenResX = screen.child("OutputDevice").child("OutputDeviceDisplay").attribute("width").as_float();
+                        }
                         screenWidthArray[screenIndex] = screenResX;
-                        screenResY = screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("height").as_float();
+                        if (screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("height").as_float() > 0)
+                        {
+                            screenResY = screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("height").as_float();
+                        }
+                        else
+                        {
+                            screenResY = screen.child("OutputDevice").child("OutputDeviceDisplay").attribute("height").as_float();
+                        }
                         screenHeightArray[screenIndex] = screenResY;
+                        
                         cout << screenNameArray[screenIndex] << ": " << endl;
                         cout << "screenWidth " << screenWidthArray[screenIndex] << endl;
                         cout << "screenHeight " << screenHeightArray[screenIndex] << endl;
