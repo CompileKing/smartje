@@ -54,6 +54,7 @@ public:
 
         repaint();
         
+        cout << endl;
         cout << "screenIndexArray: " << endl;
         for (int i=0;i<8;i++)
         {
@@ -110,9 +111,10 @@ public:
             }
             sliceOffset = sum;
             sliceMax = rect.screenIndexArray[index-1] + sum;
-            
+            /*
             cout << "sliceOffset: " << sliceOffset << endl;
             cout << "sliceMax: " << sliceMax << endl;
+             */
         }
     }
 

@@ -35,6 +35,8 @@ public:
     
     int compResX;
     int compResY;
+    float screenResX;
+    float screenResY;
     
     int vIndex = 0;
     int vIndexOut = 0;
@@ -43,8 +45,11 @@ public:
     int screenIndex = 0;
     
     int sliceEnabledArray[10000]; //tells which slices are enabled
-    int screenIndexArray[8]; // shows how many slices there are per screen
-    String screenNameArray[8]; // names of all of the screens
+    int screenIndexArray[100]; // shows how many slices there are per screen
+    int screenWidthArray[100];
+    int screenHeightArray[100];
+    
+    String screenNameArray[100]; // names of all of the screens
     String sliceNameArray[10000]; //names of all the slices
     String sliceName; //slice name variable
     
@@ -70,6 +75,8 @@ public:
     bool isFileLoaded;
     
     bool result2;
+    
+    
     
     
     
