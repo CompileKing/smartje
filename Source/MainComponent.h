@@ -37,8 +37,9 @@ public:
         if (fileComponentThatHasChanged == fileComp.get())
             readFile(fileComp->getCurrentFile());
     }
-    
-    void readFile(const File& fileToRead) //what happends when a file gets read
+
+    //what happends when a file gets read
+    void readFile(const File& fileToRead)
     {
         button1.setVisible(1);
         button2.setVisible(1);
@@ -53,6 +54,8 @@ public:
         sourceDistance = (getWidth()/10);
         sliceOffset = 0;
         sliceMax = rect.sIndex;
+        
+        currentScreen = 0;
 
         repaint();
         
@@ -63,41 +66,50 @@ public:
             cout << rect.screenIndexArray[i];
         }
         cout << endl;
-
+        cout << "screenIndex: " << rect.screenIndex << endl;
     }
     
-    // check the input/ouput map toggles
+    // button functionality
     void buttonClicked (Button* button) override
     {
+        // inputMap button functionality
         if (button == &button1)
         {
             drawInputMap = true;
             sliceOffset = 0;
             sliceMax = rect.sIndex;
         }
+        // outputMap button functionality
         if (button == &button2)
         {
             drawInputMap = false;
             sliceOffset = 0;
             sliceMax = rect.screenIndexArray[0];
         }
-        
-        if (button == &dec)
+        // inc button functionality
+        if (currentScreen < rect.screenIndex)
         {
-            currentScreen--;
+            if (button == &inc)
+            {
+                currentScreen++;
+            }
+        // dec button functionality
         }
-        if (button == &inc)
+        if (currentScreen > 0)
         {
-            currentScreen++;
+            if (button == &dec)
+            {
+                currentScreen--;
+            }
         }
+        selectScreen(currentScreen);
         repaint();
-        // cout << "drawInputMap? " << drawInputMap << endl;
+
     }
-    // check the screen toggles
-    void updateToggleState (Button* button, int index)
+    // screen selection function
+    void selectScreen (int index)
     {
-        auto state = button->getToggleState();
-        if (state)
+        if (index > 0)
         {
             int sum = 0;
             for (int i=0;i<index;i++)
@@ -106,10 +118,11 @@ public:
             }
             sliceOffset = sum;
             sliceMax = rect.screenIndexArray[index-1] + sum;
-            /*
-            cout << "sliceOffset: " << sliceOffset << endl;
-            cout << "sliceMax: " << sliceMax << endl;
-             */
+        }
+        if (index == 0)
+        {
+            sliceOffset = 0;
+            sliceMax = rect.sIndex;
         }
     }
 
@@ -128,11 +141,8 @@ public:
             t->path.startNewSubPath (e.position);
             trails.add (t);
         }
-        //else fingers = 1;
-        
-        
+
         t->pushPoint (e.position, e.mods, e.pressure);
-        
         
         if (fingers == 1)
         {
@@ -147,11 +157,9 @@ public:
                     position1 = getPosition(*trail);
                 }
                 sourceDistance = abs(position0.getDistanceFrom(position1)-60);
-                
-                
             }
         }
-        // cout << "fingers: " << fingers << endl;
+        
         if (fingers == 0)
         {
             float xPos = e.getPosition().x;
@@ -161,7 +169,6 @@ public:
             
 //            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
         }
-        
         repaint();
     }
     
@@ -260,7 +267,7 @@ private:
     float drawTheRightHeight;
     float drawTheNormalHeight;
     
-    int currentScreen = 6;
+    int currentScreen = 0;
     int sliceOffset;
     int sliceMax;
     
