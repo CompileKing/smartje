@@ -45,52 +45,17 @@ MainComponent::MainComponent()
     button2.setBounds (400, 10, 130, 40);
     button2.addListener(this);
     
-    addAndMakeVisible(screen1);
-    addAndMakeVisible(screen2);
-    addAndMakeVisible(screen3);
-    addAndMakeVisible(screen4);
-    addAndMakeVisible(screen5);
-    addAndMakeVisible(screen6);
-    addAndMakeVisible(screen7);
-    addAndMakeVisible(screen8);
+    addAndMakeVisible(dec);
+    dec.setVisible(0);
+    dec.setButtonText("<");
+    dec.setBounds (10, 60, 60, 40);
+    dec.addListener(this);
     
-    screen1.setBounds (10, 60, 180, 22);
-    screen2.setBounds (10, 60 + (22 * 1), 180, 22);
-    screen3.setBounds (10, 60 + (22 * 2), 180, 22);
-    screen4.setBounds (10, 60 + (22 * 3), 180, 22);
-    screen5.setBounds (10, 60 + (22 * 4), 180, 22);
-    screen6.setBounds (10, 60 + (22 * 5), 180, 22);
-    screen7.setBounds (10, 60 + (22 * 6), 180, 22);
-    screen8.setBounds (10, 60 + (22 * 7), 180, 22);
-    
-    screen1.setRadioGroupId (GenderButtons);
-    screen2.setRadioGroupId (GenderButtons);
-    screen3.setRadioGroupId (GenderButtons);
-    screen4.setRadioGroupId (GenderButtons);
-    screen5.setRadioGroupId (GenderButtons);
-    screen6.setRadioGroupId (GenderButtons);
-    screen7.setRadioGroupId (GenderButtons);
-    screen8.setRadioGroupId (GenderButtons);
-    
-    screen1.onClick = [this] { updateToggleState (&screen1, 1); };
-    screen2.onClick = [this] { updateToggleState (&screen2, 2); };
-    screen3.onClick = [this] { updateToggleState (&screen3, 3); };
-    screen4.onClick = [this] { updateToggleState (&screen4, 4); };
-    screen5.onClick = [this] { updateToggleState (&screen5, 5); };
-    screen6.onClick = [this] { updateToggleState (&screen6, 6); };
-    screen7.onClick = [this] { updateToggleState (&screen7, 7); };
-    screen8.onClick = [this] { updateToggleState (&screen8, 8); };
-    
-    screen1.setVisible(0);
-    screen2.setVisible(0);
-    screen3.setVisible(0);
-    screen4.setVisible(0);
-    screen5.setVisible(0);
-    screen6.setVisible(0);
-    screen7.setVisible(0);
-    screen8.setVisible(0);
-    
-    
+    addAndMakeVisible(inc);
+    inc.setVisible(0);
+    inc.setButtonText(">");
+    inc.setBounds(80, 60, 60, 40);
+    inc.addListener(this);
 
 }
 
@@ -233,22 +198,19 @@ void MainComponent::paint (Graphics& g)
         g.drawText(size, textSlice, Justification::centred);
         String info = "extra info";
         g.drawText(info, textSlice, Justification::centredBottom);
-        
-        // paint an radiogroup rect for visibility
-        if (!drawInputMap)
-        {
-            g.setColour(Colour::fromHSV(0.572, 0.26, 0.24, 0.8));
-            g.fillRect(10, 40, 100, 214);
-        }
-        
-   
     }
-
+    
+    g.setColour(Colour::fromHSV(0.572, 0.26, 0.24, 1.f));
+    g.fillRect(150, 60, 40, 40);
+    g.setColour(Colours::white);
+    String drawCurrentScreen = to_string(currentScreen);
+    g.drawText(drawCurrentScreen, 150, 60, 40, 40, Justification::centred);
+    
 }
 
 void MainComponent::resized()
 {
-	 
+    
 }
 
 

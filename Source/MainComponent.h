@@ -42,6 +42,8 @@ public:
     {
         button1.setVisible(1);
         button2.setVisible(1);
+        dec.setVisible(1);
+        inc.setVisible(1);
         if (!fileToRead.existsAsFile())
             return;
         
@@ -72,28 +74,21 @@ public:
             drawInputMap = true;
             sliceOffset = 0;
             sliceMax = rect.sIndex;
-            screen1.setVisible(0);
-            screen2.setVisible(0);
-            screen3.setVisible(0);
-            screen4.setVisible(0);
-            screen5.setVisible(0);
-            screen6.setVisible(0);
-            screen7.setVisible(0);
-            screen8.setVisible(0);
         }
         if (button == &button2)
         {
             drawInputMap = false;
             sliceOffset = 0;
             sliceMax = rect.screenIndexArray[0];
-            screen1.setVisible(1);
-            screen2.setVisible(1);
-            screen3.setVisible(1);
-            screen4.setVisible(1);
-            screen5.setVisible(1);
-            screen6.setVisible(1);
-            screen7.setVisible(1);
-            screen8.setVisible(1);
+        }
+        
+        if (button == &dec)
+        {
+            currentScreen--;
+        }
+        if (button == &inc)
+        {
+            currentScreen++;
         }
         repaint();
         // cout << "drawInputMap? " << drawInputMap << endl;
@@ -265,28 +260,16 @@ private:
     float drawTheRightHeight;
     float drawTheNormalHeight;
     
+    int currentScreen = 6;
     int sliceOffset;
     int sliceMax;
     
     TextButton button1;
     TextButton button2;
     
-    ToggleButton    screen1 { "Screen 1" },
-                    screen2 { "Screen 2" },
-                    screen3 { "Screen 3" },
-                    screen4 { "Screen 4" },
-                    screen5 { "Screen 5" },
-                    screen6 { "Screen 6" },
-                    screen7 { "Screen 7" },
-                    screen8 { "Screen 8" };
+    TextButton inc;
+    TextButton dec;
     
-    int toggledIndex;
-    
-    enum RadioButtonIds
-    {
-        GenderButtons = 1001
-    };
-
     
     bool drawInputMap = true;
 
