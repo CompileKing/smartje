@@ -128,8 +128,8 @@ public:
     
     void getOutputScreenResolution(int index)
     {
-        float screenResX = rect.screenWidthArray[abs(index-1)];
-        float screenResy = rect.screenHeightArray[abs(index-1)];
+        float screenResX = rect.screenWidthArray[index-1];
+        float screenResy = rect.screenHeightArray[index-1];
         outputScreenResolutionArray[0] = screenResX;
         outputScreenResolutionArray[1] = screenResy;
     }
@@ -286,6 +286,14 @@ private:
     
     TextButton inc;
     TextButton dec;
+    
+    LookAndFeel_V4 arenaLAF;
+    Colour arenaBrightGreen = Colour::fromRGB(133,254,211);
+    Colour arenaLessGreen = Colour::fromRGB(79, 139, 117);
+    Colour arenaLessPink = Colour::fromRGB(145,84,144);
+    Colour arenaTopGrey = Colour::fromRGB(58,58,57);
+    Colour arenaMidGrey = Colour::fromRGB(42,42,42);
+    Colour arenaBottomGrey = Colour::fromRGB(25,25,25);
     
     
     bool drawInputMap = true;

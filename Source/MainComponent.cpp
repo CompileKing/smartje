@@ -17,6 +17,15 @@ int screenSizeY = 640;
 //==============================================================================
 MainComponent::MainComponent()
 {
+    arenaLAF.setColour(TextButton::buttonColourId, arenaTopGrey);
+    arenaLAF.setColour(TextButton::textColourOnId, Colours::white);
+    
+    arenaLAF.setColour(ComboBox::backgroundColourId, arenaTopGrey);
+    arenaLAF.setColour(ComboBox::outlineColourId, arenaBottomGrey);
+    
+    
+    
+    
     addMouseListener(this, true);
     
     fileComp.reset(new FilenameComponent("fileComp",
@@ -30,6 +39,8 @@ MainComponent::MainComponent()
     addAndMakeVisible(fileComp.get());
     fileComp->addListener(this);
     fileComp->setBounds(10, 10, 240, 40);
+    fileComp->setLookAndFeel(&arenaLAF);
+    
     
     setSize(screenSizeX, screenSizeY);
     
@@ -38,24 +49,30 @@ MainComponent::MainComponent()
     button1.setButtonText("Input Map");
     button1.setBounds (260, 10, 130, 40);
     button1.addListener(this);
+    button1.setLookAndFeel(&arenaLAF);
+    
+    
     
     addAndMakeVisible(button2);
     button2.setVisible(0);
     button2.setButtonText("Output Map");
     button2.setBounds (400, 10, 130, 40);
     button2.addListener(this);
+    button2.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(dec);
     dec.setVisible(0);
     dec.setButtonText("<");
     dec.setBounds (10, 60, 60, 40);
     dec.addListener(this);
+    dec.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(inc);
     inc.setVisible(0);
     inc.setButtonText(">");
     inc.setBounds(80, 60, 60, 40);
     inc.addListener(this);
+    inc.setLookAndFeel(&arenaLAF);
 
 }
 
@@ -84,22 +101,22 @@ void MainComponent::paint (Graphics& g)
 
 
     // draw Background Colour
-    g.fillAll (Colour::fromHSV(0.f, 0.f, 0., 0.1f));
+    g.fillAll (arenaBottomGrey);
+    
+   
     
     // for every selected slice
     if (rect.olderResVersionDetected == false)
     {
         for (int i=sliceOffset;i<sliceMax;i++)
         {
-            
-            
             // get the right aspect ratio for the input map
             float compWidth = rect.compResX;
             float compHeight = rect.compResY;
             
             drawTheRightHeight = getWidth() * (compHeight / compWidth);
             
-            // get the right aspect ratio for the output map
+            // get the right aspect ratio for the output map (if there is one)
             if (currentScreen > 0)
             {
                 getOutputScreenResolution(currentScreen);
@@ -107,9 +124,8 @@ void MainComponent::paint (Graphics& g)
                     getWidth() * (outputScreenResolutionArray[1]/outputScreenResolutionArray[0]);
             }
             else
-            {
                 drawTheNormalHeight = getWidth() * 0.5625;
-            }
+            
             
             
             // create a different colour for each slice
@@ -184,11 +200,11 @@ void MainComponent::paint (Graphics& g)
                            ( drawV4x ,
                             drawV4y ));
             stroke.closeSubPath();
+            
             g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
             g.strokePath(stroke, PathStrokeType(1.));
             g.strokePath(path, PathStrokeType(1.));
-            
-            
+
             // paint a black textbox in the center
             g.setColour(Colour::fromHSV(1, 0, 0.2, sliceOpacity));
             Rectangle<float> backSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
@@ -214,8 +230,8 @@ void MainComponent::paint (Graphics& g)
             
             // end of sliceloop
         }
-        
-        // composition edge
+
+        // draw input / output border edges
         if (drawInputMap == true)
         {
             float inputVector1x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
@@ -229,6 +245,7 @@ void MainComponent::paint (Graphics& g)
             
             float inputVector4x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
             float inputVector4y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
+            
             Path compEdge;
             compEdge.startNewSubPath (Point<float>
                                       ( inputVector1x ,
@@ -243,8 +260,16 @@ void MainComponent::paint (Graphics& g)
                              ( inputVector4x ,
                               inputVector4y ));
             compEdge.closeSubPath();
-            g.setColour(Colours::white);
-            g.strokePath(compEdge, PathStrokeType(1.));
+            
+            
+            g.setColour(arenaLessGreen);
+            PathStrokeType pathStrokeType(1.f);
+            float dashedLength[2];
+            dashedLength[0]=4;
+            dashedLength[1]=4;
+            pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
+            g.strokePath(compEdge, pathStrokeType);
+            
         }
         if (drawInputMap == false)
         {
@@ -274,18 +299,29 @@ void MainComponent::paint (Graphics& g)
                              ( inputVector4x ,
                               inputVector4y ));
             compEdge.closeSubPath();
-            g.setColour(Colours::white);
-            g.strokePath(compEdge, PathStrokeType(1.));
+
+            g.setColour(arenaLessGreen);
+            PathStrokeType pathStrokeType(1.f);
+            float dashedLength[2];
+            dashedLength[0]=4;
+            dashedLength[1]=4;
+            pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
+            g.strokePath(compEdge, pathStrokeType);
         }
         
         // incdec index label
-        g.setColour(Colour::fromHSV(0.572, 0.26, 0.24, 1.f));
-        g.fillRect(150, 60, 40, 40);
+        g.setColour(arenaTopGrey);
+        g.fillRoundedRectangle(150, 60, 40, 40, 4);
         g.setColour(Colours::white);
-        String drawCurrentScreen = to_string(currentScreen);
-        g.drawText(drawCurrentScreen, 150, 60, 40, 40, Justification::centred);
+        String incDecLabel;
+        if (currentScreen > 0)
+            incDecLabel = to_string(currentScreen);
+        else if (currentScreen == 0)
+            incDecLabel = "All";
+        g.drawText(incDecLabel, 150, 60, 40, 40, Justification::centred);
         
     }
+    // if an older version of resolume is detected don't draw anything but display this splashscreen
     else
     {
         g.setColour(Colours::orange);
