@@ -24,10 +24,7 @@ MainComponent::MainComponent()
     
     arenaLAF.setColour(ComboBox::backgroundColourId, arenaTopGrey);
     arenaLAF.setColour(ComboBox::outlineColourId, arenaBottomGrey);
-    
-    
-    
-    
+
     addMouseListener(this, true);
     
     fileComp.reset(new FilenameComponent("fileComp",
@@ -70,7 +67,6 @@ MainComponent::MainComponent()
     inc.setBounds       (60+1, 80+2, 60, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
-
 }
 
 
@@ -215,7 +211,7 @@ void MainComponent::paint (Graphics& g)
                                         path.getBounds().getHeight()/2.5);
             
             // paint the text overlay
-            g.setFont (15.0f);
+            g.setFont (9.0f);
             g.setColour(Colour::fromFloatRGBA(1., 1., 1., sliceOpacity*1.666666));
             String name = rect.sliceNameArray[i];
             g.drawText(name, textSlice, Justification::centredTop);
@@ -307,13 +303,14 @@ void MainComponent::paint (Graphics& g)
         // draw a nice black background for the buttons
         // (0, 0, 180+1, 40);
         g.setColour(Colour::fromRGBA(24, 25, 25, 230));
-        g.fillRoundedRectangle(0, -2, 183, 126, 6);
+        g.fillRoundedRectangle(-2, -2, 186, 127, 6);
         
         // incdec index label
         // 60+1, 80+2, 60, 40
         g.setColour(arenaTopGrey);
         g.fillRoundedRectangle(123, 83, 57, 38, 4);
         g.setColour(Colours::white);
+        g.setFont(16.f);
         String incDecLabel;
         if (currentScreen > 0)
             incDecLabel = to_string(currentScreen);
@@ -332,7 +329,7 @@ void MainComponent::paint (Graphics& g)
         g.setColour(Colours::darkgrey);
         g.setFont(20.f);
         g.setFont (Font("Avenir Next", 30.f, Font::bold));
-        g.drawMultiLineText(drawWarningText, getWidth()/4, getHeight()/4, getHeight());
+        g.drawMultiLineText(drawWarningText, getWidth()/4, getHeight()/3, getHeight());
     }
 }
 
