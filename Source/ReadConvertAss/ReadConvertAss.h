@@ -76,6 +76,8 @@ public:
     
     bool result2;
     
+    bool olderResVersionDetected;
+    
     
     
     
