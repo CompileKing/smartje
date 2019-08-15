@@ -125,6 +125,14 @@ public:
             sliceMax = rect.sIndex;
         }
     }
+    
+    void getOutputScreenResolution(int index)
+    {
+        float screenResX = rect.screenWidthArray[abs(index-1)];
+        float screenResy = rect.screenHeightArray[abs(index-1)];
+        outputScreenResolutionArray[0] = screenResX;
+        outputScreenResolutionArray[1] = screenResy;
+    }
 
     //=============================================================================
     //                              multiTouchDemoStuff
@@ -246,6 +254,8 @@ private:
     float sourceDistance = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
+    
+    float outputScreenResolutionArray[2];
     
     float moveX = 0;
     float moveY = 0;

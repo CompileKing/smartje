@@ -69,7 +69,7 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     
-    zoomInOut = (sourceDistance / getWidth()) * 10.f;
+    zoomInOut = (sourceDistance / getWidth()) * 5.f;
     
     if (zoomInOut > lastZoomFrame)
     {
@@ -96,10 +96,21 @@ void MainComponent::paint (Graphics& g)
             // get the right aspect ratio for the input map
             float compWidth = rect.compResX;
             float compHeight = rect.compResY;
+            
             drawTheRightHeight = getWidth() * (compHeight / compWidth);
             
-            // get the normal 16:9 aspect ratio for the output map
-            drawTheNormalHeight = getWidth() * 0.5625;
+            // get the right aspect ratio for the output map
+            if (currentScreen > 0)
+            {
+                getOutputScreenResolution(currentScreen);
+                drawTheNormalHeight =
+                    getWidth() * (outputScreenResolutionArray[1]/outputScreenResolutionArray[0]);
+            }
+            else
+            {
+                drawTheNormalHeight = getWidth() * 0.5625;
+            }
+            
             
             // create a different colour for each slice
             float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
@@ -200,8 +211,74 @@ void MainComponent::paint (Graphics& g)
             g.drawText(size, textSlice, Justification::centred);
             String info = "extra info";
             g.drawText(info, textSlice, Justification::centredBottom);
+            
+            // end of sliceloop
         }
         
+        // composition edge
+        if (drawInputMap == true)
+        {
+            float inputVector1x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector1y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
+            
+            float inputVector2x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector2y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
+            
+            float inputVector3x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector3y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
+            
+            float inputVector4x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector4y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
+            Path compEdge;
+            compEdge.startNewSubPath (Point<float>
+                                      ( inputVector1x ,
+                                       inputVector1y ));
+            compEdge.lineTo (Point<float>
+                             ( inputVector2x ,
+                              inputVector2y ));
+            compEdge.lineTo (Point<float>
+                             ( inputVector3x ,
+                              inputVector3y ));
+            compEdge.lineTo (Point<float>
+                             ( inputVector4x ,
+                              inputVector4y ));
+            compEdge.closeSubPath();
+            g.setColour(Colours::white);
+            g.strokePath(compEdge, PathStrokeType(1.));
+        }
+        if (drawInputMap == false)
+        {
+            float inputVector1x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector1y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
+            
+            float inputVector2x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector2y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
+            
+            float inputVector3x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector3y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
+            
+            float inputVector4x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
+            float inputVector4y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight
+            ;
+            Path compEdge;
+            compEdge.startNewSubPath (Point<float>
+                                      ( inputVector1x ,
+                                       inputVector1y ));
+            compEdge.lineTo (Point<float>
+                             ( inputVector2x ,
+                              inputVector2y ));
+            compEdge.lineTo (Point<float>
+                             ( inputVector3x ,
+                              inputVector3y ));
+            compEdge.lineTo (Point<float>
+                             ( inputVector4x ,
+                              inputVector4y ));
+            compEdge.closeSubPath();
+            g.setColour(Colours::white);
+            g.strokePath(compEdge, PathStrokeType(1.));
+        }
+        
+        // incdec index label
         g.setColour(Colour::fromHSV(0.572, 0.26, 0.24, 1.f));
         g.fillRect(150, 60, 40, 40);
         g.setColour(Colours::white);

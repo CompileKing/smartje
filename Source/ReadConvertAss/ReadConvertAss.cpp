@@ -62,6 +62,8 @@ void InputRect::getInputRect(std::string assFile)
     
     if (compResX > 0 || compResY > 0)
     {
+        aspectRatioInput = compResY / compResX;
+        cout << "aspect ratio input: " << aspectRatioInput << endl;
         olderResVersionDetected = false;
         if (result2)    // if the xml is loaded in
         {
@@ -78,7 +80,7 @@ void InputRect::getInputRect(std::string assFile)
                         {
                             screenNameArray[screenIndex] = screen.attribute("name").as_string();
                             
-                            // get width and height of every screen
+                            // get width and height of every (output) screen
                             if (screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("width").as_float() > 0)
                             {
                                 screenResX = screen.child("OutputDevice").child("OutputDeviceVirtual").attribute("width").as_float();

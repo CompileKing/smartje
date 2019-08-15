@@ -33,8 +33,10 @@ private:
 public:
     
     
-    int compResX;
-    int compResY;
+    float compResX;
+    float compResY;
+    float aspectRatioInput;
+        
     float screenResX;
     float screenResY;
     
