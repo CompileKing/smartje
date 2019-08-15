@@ -41,10 +41,7 @@ public:
     //what happends when a file gets read
     void readFile(const File& fileToRead)
     {
-        button1.setVisible(1);
-        button2.setVisible(1);
-        dec.setVisible(1);
-        inc.setVisible(1);
+        
         if (!fileToRead.existsAsFile())
             return;
         
@@ -54,9 +51,9 @@ public:
         sourceDistance = (getWidth()/10);
         sliceOffset = 0;
         sliceMax = rect.sIndex;
-        
         currentScreen = 0;
-
+        wrongResolumeVersion(rect.olderResVersionDetected);
+        
         repaint();
         
         cout << endl;
@@ -67,6 +64,24 @@ public:
         }
         cout << endl;
         cout << "screenIndex: " << rect.screenIndex << endl;
+    }
+    
+    void wrongResolumeVersion(bool olderResolume)
+    {
+        if (olderResolume == true)
+        {
+            button1.setVisible(0);
+            button2.setVisible(0);
+            dec.setVisible(0);
+            inc.setVisible(0);
+        }
+        else if (olderResolume == false)
+        {
+            button1.setVisible(1);
+            button2.setVisible(1);
+            dec.setVisible(1);
+            inc.setVisible(1);
+        }
     }
     
     // button functionality

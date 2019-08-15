@@ -17,6 +17,8 @@ int screenSizeY = 640;
 //==============================================================================
 MainComponent::MainComponent()
 {
+    setSize(screenSizeX, screenSizeY);
+    
     arenaLAF.setColour(TextButton::buttonColourId, arenaTopGrey);
     arenaLAF.setColour(TextButton::textColourOnId, Colours::white);
     
@@ -35,42 +37,37 @@ MainComponent::MainComponent()
                                          false,                    // is for saving,
                                          {},                       // browser wildcard suffix,
                                          {},                       // enforced suffix,
-                                         "Select file to open"));  // text when nothing selected
+                                         "Open File"));  // text when nothing selected
     addAndMakeVisible(fileComp.get());
     fileComp->addListener(this);
-    fileComp->setBounds(10, 10, 240, 40);
+    fileComp->setBounds (0, 0, 180+1, 40);
     fileComp->setLookAndFeel(&arenaLAF);
     
-    
-    setSize(screenSizeX, screenSizeY);
-    
     addAndMakeVisible(button1);
-    button1.setVisible(0);
-    button1.setButtonText("Input Map");
-    button1.setBounds (260, 10, 130, 40);
+    button1.setVisible(1);
+    button1.setButtonText("Input");
+    button1.setBounds   (0, 40+1, 90, 40);
     button1.addListener(this);
     button1.setLookAndFeel(&arenaLAF);
-    
-    
-    
+
     addAndMakeVisible(button2);
-    button2.setVisible(0);
-    button2.setButtonText("Output Map");
-    button2.setBounds (400, 10, 130, 40);
+    button2.setVisible(1);
+    button2.setButtonText("Output");
+    button2.setBounds   (90+1, 40+1, 90, 40);
     button2.addListener(this);
     button2.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(dec);
-    dec.setVisible(0);
+    dec.setVisible(1);
     dec.setButtonText("<");
-    dec.setBounds (10, 60, 60, 40);
+    dec.setBounds       (0, 80+2, 60, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(inc);
-    inc.setVisible(0);
+    inc.setVisible(1);
     inc.setButtonText(">");
-    inc.setBounds(80, 60, 60, 40);
+    inc.setBounds       (60+1, 80+2, 60, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
 
@@ -103,7 +100,6 @@ void MainComponent::paint (Graphics& g)
     // draw Background Colour
     g.fillAll (arenaBottomGrey);
     
-   
     
     // for every selected slice
     if (rect.olderResVersionDetected == false)
@@ -308,17 +304,22 @@ void MainComponent::paint (Graphics& g)
             pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
             g.strokePath(compEdge, pathStrokeType);
         }
+        // draw a nice black background for the buttons
+        // (0, 0, 180+1, 40);
+        g.setColour(Colour::fromRGBA(24, 25, 25, 230));
+        g.fillRoundedRectangle(0, -2, 183, 126, 6);
         
         // incdec index label
+        // 60+1, 80+2, 60, 40
         g.setColour(arenaTopGrey);
-        g.fillRoundedRectangle(150, 60, 40, 40, 4);
+        g.fillRoundedRectangle(123, 83, 57, 38, 4);
         g.setColour(Colours::white);
         String incDecLabel;
         if (currentScreen > 0)
             incDecLabel = to_string(currentScreen);
         else if (currentScreen == 0)
             incDecLabel = "All";
-        g.drawText(incDecLabel, 150, 60, 40, 40, Justification::centred);
+        g.drawText(incDecLabel, 123, 83, 57, 38, Justification::centred);
         
     }
     // if an older version of resolume is detected don't draw anything but display this splashscreen
