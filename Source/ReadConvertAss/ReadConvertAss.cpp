@@ -108,6 +108,10 @@ void InputRect::getInputRect(std::string assFile)
                             sliceIndex = 0;
                             for (pugi::xml_node slice: screen.child("layers").children("Slice")) // for every slice
                             {
+                                inputSliceRotationArray[sIndex] = slice.child("InputRect").attribute("orientation").as_float();
+                                outputSliceRotationArray[sIndex] = slice.child("OutputRect").attribute("orientation").as_float();
+                                cout << "inputRect orientation: " << inputSliceRotationArray[sIndex] << endl;
+                                cout << "outputRect orientation: " << outputSliceRotationArray[sIndex] << endl;
                                 for (pugi::xml_node sliceParam: slice.child("Params").children("Param"))
                                 {
                                     const char * str1 = sliceParam.attribute("name").as_string();
@@ -125,6 +129,8 @@ void InputRect::getInputRect(std::string assFile)
                                 {
                                     xArray[vIndex] =  (value.attribute("x").as_double() / compResX) * 2. - 1.;
                                     yArray[vIndex] =  (value.attribute("y").as_double() / compResY) * 2. - 1.;
+                                    xArrayRaw[vIndex] = value.attribute("x").as_float();
+                                    yArrayRaw[vIndex] = value.attribute("y").as_float();
                                     vIndex++;   // vector index increment
                                 }
                                 sIndex++;    // slice index increment
@@ -133,6 +139,8 @@ void InputRect::getInputRect(std::string assFile)
                                 {
                                     xArrayOut[vIndexOut] =  (value.attribute("x").as_double() / screenResX) * 2. - 1.;
                                     yArrayOut[vIndexOut] =  (value.attribute("y").as_double() / screenResY) * 2. - 1.;
+                                    xArrayOutRaw[vIndexOut] = value.attribute("x").as_float();
+                                    yArrayOutRaw[vIndexOut] = value.attribute("y").as_float();
                                     vIndexOut++;
                                 }
                                 sliceIndex++;

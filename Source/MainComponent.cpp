@@ -128,18 +128,10 @@ void MainComponent::paint (Graphics& g)
         inputVector4x = moveZoom(-1.f,1) * getWidth();
         inputVector4y = moveZoom(1.f,0) * drawOutputHeight;
     }
-    compEdge.startNewSubPath (Point<float>
-                              ( inputVector1x ,
-                               inputVector1y ));
-    compEdge.lineTo (Point<float>
-                     ( inputVector2x ,
-                      inputVector2y ));
-    compEdge.lineTo (Point<float>
-                     ( inputVector3x ,
-                      inputVector3y ));
-    compEdge.lineTo (Point<float>
-                     ( inputVector4x ,
-                      inputVector4y ));
+    compEdge.startNewSubPath (Point<float>( inputVector1x ,inputVector1y ));
+    compEdge.lineTo (Point<float>(inputVector2x, inputVector2y));
+    compEdge.lineTo (Point<float>(inputVector3x, inputVector3y));
+    compEdge.lineTo (Point<float>(inputVector4x, inputVector4y));
     compEdge.closeSubPath();
     
     // draw a workField
@@ -152,7 +144,62 @@ void MainComponent::paint (Graphics& g)
     {
         for (int i=sliceOffset;i<sliceMax;i++)
         {
-
+            
+            // create raw slices to calculate width and height for input and output......
+            float rawVector1x;
+            float rawVector1y;
+            float rawVector2x;
+            float rawVector2y;
+            float rawVector3x;
+            float rawVector3y;
+            float rawVector4x;
+            float rawVector4y;
+            if (drawInputMap)
+            {
+                rawVector1x = rect.xArrayRaw[(4*i)];
+                rawVector1y = rect.yArrayRaw[(4*i)];
+                rawVector2x = rect.xArrayRaw[(4*i)+1];
+                rawVector2y = rect.yArrayRaw[(4*i)+1];
+                rawVector3x = rect.xArrayRaw[(4*i)+2];
+                rawVector3y = rect.yArrayRaw[(4*i)+2];
+                rawVector4x = rect.xArrayRaw[(4*i)+3];
+                rawVector4y = rect.yArrayRaw[(4*i)+3];
+            }
+            else
+            {
+                rawVector1x = rect.xArrayOutRaw[(4*i)];
+                rawVector1y = rect.yArrayOutRaw[(4*i)];
+                rawVector2x = rect.xArrayOutRaw[(4*i)+1];
+                rawVector2y = rect.yArrayOutRaw[(4*i)+1];
+                rawVector3x = rect.xArrayOutRaw[(4*i)+2];
+                rawVector3y = rect.yArrayOutRaw[(4*i)+2];
+                rawVector4x = rect.xArrayOutRaw[(4*i)+3];
+                rawVector4y = rect.yArrayOutRaw[(4*i)+3];
+            }
+            
+            // create invisible 'raw' slices
+            Path raw;
+            raw.startNewSubPath (Point<float>(rawVector1x ,rawVector1y));
+            raw.lineTo (Point<float>(rawVector2x ,rawVector2y));
+            raw.lineTo (Point<float>(rawVector3x ,rawVector3y));
+            raw.lineTo (Point<float>(rawVector4x ,rawVector4y));
+            raw.closeSubPath();
+            
+            // do a kickflip
+            Point<float> center = raw.getBounds().getCentre();
+            if (drawInputMap)
+            {
+                raw.applyTransform( AffineTransform::rotation( -rect.inputSliceRotationArray[i], center.x, center.y ));
+                SliceWidth = raw.getBounds().getWidth();
+                SliceHeight = raw.getBounds().getHeight();
+            }
+            else
+            {
+                raw.applyTransform(AffineTransform::rotation(-rect.outputSliceRotationArray[i], center.x, center.y ));
+                SliceWidth = raw.getBounds().getWidth();
+                SliceHeight = raw.getBounds().getHeight();
+            }
+            
             // create a different colour for each slice
             float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
             // change opacity of slice based on if a slice is enabled in the xml
@@ -163,13 +210,13 @@ void MainComponent::paint (Graphics& g)
             auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
             if (drawInputMap)
             {
-                drawV1x = moveZoom(rect.xArrayPtr[(4*i)],1) * getWidth();
+                drawV1x = moveZoom(rect.xArrayPtr[(4*i)],1) * getWidth();           //v1 upperLeft
                 drawV1y = moveZoom(rect.yArrayPtr[(4*i)],0) * drawInputHeight;
-                drawV2x = moveZoom(rect.xArrayPtr[(4*i)+1],1) * getWidth();
+                drawV2x = moveZoom(rect.xArrayPtr[(4*i)+1],1) * getWidth();         //v2 upperRight
                 drawV2y = moveZoom(rect.yArrayPtr[(4*i)+1],0) * drawInputHeight;
-                drawV3x = moveZoom(rect.xArrayPtr[(4*i)+2],1) * getWidth();
+                drawV3x = moveZoom(rect.xArrayPtr[(4*i)+2],1) * getWidth();         //v3 bottomRight
                 drawV3y = moveZoom(rect.yArrayPtr[(4*i)+2],0) * drawInputHeight;
-                drawV4x = moveZoom(rect.xArrayPtr[(4*i)+3],1) * getWidth();
+                drawV4x = moveZoom(rect.xArrayPtr[(4*i)+3],1) * getWidth();         //v4 bottmLeft
                 drawV4y = moveZoom(rect.yArrayPtr[(4*i)+3],0) * drawInputHeight;
             }
             else
@@ -184,43 +231,30 @@ void MainComponent::paint (Graphics& g)
                 drawV4y = moveZoom(rect.yArrayOutPtr[(4*i)+3],0) * drawOutputHeight;
             }
             
+            
+            
             // paint every slice as a path with a diffirent hue
             Path path;
-            path.startNewSubPath (Point<float>
-                                  ( drawV1x ,
-                                   drawV1y ));
-            path.lineTo (Point<float>
-                         ( drawV2x ,
-                          drawV2y ));
-            path.lineTo (Point<float>
-                         ( drawV3x ,
-                          drawV3y ));
-            path.lineTo (Point<float>
-                         ( drawV4x ,
-                          drawV4y ));
+            path.startNewSubPath (Point<float>(drawV1x ,drawV1y));
+            path.lineTo (Point<float>(drawV2x ,drawV2y));
+            path.lineTo (Point<float>(drawV3x ,drawV3y));
+            path.lineTo (Point<float>(drawV4x ,drawV4y));
             path.closeSubPath();
             g.setColour(tileColor1);
             g.fillPath (path);
             
             // paint an black outline and a cross over the slices
             Path stroke;
-            stroke.startNewSubPath (Point<float>
-                                    ( drawV1x ,
-                                     drawV1y ));
-            stroke.lineTo (Point<float>
-                           ( drawV3x ,
-                            drawV3y ));
-            stroke.lineTo (Point<float>
-                           ( drawV2x ,
-                            drawV2y ));
-            stroke.lineTo (Point<float>
-                           ( drawV4x ,
-                            drawV4y ));
+            stroke.startNewSubPath (Point<float>(drawV1x, drawV1y));
+            stroke.lineTo (Point<float>(drawV3x ,drawV3y));
+            stroke.lineTo (Point<float>(drawV2x ,drawV2y));
+            stroke.lineTo (Point<float>(drawV4x ,drawV4y));
             stroke.closeSubPath();
-            
             g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
             g.strokePath(stroke, PathStrokeType(1.));
             g.strokePath(path, PathStrokeType(1.));
+            
+            
 
             // paint a black textbox in the center
             g.setColour(Colour::fromHSV(1, 0, 0.2, sliceOpacity));
@@ -240,11 +274,14 @@ void MainComponent::paint (Graphics& g)
             g.setColour(Colour::fromFloatRGBA(1., 1., 1., sliceOpacity*1.666666));
             String name = rect.sliceNameArray[i];
             g.drawText(name, textSlice, Justification::centredTop);
-            String size = "420 x 48";
+            String size = "W: " + to_string(SliceWidth) + " H: " + to_string(SliceHeight);
             g.drawText(size, textSlice, Justification::centred);
             String info = "extra info";
             g.drawText(info, textSlice, Justification::centredBottom);
             
+            
+            
+
             // end of sliceloop
         }
         // draw a workfield dashed outline

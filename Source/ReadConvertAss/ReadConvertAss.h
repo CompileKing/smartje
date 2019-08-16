@@ -25,11 +25,7 @@ using namespace std;
 class InputRect : public Component
 {
 private:
-    
-    
-    
-    
-    
+
 public:
     
     
@@ -74,32 +70,22 @@ public:
     float yArrayOut[10000];
     float *yArrayOutPtr = yArrayOut;
     
+    float xArrayRaw[1000];
+    float yArrayRaw[1000];
+    float xArrayOutRaw[1000];
+    float yArrayOutRaw[1000];
+    
+    float inputSliceRotationArray[1000];
+    float outputSliceRotationArray[1000];
+    
+    
     bool isFileLoaded;
     
     bool result2;
     
     bool olderResVersionDetected;
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 };
-
-
-
-
-
-
-
-
-
-
-
 
 #endif /* InputRect_hpp */
 

@@ -327,6 +327,10 @@ private:
     int sliceOffset;
     int sliceMax;
     
+    int SliceWidth;
+    int SliceHeight;
+    
+    
     TextButton button1;
     TextButton button2;
     
