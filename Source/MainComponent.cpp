@@ -96,30 +96,63 @@ void MainComponent::paint (Graphics& g)
     // draw Background Colour
     g.fillAll (arenaBottomGrey);
     
+    // draw input / output border edges
+    Path compEdge;
+    float inputVector1x;
+    float inputVector1y;
+    float inputVector2x;
+    float inputVector2y;
+    float inputVector3x;
+    float inputVector3y;
+    float inputVector4x;
+    float inputVector4y;
+    if (drawInputMap == true)
+    {
+        inputVector1x = moveZoom(-1.f,1) * getWidth();
+        inputVector1y = moveZoom(-1.f,0) * drawInputHeight;
+        inputVector2x = moveZoom(1.f,1) * getWidth();
+        inputVector2y = moveZoom(-1.f,0) * drawInputHeight;
+        inputVector3x = moveZoom(1.f,1) * getWidth();
+        inputVector3y = moveZoom(1.f,0) * drawInputHeight;
+        inputVector4x = moveZoom(-1.f,1) * getWidth();
+        inputVector4y = moveZoom(1.f,0) * drawInputHeight;
+    }
+    if (drawInputMap == false)
+    {
+        inputVector1x = moveZoom(-1.f,1) * getWidth();
+        inputVector1y = moveZoom(-1.f,0) * drawOutputHeight;
+        inputVector2x = moveZoom(1.f,1) * getWidth();
+        inputVector2y = moveZoom(-1.f,0) * drawOutputHeight;
+        inputVector3x = moveZoom(1.f,1) * getWidth();
+        inputVector3y = moveZoom(1.f,0) * drawOutputHeight;
+        inputVector4x = moveZoom(-1.f,1) * getWidth();
+        inputVector4y = moveZoom(1.f,0) * drawOutputHeight;
+    }
+    compEdge.startNewSubPath (Point<float>
+                              ( inputVector1x ,
+                               inputVector1y ));
+    compEdge.lineTo (Point<float>
+                     ( inputVector2x ,
+                      inputVector2y ));
+    compEdge.lineTo (Point<float>
+                     ( inputVector3x ,
+                      inputVector3y ));
+    compEdge.lineTo (Point<float>
+                     ( inputVector4x ,
+                      inputVector4y ));
+    compEdge.closeSubPath();
+    
+    // draw a workField
+    g.setColour(arenaMidGrey);
+    g.fillPath(compEdge);
+    
     
     // for every selected slice
     if (rect.olderResVersionDetected == false)
     {
         for (int i=sliceOffset;i<sliceMax;i++)
         {
-            // get the right aspect ratio for the input map
-            float compWidth = rect.compResX;
-            float compHeight = rect.compResY;
-            
-            drawTheRightHeight = getWidth() * (compHeight / compWidth);
-            
-            // get the right aspect ratio for the output map (if there is one)
-            if (currentScreen > 0)
-            {
-                getOutputScreenResolution(currentScreen);
-                drawTheNormalHeight =
-                    getWidth() * (outputScreenResolutionArray[1]/outputScreenResolutionArray[0]);
-            }
-            else
-                drawTheNormalHeight = getWidth() * 0.5625;
-            
-            
-            
+
             // create a different colour for each slice
             float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
             // change opacity of slice based on if a slice is enabled in the xml
@@ -130,33 +163,25 @@ void MainComponent::paint (Graphics& g)
             auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
             if (drawInputMap)
             {
-                drawV1x = (((rect.xArrayPtr[(4*i)]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV1y = (((rect.yArrayPtr[(4*i)]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-                
-                drawV2x = (((rect.xArrayPtr[(4*i)+1]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV2y = (((rect.yArrayPtr[(4*i)+1]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-                
-                drawV3x = (((rect.xArrayPtr[(4*i)+2]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV3y = (((rect.yArrayPtr[(4*i)+2]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-                
-                drawV4x = (((rect.xArrayPtr[(4*i)+3]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV4y = (((rect.yArrayPtr[(4*i)+3]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-                // cout << "the right height: " << drawTheRightHeight << endl;
+                drawV1x = moveZoom(rect.xArrayPtr[(4*i)],1) * getWidth();
+                drawV1y = moveZoom(rect.yArrayPtr[(4*i)],0) * drawInputHeight;
+                drawV2x = moveZoom(rect.xArrayPtr[(4*i)+1],1) * getWidth();
+                drawV2y = moveZoom(rect.yArrayPtr[(4*i)+1],0) * drawInputHeight;
+                drawV3x = moveZoom(rect.xArrayPtr[(4*i)+2],1) * getWidth();
+                drawV3y = moveZoom(rect.yArrayPtr[(4*i)+2],0) * drawInputHeight;
+                drawV4x = moveZoom(rect.xArrayPtr[(4*i)+3],1) * getWidth();
+                drawV4y = moveZoom(rect.yArrayPtr[(4*i)+3],0) * drawInputHeight;
             }
             else
             {
-                drawV1x = (((rect.xArrayOutPtr[(4*i)]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV1y = (((rect.yArrayOutPtr[(4*i)]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-                
-                drawV2x = (((rect.xArrayOutPtr[(4*i)+1]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV2y = (((rect.yArrayOutPtr[(4*i)+1]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-                
-                drawV3x = (((rect.xArrayOutPtr[(4*i)+2]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV3y = (((rect.yArrayOutPtr[(4*i)+2]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-                
-                drawV4x = (((rect.xArrayOutPtr[(4*i)+3]+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-                drawV4y = (((rect.yArrayOutPtr[(4*i)+3]+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-                // cout << "the normal height: " << drawTheNormalHeight << endl;
+                drawV1x = moveZoom(rect.xArrayOutPtr[(4*i)],1) * getWidth();
+                drawV1y = moveZoom(rect.yArrayOutPtr[(4*i)],0) * drawOutputHeight;
+                drawV2x = moveZoom(rect.xArrayOutPtr[(4*i)+1],1) * getWidth();
+                drawV2y = moveZoom(rect.yArrayOutPtr[(4*i)+1],0) * drawOutputHeight;
+                drawV3x = moveZoom(rect.xArrayOutPtr[(4*i)+2],1) * getWidth();
+                drawV3y = moveZoom(rect.yArrayOutPtr[(4*i)+2],0) * drawOutputHeight;
+                drawV4x = moveZoom(rect.xArrayOutPtr[(4*i)+3],1) * getWidth();
+                drawV4y = moveZoom(rect.yArrayOutPtr[(4*i)+3],0) * drawOutputHeight;
             }
             
             // paint every slice as a path with a diffirent hue
@@ -222,84 +247,15 @@ void MainComponent::paint (Graphics& g)
             
             // end of sliceloop
         }
-
-        // draw input / output border edges
-        if (drawInputMap == true)
-        {
-            float inputVector1x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector1y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-            
-            float inputVector2x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector2y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-            
-            float inputVector3x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector3y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-            
-            float inputVector4x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector4y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheRightHeight;
-            
-            Path compEdge;
-            compEdge.startNewSubPath (Point<float>
-                                      ( inputVector1x ,
-                                       inputVector1y ));
-            compEdge.lineTo (Point<float>
-                             ( inputVector2x ,
-                              inputVector2y ));
-            compEdge.lineTo (Point<float>
-                             ( inputVector3x ,
-                              inputVector3y ));
-            compEdge.lineTo (Point<float>
-                             ( inputVector4x ,
-                              inputVector4y ));
-            compEdge.closeSubPath();
-            
-            
-            g.setColour(arenaLessGreen);
-            PathStrokeType pathStrokeType(1.f);
-            float dashedLength[2];
-            dashedLength[0]=4;
-            dashedLength[1]=4;
-            pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
-            g.strokePath(compEdge, pathStrokeType);
-            
-        }
-        if (drawInputMap == false)
-        {
-            float inputVector1x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector1y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-            
-            float inputVector2x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector2y = (((-1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-            
-            float inputVector3x = (((1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector3y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight;
-            
-            float inputVector4x = (((-1.f+moveX)*zoomInOut)*0.5f+0.5f)*getWidth();
-            float inputVector4y = (((1.f+moveY)*zoomInOut)*0.5f+0.5f)*drawTheNormalHeight
-            ;
-            Path compEdge;
-            compEdge.startNewSubPath (Point<float>
-                                      ( inputVector1x ,
-                                       inputVector1y ));
-            compEdge.lineTo (Point<float>
-                             ( inputVector2x ,
-                              inputVector2y ));
-            compEdge.lineTo (Point<float>
-                             ( inputVector3x ,
-                              inputVector3y ));
-            compEdge.lineTo (Point<float>
-                             ( inputVector4x ,
-                              inputVector4y ));
-            compEdge.closeSubPath();
-
-            g.setColour(arenaLessGreen);
-            PathStrokeType pathStrokeType(1.f);
-            float dashedLength[2];
-            dashedLength[0]=4;
-            dashedLength[1]=4;
-            pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
-            g.strokePath(compEdge, pathStrokeType);
-        }
+        // draw a workfield dashed outline
+        g.setColour(arenaLessGreen);
+        PathStrokeType pathStrokeType(1.f);
+        float dashedLength[2];
+        dashedLength[0]=4;
+        dashedLength[1]=4;
+        pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
+        g.strokePath(compEdge, pathStrokeType);
+        
         // draw a nice black background for the buttons
         // (0, 0, 180+1, 40);
         g.setColour(Colour::fromRGBA(24, 25, 25, 230));
@@ -322,11 +278,11 @@ void MainComponent::paint (Graphics& g)
     // if an older version of resolume is detected don't draw anything but display this splashscreen
     else
     {
-        g.setColour(Colours::orange);
+        g.setColour(Colours::darkorange);
         g.fillRect(0, 0, getWidth(), getHeight());
         String drawWarningText =
         "THIS SCREEN SETUP WAS MADE WITH AN OLDER VERSION OF RESOLUME AND THEREFORE CAN'T DISPLAY THE SLICES CORRECTLY, PLEASE USE THE LATEST VERSION";
-        g.setColour(Colours::darkgrey);
+        g.setColour(Colours::black);
         g.setFont(20.f);
         g.setFont (Font("Avenir Next", 30.f, Font::bold));
         g.drawMultiLineText(drawWarningText, getWidth()/4, getHeight()/3, getHeight());

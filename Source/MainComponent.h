@@ -54,6 +54,11 @@ public:
         currentScreen = 0;
         wrongResolumeVersion(rect.olderResVersionDetected);
         
+        // get the right aspect ratio for the input map
+        float compWidth = rect.compResX;
+        float compHeight = rect.compResY;
+        drawInputHeight = getWidth() * (compHeight / compWidth);
+        
         repaint();
         
         cout << endl;
@@ -118,6 +123,19 @@ public:
             }
         }
         selectScreen(currentScreen);
+
+        
+        
+        // get the right aspect ratio for the output map (if there is one)
+        if (currentScreen > 0)
+        {
+            getOutputScreenResolution(currentScreen);
+            drawOutputHeight =
+            getWidth() * (outputScreenResolutionArray[1]/outputScreenResolutionArray[0]);
+        }
+        else
+            drawOutputHeight = getWidth() * 0.5625;
+        
         repaint();
 
     }
@@ -148,6 +166,19 @@ public:
         outputScreenResolutionArray[0] = screenResX;
         outputScreenResolutionArray[1] = screenResy;
     }
+    
+    float moveZoom(float inputVector, bool x)
+    {
+        float moveZoomX = (((inputVector+moveX)*zoomInOut)*0.5f+0.5f);
+        float moveZoomY = (((inputVector+moveY)*zoomInOut)*0.5f+0.5f);
+        float returnValue = 0;
+        if (x)
+            returnValue = moveZoomX;
+        else if (!x)
+            returnValue = moveZoomY;
+        return returnValue;
+    }
+    
 
     //=============================================================================
     //                              multiTouchDemoStuff
@@ -289,8 +320,8 @@ private:
     float drawV3y;
     float drawV4y;
     
-    float drawTheRightHeight;
-    float drawTheNormalHeight;
+    float drawInputHeight;
+    float drawOutputHeight;
     
     int currentScreen = 0;
     int sliceOffset;
