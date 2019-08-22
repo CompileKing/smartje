@@ -144,7 +144,6 @@ void MainComponent::paint (Graphics& g)
     {
         for (int i=sliceOffset;i<sliceMax;i++)
         {
-            
             // create raw slices to calculate width and height for input and output......
             float rawVector1x;
             float rawVector1y;
@@ -185,26 +184,28 @@ void MainComponent::paint (Graphics& g)
             raw.lineTo (Point<float>(rawVector4x ,rawVector4y));
             raw.closeSubPath();
             
-            // do a kickflip
-            Point<float> center = raw.getBounds().getCentre();
-            if (drawInputMap)
             {
-                raw.applyTransform( AffineTransform::rotation( -rect.inputSliceRotationArray[i], center.x, center.y ));
-                SliceWidth = raw.getBounds().getWidth();
-                SliceHeight = raw.getBounds().getHeight();
-            }
-            else
-            {
-                raw.applyTransform(AffineTransform::rotation(-rect.outputSliceRotationArray[i], center.x, center.y ));
-                SliceWidth = raw.getBounds().getWidth();
-                SliceHeight = raw.getBounds().getHeight();
+                // do a kickflip
+                Point<float> center = raw.getBounds().getCentre();
+                if (drawInputMap)
+                {
+                    raw.applyTransform( AffineTransform::rotation( -rect.inputSliceRotationArray[i], center.x, center.y ));
+                    SliceWidth = raw.getBounds().getWidth();
+                    SliceHeight = raw.getBounds().getHeight();
+                }
+                else
+                {
+                    raw.applyTransform(AffineTransform::rotation(-rect.outputSliceRotationArray[i], center.x, center.y ));
+                    SliceWidth = raw.getBounds().getWidth();
+                    SliceHeight = raw.getBounds().getHeight();
+                }
             }
             
             // create a different colour for each slice
             float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
             // change opacity of slice based on if a slice is enabled in the xml
             if (rect.sliceEnabledArray[i] == 1)
-                sliceOpacity = 0.6f;
+                sliceOpacity = 0.9f;
             else
                 sliceOpacity = 0.1f;
             auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
@@ -230,9 +231,7 @@ void MainComponent::paint (Graphics& g)
                 drawV4x = moveZoom(rect.xArrayOutPtr[(4*i)+3],1) * getWidth();
                 drawV4y = moveZoom(rect.yArrayOutPtr[(4*i)+3],0) * drawOutputHeight;
             }
-            
-            
-            
+
             // paint every slice as a path with a diffirent hue
             Path path;
             path.startNewSubPath (Point<float>(drawV1x ,drawV1y));
@@ -253,34 +252,34 @@ void MainComponent::paint (Graphics& g)
             g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
             g.strokePath(stroke, PathStrokeType(1.));
             g.strokePath(path, PathStrokeType(1.));
-            
-            
 
-            // paint a black textbox in the center
-            g.setColour(Colour::fromHSV(1, 0, 0.2, sliceOpacity));
-            Rectangle<float> backSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
-                                        path.getBounds().getCentreY()-(path.getBounds().getHeight()/4),
-                                        path.getBounds().getWidth()/2,
-                                        path.getBounds().getHeight()/2);
-            g.fillRect(backSlice);
+            // paint the black backslice
+            Rectangle<float> topslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
+                                       path.getBounds().getCentreY() - 10.f,
+                                       path.getBounds().getWidth()/2,
+                                       10.f);
+            g.setColour(Colours::white);
+            g.fillRect(topslice);
             
-            Rectangle<float> textSlice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/5),
-                                        path.getBounds().getCentreY()-(path.getBounds().getHeight()/5),
-                                        path.getBounds().getWidth()/2.5,
-                                        path.getBounds().getHeight()/2.5);
+            Rectangle<float> midslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
+                                        path.getBounds().getCentreY(),
+                                        path.getBounds().getWidth()/2,
+                                        10.f);
+            g.setColour(Colours::black);
+            g.fillRect(midslice);
             
             // paint the text overlay
             g.setFont (9.0f);
-            g.setColour(Colour::fromFloatRGBA(1., 1., 1., sliceOpacity*1.666666));
             String name = rect.sliceNameArray[i];
-            g.drawText(name, textSlice, Justification::centredTop);
+            g.setColour(Colour::fromFloatRGBA(0.f, 0.f, 0.f, sliceOpacity*1.666666));
+            g.drawText(name, topslice, Justification::centred);
             String size = "W: " + to_string(SliceWidth) + " H: " + to_string(SliceHeight);
-            g.drawText(size, textSlice, Justification::centred);
+            g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
+            g.drawText(size, midslice, Justification::centred);
+            /*
             String info = "extra info";
             g.drawText(info, textSlice, Justification::centredBottom);
-            
-            
-            
+             */
 
             // end of sliceloop
         }
@@ -310,7 +309,6 @@ void MainComponent::paint (Graphics& g)
         else if (currentScreen == 0)
             incDecLabel = "All";
         g.drawText(incDecLabel, 123, 83, 57, 38, Justification::centred);
-        
     }
     // if an older version of resolume is detected don't draw anything but display this splashscreen
     else
