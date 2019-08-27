@@ -11,8 +11,11 @@ namespace BinaryData
     extern const char*   shimlaIcon_png;
     const int            shimlaIcon_pngSize = 35653;
 
+    extern const char*   smartAssIcon_png;
+    const int            smartAssIcon_pngSize = 82279;
+
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 1;
+    const int namedResourceListSize = 2;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

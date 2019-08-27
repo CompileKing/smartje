@@ -124,8 +124,6 @@ public:
         }
         selectScreen(currentScreen);
 
-        
-        
         // get the right aspect ratio for the output map (if there is one)
         if (currentScreen > 0)
         {
@@ -177,6 +175,20 @@ public:
         else if (!x)
             returnValue = moveZoomY;
         return returnValue;
+    }
+    
+    float clipFloat(float input, float max)
+    {
+        float output = 0;
+        if (input < max)
+        {
+            return input;
+        }
+        else
+        {
+            return max;
+        }
+        return output;
     }
     
 

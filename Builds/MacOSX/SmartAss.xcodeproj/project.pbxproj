@@ -293,6 +293,13 @@
 			path = ../../JuceLibraryCode/AppConfig.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		8F50A2F365B6998043561DFE = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = smartAssIcon.png;
+			path = ../../Source/icon/smartAssIcon.png;
+			sourceTree = "SOURCE_ROOT";
+		};
 		911DA8A02C1DD06290ACDA0E = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -505,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				E6FA9405CC824FD629042B36,
+				8F50A2F365B6998043561DFE,
 				1CE971422C1081AFB417CBE8,
 				58441D941D6C04BE058EAF7C,
 				4FDCC1FC149B08159942A34C,
@@ -878,7 +886,7 @@
 		3349903959162D2800C7CBEB = {
 			isa = PBXProject;
 			buildConfigurationList = 1766127A6510382B6F605EFC;
-			attributes = { LastUpgradeCheck = 0930; ORGANIZATIONNAME = ""; TargetAttributes = { BB2BBDB524D03F7A64DB13AC = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
+			attributes = { LastUpgradeCheck = 1100; ORGANIZATIONNAME = ""; TargetAttributes = { BB2BBDB524D03F7A64DB13AC = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = B17DF760375E2BA9A1586205;

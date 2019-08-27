@@ -70,6 +70,7 @@
 		7BFA0D190A73273EAD5AD3C5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		832EB876405D8CECC870E588 /* pugiconfig.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pugiconfig.hpp; path = ../../Source/Pugi/pugiconfig.hpp; sourceTree = SOURCE_ROOT; };
 		8D14494CFE3D4149ADD1E0D3 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../JuceLibraryCode/AppConfig.h; sourceTree = SOURCE_ROOT; };
+		8F50A2F365B6998043561DFE /* smartAssIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smartAssIcon.png; path = ../../Source/icon/smartAssIcon.png; sourceTree = SOURCE_ROOT; };
 		911DA8A02C1DD06290ACDA0E /* juce_audio_devices */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_audio_devices; path = "~/JUCE/modules/juce_audio_devices"; sourceTree = "<absolute>"; };
 		91B0771198608EB5DCA7C331 /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
 		9965C8B19F93DCFC41A18A7F /* ReadConvertAss.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ReadConvertAss.cpp; path = ../../Source/ReadConvertAss/ReadConvertAss.cpp; sourceTree = SOURCE_ROOT; };
@@ -200,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				E6FA9405CC824FD629042B36 /* shimlaIcon.png */,
+				8F50A2F365B6998043561DFE /* smartAssIcon.png */,
 				1CE971422C1081AFB417CBE8 /* ReadConvertAss */,
 				58441D941D6C04BE058EAF7C /* Pugi */,
 				4FDCC1FC149B08159942A34C /* MainComponent.h */,
@@ -284,7 +286,7 @@
 		3349903959162D2800C7CBEB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					BB2BBDB524D03F7A64DB13AC = {

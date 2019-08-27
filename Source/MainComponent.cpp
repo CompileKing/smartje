@@ -256,15 +256,15 @@ void MainComponent::paint (Graphics& g)
             // paint the black backslice
             Rectangle<float> topslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
                                        path.getBounds().getCentreY() - 10.f,
-                                       path.getBounds().getWidth()/2,
+                                       clipFloat(path.getBounds().getWidth()/2,100),
                                        10.f);
-            g.setColour(Colours::white);
-            g.fillRect(topslice);
-            
+
             Rectangle<float> midslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
                                         path.getBounds().getCentreY(),
-                                        path.getBounds().getWidth()/2,
+                                        clipFloat(path.getBounds().getWidth()/2,100.f),
                                         10.f);
+            g.setColour(Colours::white);
+            g.fillRect(topslice);
             g.setColour(Colours::black);
             g.fillRect(midslice);
             
