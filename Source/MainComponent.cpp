@@ -67,6 +67,17 @@ MainComponent::MainComponent()
     inc.setBounds       (60+1, 80+2, 60, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
+    
+    addAndMakeVisible(zoomSlider);
+    zoomSlider.setColour(Slider::thumbColourId, arenaBrightGreen);
+    zoomSlider.setRange(0.5f, 10.f);
+    zoomSlider.setBounds(0, getHeight()/2+20, getWidth(), 40);
+    zoomSlider.addListener(this);
+    zoomSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
+    
+    addAndMakeVisible(mouseInputLabel);
+    
+    
 }
 
 
@@ -79,18 +90,8 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     
-    zoomInOut = (sourceDistance / getWidth()) * 5.f;
     
-    if (zoomInOut > lastZoomFrame)
-    {
-        
-    }
-
-    if (zoomInOut < lastZoomFrame)
-    {
-        
-    }
-    lastZoomFrame = zoomInOut;
+    
 
 
     // draw Background Colour
@@ -327,6 +328,9 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
+    
+    mouseInputLabel.setJustificationType(Justification::centred);
+    mouseInputLabel.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
     
 }
 

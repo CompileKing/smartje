@@ -21,7 +21,8 @@ using namespace std;
  */
 class MainComponent   : public Component,
 public FilenameComponentListener,
-public Button::Listener
+public Button::Listener,
+public Slider::Listener
 {
 public:
     //==============================================================================
@@ -32,12 +33,20 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     
+    virtual void sliderValueChanged (Slider* slider) override
+    {
+        if (slider == &zoomSlider)
+        {
+            sourceDistance = zoomSlider.getValue();
+        }
+    }
+    
     void filenameComponentChanged(FilenameComponent* fileComponentThatHasChanged) override
     {
         if (fileComponentThatHasChanged == fileComp.get())
             readFile(fileComp->getCurrentFile());
     }
-
+    
     //what happends when a file gets read
     void readFile(const File& fileToRead)
     {
@@ -48,7 +57,7 @@ public:
         auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
-        sourceDistance = (getWidth()/10);
+        sourceDistance = 3.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
         currentScreen = 0;
@@ -167,8 +176,8 @@ public:
     
     float moveZoom(float inputVector, bool x)
     {
-        float moveZoomX = (((inputVector+moveX)*zoomInOut)*0.5f+0.5f);
-        float moveZoomY = (((inputVector+moveY)*zoomInOut)*0.5f+0.5f);
+        float moveZoomX = (((inputVector+moveX)*sourceDistance)*0.5f+0.5f);
+        float moveZoomY = (((inputVector+moveY)*sourceDistance)*0.5f+0.5f);
         float returnValue = 0;
         if (x)
             returnValue = moveZoomX;
@@ -222,20 +231,62 @@ public:
                 {
                     position1 = getPosition(*trail);
                 }
-                sourceDistance = abs(position0.getDistanceFrom(position1)-60);
+//                sourceDistance = abs(position0.getDistanceFrom(position1)-60);
+//                sourceDistance = (sourceDistance / getWidth()) * 5.f;
+
+//                sourceDistance = getDelta(position0.getDistanceFrom(position1)/1000.f);
+//                sourceDistance = addToZoom(sourceDistance)/100.f;
+                
+//                mouseInputString = to_string(sourceDistance);
+//                mouseInputLabel.setText(mouseInputString, dontSendNotification);
             }
         }
         
         if (fingers == 0)
         {
-            float xPos = e.getPosition().x;
-            float yPos = e.getPosition().y;
-            moveX = ((xPos/getWidth()*2.f-1.f)*8.f)*(sourceDistance/getWidth()*-1.f)*0.5;
-            moveY = ((yPos/getHeight()*2.f-1.f)*8.f)*(sourceDistance/getWidth()*-1.f)*0.5;
+//            cout << "getScreenY: "<< to_string(e.getScreenY()) << endl;
+//            cout << "getHeight-: "<< to_string(getHeight()-30) << endl;
             
-//            cout << "moveX: " << moveX << " moveY: " << moveY << endl;
+            if (e.getScreenY() < getHeight() - 30)
+            {
+                cout << "is smaller than height-" << endl;
+                deltaX = e.getDistanceFromDragStartX();
+                deltaY = e.getDistanceFromDragStartY();
+                moveX = addToMoveX(deltaX)/8000.f;
+                moveY = addToMoveY(deltaY)/8000.f;
+            }
+                        
         }
         repaint();
+    }
+    float getDelta (float amt)
+    {
+        float value = amt;
+        static float oldValue = value;
+        value = value - oldValue;
+        return static_cast<float>(value);
+         oldValue = value;
+    }
+    
+    float addToMoveX (float amt)
+    {
+        moveAmtX += amt;
+        return static_cast<float>(moveAmtX);
+    }
+    
+    float addToMoveY (float amt)
+    {
+        moveAmtY += amt;
+        return static_cast<float>(moveAmtY);
+    }
+    
+    float addToZoom (float amt)
+    {
+        if (amt < 80 && amt > -80)
+        {
+            zoomAmt += amt;
+        }
+            return static_cast<float>(zoomAmt);
     }
     
     
@@ -244,7 +295,6 @@ public:
         trails.removeObject (getTrail (e.source));
         repaint();
         fingers = 0;
-        oldZoom = zoomInOut;
     }
     
     struct Trail
@@ -317,10 +367,16 @@ private:
     
     float moveX = 0;
     float moveY = 0;
+    float deltaX = 0.f;
+    float deltaY = 0.f;
+    double moveAmtX = 0.f;
+    double moveAmtY = 0.f;
 
-    float zoomInOut;
-    float oldZoom;
+    
+    
+    double zoomAmt;
     float lastZoomFrame;
+    
     
     float drawV1x;
     float drawV2x;
@@ -357,6 +413,9 @@ private:
     Colour arenaMidGrey = Colour::fromRGB(42,42,42);
     Colour arenaBottomGrey = Colour::fromRGB(25,25,25);
     
+    Label mouseInputLabel;
+    String mouseInputString;
+    Slider zoomSlider;
     
     bool drawInputMap = true;
 
