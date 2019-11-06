@@ -69,11 +69,7 @@ MainComponent::MainComponent()
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
     
-    addAndMakeVisible(zoomSlider);
-    zoomSlider.setColour(Slider::thumbColourId, arenaBrightGreen);
-    zoomSlider.setRange(0.5f, 10.f);
-    zoomSlider.addListener(this);
-    zoomSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
+    
     
     addAndMakeVisible(mouseInputLabel1);
     addAndMakeVisible(mouseInputLabel2);
@@ -92,7 +88,7 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {    
     // draw Background Colour
-    g.fillAll (arenaBottomGrey);
+    g.fillAll (arenaMidGrey);
     
     // draw input / output border edges
     Path compEdge;
@@ -133,7 +129,7 @@ void MainComponent::paint (Graphics& g)
     compEdge.closeSubPath();
     
     // draw a workField
-    g.setColour(arenaMidGrey);
+    g.setColour(arenaBottomGrey);
     g.fillPath(compEdge);
     
     
@@ -237,7 +233,7 @@ void MainComponent::paint (Graphics& g)
             path.lineTo (Point<float>(drawV3x ,drawV3y));
             path.lineTo (Point<float>(drawV4x ,drawV4y));
             path.closeSubPath();
-            g.setColour(tileColor1);
+            g.setColour(arenaMidGrey);
             g.fillPath (path);
             
             // paint an black outline and a cross over the slices
@@ -247,9 +243,11 @@ void MainComponent::paint (Graphics& g)
             stroke.lineTo (Point<float>(drawV2x ,drawV2y));
             stroke.lineTo (Point<float>(drawV4x ,drawV4y));
             stroke.closeSubPath();
-            g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
-            g.strokePath(stroke, PathStrokeType(1.));
+//            g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
+            g.setColour(arenaBrightGreen.withAlpha(0.5f));
             g.strokePath(path, PathStrokeType(1.));
+            g.strokePath(stroke, PathStrokeType(1.));
+            
 
             // paint the black backslice
             Rectangle<float> topslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
@@ -325,7 +323,7 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-    zoomSlider.setBounds(0, getHeight()-40, getWidth(), 40);
+    
     mouseInputLabel1.setJustificationType(Justification::centred);
     mouseInputLabel1.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
     mouseInputLabel2.setJustificationType(Justification::centred);

@@ -35,10 +35,7 @@ public:
     
     virtual void sliderValueChanged (Slider* slider) override
     {
-        if (slider == &zoomSlider)
-        {
-//            sourceDistance = zoomSlider.getValue();
-        }
+        
     }
     
     void filenameComponentChanged(FilenameComponent* fileComponentThatHasChanged) override
@@ -57,7 +54,7 @@ public:
         auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
-        sourceDistance = 3.f;
+        sourceDistance = 1.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
         currentScreen = 0;
@@ -176,8 +173,8 @@ public:
     
     float moveZoom(float inputVector, bool x)
     {
-        float moveZoomX = (((inputVector+moveX)*sourceDistance)*0.5f+0.5f);
-        float moveZoomY = (((inputVector+moveY)*sourceDistance)*0.5f+0.5f);
+        float moveZoomX = (((inputVector + moveX ) * sourceDistance)*0.5f+0.5f);
+        float moveZoomY = (((inputVector + moveY ) * sourceDistance)*0.5f+0.5f);
         float returnValue = 0;
         if (x)
             returnValue = moveZoomX;
@@ -243,20 +240,7 @@ public:
                 {
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
-                
-//                sourceDistance = abs(position0.getDistanceFrom(position1)-60);
-//                sourceDistance = (sourceDistance / getWidth()) * 5.f;
-
-                sourceDistance = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 15000.f));
-
-//                float debugLabelFloat1, debugLabelFloat2;
-//                sourceDistance = position0.getDistanceFrom(position1);
-//                mouseInputString1 = to_string(debugLabelFloat1);
-//                mouseInputLabel1.setText(mouseInputString1, dontSendNotification);
-//                mouseInputString2 = to_string(debugLabelFloat2);
-//                mouseInputLabel2.setText(mouseInputString2, dontSendNotification);
-                
-                sourceDistanceLabel.setText(to_string(sourceDistance), dontSendNotification);
+                sourceDistance = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 5000.f));
             }
         }
         
@@ -266,8 +250,8 @@ public:
             {
                 deltaX = e.getDistanceFromDragStartX();
                 deltaY = e.getDistanceFromDragStartY();
-                moveX = addToMoveX(deltaX)/8000.f;
-                moveY = addToMoveY(deltaY)/8000.f;
+                moveX = addToMoveX(deltaX)/4000.f;
+                moveY = addToMoveY(deltaY)/4000.f;
             }
         }
         repaint();
@@ -394,7 +378,7 @@ private:
     double moveAmtX = 0.f;
     double moveAmtY = 0.f;
         
-    double zoomAmt;
+    double zoomAmt = 1.f;
 
     float drawV1x;
     float drawV2x;
@@ -436,7 +420,7 @@ private:
     Label sourceDistanceLabel;
     String mouseInputString1;
     String mouseInputString2;
-    Slider zoomSlider;
+    
     
     bool drawInputMap = true;
 
