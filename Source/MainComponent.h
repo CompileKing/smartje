@@ -226,18 +226,28 @@ public:
             {
                 if (getIndex(*trail) == 0)
                 {
-                    position0 = getDragStart(*trail);
+                    deltaPosition0 = getDragStart(*trail);
+                    position0 = getPosition(*trail);
                 }
                 if (getIndex(*trail) == 1)
                 {
-                    position1 = getDragStart(*trail);
-                    position1.setX(position1.getX()*-1.f);
+                    deltaPosition1 = getDragStart(*trail);
+                    position1 = getPosition(*trail);
+                }
+                
+                if (position0.getX() < position1.getX())
+                {
+                    deltaPosition1.setX(deltaPosition1.getX()*-1.f);
+                }
+                else if (position0.getX() > position1.getX())
+                {
+                    deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
                 
 //                sourceDistance = abs(position0.getDistanceFrom(position1)-60);
 //                sourceDistance = (sourceDistance / getWidth()) * 5.f;
 
-                sourceDistance = abs(addToZoom((position0.getX() + position1.getX()) / 15000.f));
+                sourceDistance = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 15000.f));
 
 //                float debugLabelFloat1, debugLabelFloat2;
 //                sourceDistance = position0.getDistanceFrom(position1);
@@ -367,6 +377,9 @@ private:
     
     Point<float> position0;
     Point<float> position1;
+    Point<float> deltaPosition0;
+    Point<float> deltaPosition1;
+    
     float sourceDistance = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
