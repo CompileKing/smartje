@@ -37,7 +37,7 @@ public:
     {
         if (slider == &zoomSlider)
         {
-            sourceDistance = zoomSlider.getValue();
+//            sourceDistance = zoomSlider.getValue();
         }
     }
     
@@ -217,55 +217,59 @@ public:
             trails.add (t);
         }
 
-        t->pushPoint (e.position, e.mods, e.pressure);
+        t->pushPoint (e.position, e.mods, e.pressure, e.getDistanceFromDragStartX(),e.getDistanceFromDragStartY());
         
         if (fingers == 1)
         {
+            mouseClickCounter++;
             for (auto* trail : trails) // get distance for 2 fingers
             {
                 if (getIndex(*trail) == 0)
                 {
-                    position0 = getPosition(*trail);
+                    position0 = getDragStart(*trail);
                 }
                 if (getIndex(*trail) == 1)
                 {
-                    position1 = getPosition(*trail);
+                    position1 = getDragStart(*trail);
+                    position1.setX(position1.getX()*-1.f);
                 }
+                
 //                sourceDistance = abs(position0.getDistanceFrom(position1)-60);
 //                sourceDistance = (sourceDistance / getWidth()) * 5.f;
 
-//                sourceDistance = getDelta(position0.getDistanceFrom(position1)/1000.f);
-//                sourceDistance = addToZoom(sourceDistance)/100.f;
+                sourceDistance = abs(addToZoom((position0.getX() + position1.getX()) / 15000.f));
+
+//                float debugLabelFloat1, debugLabelFloat2;
+//                sourceDistance = position0.getDistanceFrom(position1);
+//                mouseInputString1 = to_string(debugLabelFloat1);
+//                mouseInputLabel1.setText(mouseInputString1, dontSendNotification);
+//                mouseInputString2 = to_string(debugLabelFloat2);
+//                mouseInputLabel2.setText(mouseInputString2, dontSendNotification);
                 
-//                mouseInputString = to_string(sourceDistance);
-//                mouseInputLabel.setText(mouseInputString, dontSendNotification);
+                sourceDistanceLabel.setText(to_string(sourceDistance), dontSendNotification);
             }
         }
         
         if (fingers == 0)
         {
-//            cout << "getScreenY: "<< to_string(e.getScreenY()) << endl;
-//            cout << "getHeight-: "<< to_string(getHeight()-30) << endl;
-            
             if (e.getScreenY() < getHeight() - 30)
             {
-                cout << "is smaller than height-" << endl;
                 deltaX = e.getDistanceFromDragStartX();
                 deltaY = e.getDistanceFromDragStartY();
                 moveX = addToMoveX(deltaX)/8000.f;
                 moveY = addToMoveY(deltaY)/8000.f;
             }
-                        
         }
         repaint();
     }
+    
     float getDelta (float amt)
     {
-        float value = amt;
-        static float oldValue = value;
-        value = value - oldValue;
-        return static_cast<float>(value);
-         oldValue = value;
+            float value = amt;
+            static float oldValue = value;
+            value = value - oldValue;
+            return static_cast<float>(value);
+             oldValue = value;
     }
     
     float addToMoveX (float amt)
@@ -282,19 +286,16 @@ public:
     
     float addToZoom (float amt)
     {
-        if (amt < 80 && amt > -80)
-        {
             zoomAmt += amt;
-        }
             return static_cast<float>(zoomAmt);
     }
-    
-    
+        
     void mouseUp (const MouseEvent& e) override
     {
         trails.removeObject (getTrail (e.source));
         repaint();
         fingers = 0;
+        mouseClickCounter = 0;
     }
     
     struct Trail
@@ -303,11 +304,13 @@ public:
         : source (ms)
         {}
         
-        void pushPoint (Point<float> newPoint, ModifierKeys newMods, float pressure)
+        void pushPoint (Point<float> newPoint, ModifierKeys newMods, float pressure, int dragDistanceX, int dragDistanceY)
         {
+            dragStart.setX(dragDistanceX);
+            dragStart.setY(dragDistanceY);
             currentPosition = newPoint;
             modifierKeys = newMods;
-            
+
             if (lastPoint.getDistanceFrom (newPoint) > 1.0f)
             {
                 lastPoint = newPoint;
@@ -317,7 +320,7 @@ public:
         MouseInputSource source;
         Path path;
         Colour colour  { Colour::fromHSV(1.f, 1.f, 0.5f, 0.5f) };
-        Point<float> lastPoint, currentPosition;
+        Point<float> lastPoint, currentPosition, dragStart;
         ModifierKeys modifierKeys;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Trail)
@@ -336,6 +339,11 @@ public:
     Point<float> getPosition(Trail& trail)
     {
         return trail.currentPosition;
+    }
+    
+    Point<float> getDragStart(Trail& trail)
+    {
+        return trail.dragStart;
     }
     
     Trail* getTrail (const MouseInputSource& source)
@@ -362,6 +370,7 @@ private:
     float sourceDistance = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
+    int mouseClickCounter;
     
     float outputScreenResolutionArray[2];
     
@@ -371,13 +380,9 @@ private:
     float deltaY = 0.f;
     double moveAmtX = 0.f;
     double moveAmtY = 0.f;
-
-    
-    
+        
     double zoomAmt;
-    float lastZoomFrame;
-    
-    
+
     float drawV1x;
     float drawV2x;
     float drawV3x;
@@ -413,8 +418,11 @@ private:
     Colour arenaMidGrey = Colour::fromRGB(42,42,42);
     Colour arenaBottomGrey = Colour::fromRGB(25,25,25);
     
-    Label mouseInputLabel;
-    String mouseInputString;
+    Label mouseInputLabel1;
+    Label mouseInputLabel2;
+    Label sourceDistanceLabel;
+    String mouseInputString1;
+    String mouseInputString2;
     Slider zoomSlider;
     
     bool drawInputMap = true;

@@ -40,6 +40,7 @@ MainComponent::MainComponent()
     fileComp->setBounds (0, 0, 180+1, 40);
     fileComp->setLookAndFeel(&arenaLAF);
     
+    
     addAndMakeVisible(button1);
     button1.setVisible(1);
     button1.setButtonText("Input");
@@ -71,11 +72,12 @@ MainComponent::MainComponent()
     addAndMakeVisible(zoomSlider);
     zoomSlider.setColour(Slider::thumbColourId, arenaBrightGreen);
     zoomSlider.setRange(0.5f, 10.f);
-    zoomSlider.setBounds(0, getHeight()/2+20, getWidth(), 40);
     zoomSlider.addListener(this);
     zoomSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     
-    addAndMakeVisible(mouseInputLabel);
+    addAndMakeVisible(mouseInputLabel1);
+    addAndMakeVisible(mouseInputLabel2);
+    addAndMakeVisible(sourceDistanceLabel);
     
     
 }
@@ -88,12 +90,7 @@ MainComponent::~MainComponent()
 
 //==============================================================================
 void MainComponent::paint (Graphics& g)
-{
-    
-    
-    
-
-
+{    
     // draw Background Colour
     g.fillAll (arenaBottomGrey);
     
@@ -328,9 +325,13 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-    
-    mouseInputLabel.setJustificationType(Justification::centred);
-    mouseInputLabel.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
+    zoomSlider.setBounds(0, getHeight()-40, getWidth(), 40);
+    mouseInputLabel1.setJustificationType(Justification::centred);
+    mouseInputLabel1.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
+    mouseInputLabel2.setJustificationType(Justification::centred);
+    mouseInputLabel2.setBounds(getWidth()/8, getHeight()/2, getWidth(), 40.f);
+    sourceDistanceLabel.setJustificationType(Justification::centred);
+    sourceDistanceLabel.setBounds(getWidth()/8, getHeight()/2+30, getWidth(), 40.f);
     
 }
 
