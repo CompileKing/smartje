@@ -250,7 +250,10 @@ public:
                 }
                 
                 sourceDistance = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 5000.f));
-//                cout << "sourceDistance: " << sourceDistance << endl;
+                
+                if (sourceDistance < 0.4f) // make sure the user can't zoom out all the way
+                    zoomAmt = 0.4f;
+
             }
         }
 

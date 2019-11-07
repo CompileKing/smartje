@@ -249,33 +249,38 @@ void MainComponent::paint (Graphics& g)
             // create text rect
             // paint the black backslice
             float textWidth = 2.f;
-            float textHeight = 10.f;
+            float textHeight = 20.f;
             
             Rectangle<float> topslice
             (path.getBounds().getX() + path.getBounds().getWidth() / (textWidth * 2.f),
-             path.getBounds().getY()+path.getBounds().getHeight() / 2.f - (textHeight),
+             path.getBounds().getY()+path.getBounds().getHeight() / 2.f - (textHeight * 0.75f),
              path.getBounds().getWidth() - path.getBounds().getWidth() / textWidth,
              textHeight);
 
             Rectangle<float> midslice
             (path.getBounds().getX() + path.getBounds().getWidth() / (textWidth * 2.f),
-             path.getBounds().getY()+path.getBounds().getHeight() / 2.f - (textHeight) + 10.f,
+             path.getBounds().getY()+path.getBounds().getHeight() / 2.f - (textHeight * 0.75f) + 10.f,
              path.getBounds().getWidth() - path.getBounds().getWidth() / textWidth,
              textHeight);
                         
-            g.setColour(arenaBottomGrey);
-            g.fillRect(topslice);
-            g.fillRect(midslice);
+            if (path.getBounds().getHeight() > (textHeight + 15.f))
+            {
+                g.setColour(arenaBottomGrey);
+                g.fillRect(topslice);
+                g.fillRect(midslice);
+                
+                // paint the text overlay
+                g.setFont (textHeight/2);
+                String name = rect.sliceNameArray[i];
+                g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
+                g.drawText(name, topslice, Justification::centred);
+                
+                g.setFont (textHeight/2);
+                String size = "W: " + to_string(SliceWidth) + " H: " + to_string(SliceHeight);
+                g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
+                g.drawText(size, midslice, Justification::centred);
+            }
             
-            // paint the text overlay
-            g.setFont (9.0f);
-            String name = rect.sliceNameArray[i];
-            g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
-            g.drawText(name, topslice, Justification::centred);
-            
-            String size = "W: " + to_string(SliceWidth) + " H: " + to_string(SliceHeight);
-            g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
-            g.drawText(size, midslice, Justification::centred);
             /*
             String info = "extra info";
             g.drawText(info, textSlice, Justification::centredBottom);
