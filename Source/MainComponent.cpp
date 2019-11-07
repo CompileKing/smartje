@@ -126,7 +126,7 @@ void MainComponent::paint (Graphics& g)
     compEdge.closeSubPath();
     
     // draw a workField
-    g.setColour(Colour::fromRGBA(255, 255, 255, 5));
+    g.setColour(Colours::white.withAlpha(0.05f));
     g.fillPath(compEdge);
         
     // for every selected slice
@@ -248,19 +248,24 @@ void MainComponent::paint (Graphics& g)
             
             // create text rect
             // paint the black backslice
-            Rectangle<float> topslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
-                                       path.getBounds().getCentreY() - 10.f,
-                                       clipFloat(path.getBounds().getWidth()/2,100),
-                                       10.f);
+            float textWidth = 2.f;
+            float textHeight = 10.f;
+            
+            Rectangle<float> topslice
+            (path.getBounds().getX() + path.getBounds().getWidth() / (textWidth * 2.f),
+             path.getBounds().getY()+path.getBounds().getHeight() / 2.f - (textHeight),
+             path.getBounds().getWidth() - path.getBounds().getWidth() / textWidth,
+             textHeight);
 
-            Rectangle<float> midslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
-                                        path.getBounds().getCentreY(),
-                                        clipFloat(path.getBounds().getWidth()/2,100.f),
-                                        10.f);
-//            g.setColour(Colours::white);
-//            g.fillRect(topslice);
-//            g.setColour(Colours::black);
-//            g.fillRect(midslice);
+            Rectangle<float> midslice
+            (path.getBounds().getX() + path.getBounds().getWidth() / (textWidth * 2.f),
+             path.getBounds().getY()+path.getBounds().getHeight() / 2.f - (textHeight) + 10.f,
+             path.getBounds().getWidth() - path.getBounds().getWidth() / textWidth,
+             textHeight);
+                        
+            g.setColour(arenaBottomGrey);
+            g.fillRect(topslice);
+            g.fillRect(midslice);
             
             // paint the text overlay
             g.setFont (9.0f);

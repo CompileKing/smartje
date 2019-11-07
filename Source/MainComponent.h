@@ -270,6 +270,9 @@ public:
         moveAmtX = 0.f;
         moveAmtY = 0.f;
         zoomAmt = 1.f;
+        sourceDistance = 1.f;
+        moveX = 0;
+        moveY = 0;
     }
     
     float getDelta (float amt)
