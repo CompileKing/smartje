@@ -39,8 +39,7 @@ MainComponent::MainComponent()
     fileComp->addListener(this);
     fileComp->setBounds (0, 0, 180+1, 40);
     fileComp->setLookAndFeel(&arenaLAF);
-    
-    
+        
     addAndMakeVisible(button1);
     button1.setVisible(1);
     button1.setButtonText("Input");
@@ -68,14 +67,10 @@ MainComponent::MainComponent()
     inc.setBounds       (60+1, 80+2, 60, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
-    
-    
-    
+
     addAndMakeVisible(mouseInputLabel1);
     addAndMakeVisible(mouseInputLabel2);
     addAndMakeVisible(sourceDistanceLabel);
-    
-    
 }
 
 
@@ -88,7 +83,7 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {    
     // draw Background Colour
-    g.fillAll (arenaMidGrey);
+    g.fillAll (arenaBottomGrey);
     
     // draw input / output border edges
     Path compEdge;
@@ -100,6 +95,7 @@ void MainComponent::paint (Graphics& g)
     float inputVector3y;
     float inputVector4x;
     float inputVector4y;
+    
     if (drawInputMap == true)
     {
         inputVector1x = moveZoom(-1.f,1) * getWidth();
@@ -122,6 +118,7 @@ void MainComponent::paint (Graphics& g)
         inputVector4x = moveZoom(-1.f,1) * getWidth();
         inputVector4y = moveZoom(1.f,0) * drawOutputHeight;
     }
+    
     compEdge.startNewSubPath (Point<float>( inputVector1x ,inputVector1y ));
     compEdge.lineTo (Point<float>(inputVector2x, inputVector2y));
     compEdge.lineTo (Point<float>(inputVector3x, inputVector3y));
@@ -129,10 +126,9 @@ void MainComponent::paint (Graphics& g)
     compEdge.closeSubPath();
     
     // draw a workField
-    g.setColour(arenaBottomGrey);
+    g.setColour(Colour::fromRGBA(255, 255, 255, 5));
     g.fillPath(compEdge);
-    
-    
+        
     // for every selected slice
     if (rect.olderResVersionDetected == false)
     {
@@ -187,6 +183,7 @@ void MainComponent::paint (Graphics& g)
                     SliceWidth = raw.getBounds().getWidth();
                     SliceHeight = raw.getBounds().getHeight();
                 }
+                
                 else
                 {
                     raw.applyTransform(AffineTransform::rotation(-rect.outputSliceRotationArray[i], center.x, center.y ));
@@ -196,13 +193,13 @@ void MainComponent::paint (Graphics& g)
             }
             
             // create a different colour for each slice
-            float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
+//            float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
             // change opacity of slice based on if a slice is enabled in the xml
             if (rect.sliceEnabledArray[i] == 1)
                 sliceOpacity = 0.9f;
             else
                 sliceOpacity = 0.1f;
-            auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
+//            auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
             if (drawInputMap)
             {
                 drawV1x = moveZoom(rect.xArrayPtr[(4*i)],1) * getWidth();           //v1 upperLeft
@@ -233,22 +230,23 @@ void MainComponent::paint (Graphics& g)
             path.lineTo (Point<float>(drawV3x ,drawV3y));
             path.lineTo (Point<float>(drawV4x ,drawV4y));
             path.closeSubPath();
-            g.setColour(arenaMidGrey);
+            g.setColour(arenaTopGrey);
             g.fillPath (path);
             
-            // paint an black outline and a cross over the slices
+            // paint an outline and a cross over the slices
             Path stroke;
             stroke.startNewSubPath (Point<float>(drawV1x, drawV1y));
             stroke.lineTo (Point<float>(drawV3x ,drawV3y));
             stroke.lineTo (Point<float>(drawV2x ,drawV2y));
             stroke.lineTo (Point<float>(drawV4x ,drawV4y));
             stroke.closeSubPath();
-//            g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
+
+            // g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
             g.setColour(arenaBrightGreen.withAlpha(0.5f));
             g.strokePath(path, PathStrokeType(1.));
             g.strokePath(stroke, PathStrokeType(1.));
             
-
+            // create text rect
             // paint the black backslice
             Rectangle<float> topslice (path.getBounds().getCentreX()-(path.getBounds().getWidth()/4),
                                        path.getBounds().getCentreY() - 10.f,
@@ -259,16 +257,17 @@ void MainComponent::paint (Graphics& g)
                                         path.getBounds().getCentreY(),
                                         clipFloat(path.getBounds().getWidth()/2,100.f),
                                         10.f);
-            g.setColour(Colours::white);
-            g.fillRect(topslice);
-            g.setColour(Colours::black);
-            g.fillRect(midslice);
+//            g.setColour(Colours::white);
+//            g.fillRect(topslice);
+//            g.setColour(Colours::black);
+//            g.fillRect(midslice);
             
             // paint the text overlay
             g.setFont (9.0f);
             String name = rect.sliceNameArray[i];
-            g.setColour(Colour::fromFloatRGBA(0.f, 0.f, 0.f, sliceOpacity*1.666666));
+            g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
             g.drawText(name, topslice, Justification::centred);
+            
             String size = "W: " + to_string(SliceWidth) + " H: " + to_string(SliceHeight);
             g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
             g.drawText(size, midslice, Justification::centred);
@@ -323,14 +322,12 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-    
     mouseInputLabel1.setJustificationType(Justification::centred);
     mouseInputLabel1.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
     mouseInputLabel2.setJustificationType(Justification::centred);
     mouseInputLabel2.setBounds(getWidth()/8, getHeight()/2, getWidth(), 40.f);
     sourceDistanceLabel.setJustificationType(Justification::centred);
     sourceDistanceLabel.setBounds(getWidth()/8, getHeight()/2+30, getWidth(), 40.f);
-    
 }
 
 

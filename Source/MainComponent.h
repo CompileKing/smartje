@@ -171,18 +171,6 @@ public:
         outputScreenResolutionArray[1] = screenResy;
     }
     
-    float moveZoom(float inputVector, bool x)
-    {
-        float moveZoomX = (((inputVector + moveX ) * sourceDistance)*0.5f+0.5f);
-        float moveZoomY = (((inputVector + moveY ) * sourceDistance)*0.5f+0.5f);
-        float returnValue = 0;
-        if (x)
-            returnValue = moveZoomX;
-        else if (!x)
-            returnValue = moveZoomY;
-        return returnValue;
-    }
-    
     float clipFloat(float input, float max)
     {
         float output = 0;
@@ -199,10 +187,29 @@ public:
     
 
     //=============================================================================
-    //                              multiTouchDemoStuff
+    //                              everyThing Camera
     //=============================================================================
     
     
+    void mouseDoubleClick (const MouseEvent& e) override
+    {
+        cout << "doubleClick!" << endl;
+        resetCamera();
+        repaint();
+    }
+    
+    float moveZoom(float inputVector, bool x)
+    {
+        float moveZoomX = (((inputVector + moveX ) * sourceDistance)*0.5f+0.5f);
+        float moveZoomY = (((inputVector + moveY ) * sourceDistance)*0.5f+0.5f);
+        float returnValue = 0;
+        if (x)
+            returnValue = moveZoomX;
+        else if (!x)
+            returnValue = moveZoomY;
+        return returnValue;
+    }
+        
     void mouseDrag (const MouseEvent& e) override
     {
         auto* t = getTrail (e.source);
@@ -215,11 +222,12 @@ public:
         }
 
         t->pushPoint (e.position, e.mods, e.pressure, e.getDistanceFromDragStartX(),e.getDistanceFromDragStartY());
-        
+                
         if (fingers == 1)
         {
+            // calculate pinch zooom
             mouseClickCounter++;
-            for (auto* trail : trails) // get distance for 2 fingers
+            for (auto* trail : trails)
             {
                 if (getIndex(*trail) == 0)
                 {
@@ -240,21 +248,28 @@ public:
                 {
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
+                
                 sourceDistance = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 5000.f));
+//                cout << "sourceDistance: " << sourceDistance << endl;
             }
         }
-        
+
         if (fingers == 0)
         {
-            if (e.getScreenY() < getHeight() - 30)
-            {
-                deltaX = e.getDistanceFromDragStartX();
-                deltaY = e.getDistanceFromDragStartY();
-                moveX = addToMoveX(deltaX)/4000.f;
-                moveY = addToMoveY(deltaY)/4000.f;
-            }
+            deltaX = e.getDistanceFromDragStartX();
+            deltaY = e.getDistanceFromDragStartY();
+            moveX = addToMoveX(deltaX)/4000.f;
+            moveY = addToMoveY(deltaY)/4000.f;
+                        
         }
         repaint();
+    }
+    
+    void resetCamera ()
+    {
+        moveAmtX = 0.f;
+        moveAmtY = 0.f;
+        zoomAmt = 1.f;
     }
     
     float getDelta (float amt)
@@ -375,9 +390,9 @@ private:
     float moveY = 0;
     float deltaX = 0.f;
     float deltaY = 0.f;
+    
     double moveAmtX = 0.f;
     double moveAmtY = 0.f;
-        
     double zoomAmt = 1.f;
 
     float drawV1x;
@@ -403,7 +418,6 @@ private:
     
     TextButton button1;
     TextButton button2;
-    
     TextButton inc;
     TextButton dec;
     
