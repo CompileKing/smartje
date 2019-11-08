@@ -65,6 +65,7 @@ public:
         float compHeight = rect.compResY;
         drawInputHeight = getWidth() * (compHeight / compWidth);
         
+        resetCamera();
         repaint();
         
         cout << endl;
