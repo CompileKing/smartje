@@ -63,6 +63,9 @@ public:
         // get the right aspect ratio for the input map
         float compWidth = rect.compResX;
         float compHeight = rect.compResY;
+        currentInputWidth = compWidth;
+        currentInputHeight = compHeight;
+        
         drawInputHeight = getWidth() * (compHeight / compWidth);
         
         resetCamera();
@@ -105,6 +108,8 @@ public:
             drawInputMap = true;
             sliceOffset = 0;
             sliceMax = rect.sIndex;
+            button1.setColour(TextButton::buttonColourId, arenaLessGreen);
+            button2.setColour(TextButton::buttonColourId, arenaTopGrey);
         }
         // outputMap button functionality
         if (button == &button2)
@@ -112,6 +117,8 @@ public:
             drawInputMap = false;
             sliceOffset = 0;
             sliceMax = rect.screenIndexArray[0];
+            button2.setColour(TextButton::buttonColourId, arenaLessGreen);
+            button1.setColour(TextButton::buttonColourId, arenaTopGrey);
         }
         // inc button functionality
         if (currentScreen < rect.screenIndex)
@@ -167,9 +174,11 @@ public:
     void getOutputScreenResolution(int index)
     {
         float screenResX = rect.screenWidthArray[index-1];
-        float screenResy = rect.screenHeightArray[index-1];
+        float screenResY = rect.screenHeightArray[index-1];
         outputScreenResolutionArray[0] = screenResX;
-        outputScreenResolutionArray[1] = screenResy;
+        outputScreenResolutionArray[1] = screenResY;
+        currentOutputWidth = screenResX;
+        currentOutputHeight = screenResY;
     }
     
     float clipFloat(float input, float max)
@@ -273,8 +282,8 @@ public:
     {
         moveAmtX = 0.f;
         moveAmtY = 0.f;
-        zoomAmt = 1.f;
-        sourceDistance = 1.f;
+        zoomAmt = 0.7f;
+        sourceDistance = 0.7f;
         moveX = 0;
         moveY = 0;
     }
@@ -414,6 +423,10 @@ private:
     
     float drawInputHeight;
     float drawOutputHeight;
+    int currentInputWidth;
+    int currentInputHeight;
+    int currentOutputWidth;
+    int currentOutputHeight;
     
     int currentScreen = 0;
     int sliceOffset;

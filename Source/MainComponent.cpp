@@ -37,40 +37,44 @@ MainComponent::MainComponent()
                                          "Open File"));  // text when nothing selected
     addAndMakeVisible(fileComp.get());
     fileComp->addListener(this);
-    fileComp->setBounds (0, 0, 180+1, 40);
+    fileComp->setBounds (-126, 0, 180+1, 40);
     fileComp->setLookAndFeel(&arenaLAF);
         
     addAndMakeVisible(button1);
     button1.setVisible(1);
     button1.setButtonText("Input");
-    button1.setBounds   (0, 40+1, 90, 40);
+    button1.setBounds   (fileComp->getBounds().getRight(), 0, 90, 40);
+    cout << "fileCompRight: " << fileComp->getBounds().getRight() << endl;
     button1.addListener(this);
     button1.setLookAndFeel(&arenaLAF);
 
     addAndMakeVisible(button2);
     button2.setVisible(1);
     button2.setButtonText("Output");
-    button2.setBounds   (90+1, 40+1, 90, 40);
+    button2.setBounds   (button1.getBounds().getRight(),0,90,40);
     button2.addListener(this);
     button2.setLookAndFeel(&arenaLAF);
-    
-    addAndMakeVisible(dec);
-    dec.setVisible(1);
-    dec.setButtonText("<");
-    dec.setBounds       (0, 80+2, 60, 40);
-    dec.addListener(this);
-    dec.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(inc);
     inc.setVisible(1);
     inc.setButtonText(">");
-    inc.setBounds       (60+1, 80+2, 60, 40);
+    inc.setBounds       (0, 80+2, 55, 40);
+//    dec.setBounds       (0, 80+2, 55, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
+    
+    addAndMakeVisible(dec);
+    dec.setVisible(1);
+    dec.setButtonText("<");
+    dec.setBounds       (0, inc.getBounds().getBottom(), 55, 40);
+//    inc.setBounds       (60+1, 80+2, 55, 40);
+    dec.addListener(this);
+    dec.setLookAndFeel(&arenaLAF);
 
-    addAndMakeVisible(mouseInputLabel1);
-    addAndMakeVisible(mouseInputLabel2);
-    addAndMakeVisible(sourceDistanceLabel);
+    //
+//    addAndMakeVisible(mouseInputLabel1);
+//    addAndMakeVisible(mouseInputLabel2);
+//    addAndMakeVisible(sourceDistanceLabel);
 }
 
 
@@ -128,8 +132,50 @@ void MainComponent::paint (Graphics& g)
     // draw a workField
     g.setColour(Colours::white.withAlpha(0.05f));
     g.fillPath(compEdge);
+    
+    // draw screen / comp info
+    g.setColour(Colours::white);
+    g.setFont(10.f);
+    
+    String topText;
+    if (drawInputMap)
+        topText = "composition size";
+    else
+    {
+        if (currentScreen > 0)
+            topText = "output screen size";
+        else
+            topText = "N/A";
+    }
+
+    String compScreenInfo;
+    if (drawInputMap)
+        compScreenInfo = to_string(currentInputWidth) + "  " + to_string(currentInputHeight);
+    else
+    {
+        if (currentScreen > 0)
+            compScreenInfo = to_string(currentOutputWidth) + "  " + to_string(currentOutputHeight);
+        else
+            compScreenInfo = " .. ";
         
-    // for every selected slice
+    }
+
+    g.drawText
+    (topText, compEdge.getBounds().getBottomRight().getX() + 5.f,
+     compEdge.getBounds().getBottomRight().getY() + 5.f,
+     100.f,
+     10.f,
+     Justification::left);
+    
+    g.drawText
+    (compScreenInfo, compEdge.getBounds().getBottomRight().getX() + 5.f,
+     compEdge.getBounds().getBottomRight().getY() + 5.f + 13.f,
+     100.f,
+     10.f,
+     Justification::left);
+    
+        
+    // for every slice
     if (rect.olderResVersionDetected == false)
     {
         for (int i=sliceOffset;i<sliceMax;i++)
@@ -298,14 +344,16 @@ void MainComponent::paint (Graphics& g)
         g.strokePath(compEdge, pathStrokeType);
         
         // draw a nice black background for the buttons
-        // (0, 0, 180+1, 40);
         g.setColour(Colour::fromRGBA(24, 25, 25, 230));
-        g.fillRoundedRectangle(-2, -2, 186, 127, 6);
+        g.fillRoundedRectangle(0, 0, 55+2, dec.getBounds().getBottom()+2, 6);
+        g.fillRoundedRectangle(0, 0, button2.getBounds().getRight()+2, 40+2, 6);
         
         // incdec index label
-        // 60+1, 80+2, 60, 40
-        g.setColour(arenaTopGrey);
-        g.fillRoundedRectangle(123, 83, 57, 38, 4);
+        if (currentScreen > 0)
+            g.setColour(arenaLessGreen);
+        else
+            g.setColour(arenaTopGrey);
+        g.fillRoundedRectangle(2, 41, 52, 40, 4);
         g.setColour(Colours::white);
         g.setFont(16.f);
         String incDecLabel;
@@ -313,7 +361,8 @@ void MainComponent::paint (Graphics& g)
             incDecLabel = to_string(currentScreen);
         else if (currentScreen == 0)
             incDecLabel = "All";
-        g.drawText(incDecLabel, 123, 83, 57, 38, Justification::centred);
+        g.drawText(incDecLabel, 2, 41, 50, 40, Justification::centred);
+
     }
     // if an older version of resolume is detected don't draw anything but display this splashscreen
     else
