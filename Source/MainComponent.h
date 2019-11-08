@@ -241,11 +241,11 @@ public:
                     position1 = getPosition(*trail);
                 }
                 
-                if (position0.getX() < position1.getX())
+                if (position0.getX() > position1.getX())
                 {
                     deltaPosition1.setX(deltaPosition1.getX()*-1.f);
                 }
-                else if (position0.getX() > position1.getX())
+                else if (position0.getX() < position1.getX())
                 {
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
