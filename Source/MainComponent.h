@@ -57,7 +57,7 @@ public:
         sourceDistance = 1.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
-        currentScreen = 0;
+        currentScreen = 1;
         wrongResolumeVersion(rect.olderResVersionDetected);
         
         // get the right aspect ratio for the input map
@@ -394,6 +394,7 @@ private:
     Point<float> position1;
     Point<float> deltaPosition0;
     Point<float> deltaPosition1;
+    
     
     float sourceDistance = 0.f;
     float sliceOpacity = 0.f;

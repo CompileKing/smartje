@@ -55,6 +55,9 @@ MainComponent::MainComponent()
     button2.addListener(this);
     button2.setLookAndFeel(&arenaLAF);
     
+    button1.setColour(TextButton::buttonColourId, arenaLessGreen);
+    button2.setColour(TextButton::buttonColourId, arenaTopGrey);
+    
     addAndMakeVisible(inc);
     inc.setVisible(1);
     inc.setButtonText(">");
@@ -132,49 +135,7 @@ void MainComponent::paint (Graphics& g)
     // draw a workField
     g.setColour(Colours::white.withAlpha(0.05f));
     g.fillPath(compEdge);
-    
-    // draw screen / comp info
-    g.setColour(Colours::white);
-    g.setFont(10.f);
-    
-    String topText;
-    if (drawInputMap)
-        topText = "composition size";
-    else
-    {
-        if (currentScreen > 0)
-            topText = "output screen size";
-        else
-            topText = "N/A";
-    }
 
-    String compScreenInfo;
-    if (drawInputMap)
-        compScreenInfo = to_string(currentInputWidth) + "  " + to_string(currentInputHeight);
-    else
-    {
-        if (currentScreen > 0)
-            compScreenInfo = to_string(currentOutputWidth) + "  " + to_string(currentOutputHeight);
-        else
-            compScreenInfo = " .. ";
-        
-    }
-
-    g.drawText
-    (topText, compEdge.getBounds().getBottomRight().getX() + 5.f,
-     compEdge.getBounds().getBottomRight().getY() + 5.f,
-     100.f,
-     10.f,
-     Justification::left);
-    
-    g.drawText
-    (compScreenInfo, compEdge.getBounds().getBottomRight().getX() + 5.f,
-     compEdge.getBounds().getBottomRight().getY() + 5.f + 13.f,
-     100.f,
-     10.f,
-     Justification::left);
-    
-        
     // for every slice
     if (rect.olderResVersionDetected == false)
     {
@@ -362,7 +323,53 @@ void MainComponent::paint (Graphics& g)
         else if (currentScreen == 0)
             incDecLabel = "All";
         g.drawText(incDecLabel, 2, 41, 50, 40, Justification::centred);
+        
+        // draw screen / comp info
+        g.setColour(arenaBottomGrey.withAlpha(0.5f));
+        Rectangle<float> screenInfoBackRect
+        (fileComp->getRight(),
+         button1.getBottom(),
+         button1.getWidth(),
+         button1.getHeight());
+        g.fillRoundedRectangle(screenInfoBackRect, 4);
+                        
+        String compScreenInfo = "";
+        String topText;
+        
+        if (currentScreen > 0)
+            topText = rect.screenNameArray[currentScreen-1];
+        else
+            topText = "All Screens";
+                
+        if (drawInputMap)
+            compScreenInfo = to_string(currentInputWidth) + "  " + to_string(currentInputHeight);
+        else
+        {
+            if (currentScreen > 0)
+                compScreenInfo = to_string(currentOutputWidth) + "  " + to_string(currentOutputHeight);
+            else
+                compScreenInfo = " .. ";
+        }
 
+        g.setColour(arenaBrightGreen);
+        g.setFont(10.f);
+        
+        g.drawText
+        (topText,
+         fileComp->getBounds().getRight(),
+         button1.getBottom()-10.f,
+         90,
+         40,
+         Justification::centred);
+        g.setColour(Colours::white);
+        g.setFont(15.f);
+        g.drawText
+        (compScreenInfo,
+         fileComp->getBounds().getRight(),
+         button1.getBottom()+5,
+         90,
+         40,
+         Justification::centred);
     }
     // if an older version of resolume is detected don't draw anything but display this splashscreen
     else
@@ -381,12 +388,12 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-    mouseInputLabel1.setJustificationType(Justification::centred);
-    mouseInputLabel1.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
-    mouseInputLabel2.setJustificationType(Justification::centred);
-    mouseInputLabel2.setBounds(getWidth()/8, getHeight()/2, getWidth(), 40.f);
-    sourceDistanceLabel.setJustificationType(Justification::centred);
-    sourceDistanceLabel.setBounds(getWidth()/8, getHeight()/2+30, getWidth(), 40.f);
+//    mouseInputLabel1.setJustificationType(Justification::centred);
+//    mouseInputLabel1.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
+//    mouseInputLabel2.setJustificationType(Justification::centred);
+//    mouseInputLabel2.setBounds(getWidth()/8, getHeight()/2, getWidth(), 40.f);
+//    sourceDistanceLabel.setJustificationType(Justification::centred);
+//    sourceDistanceLabel.setBounds(getWidth()/8, getHeight()/2+30, getWidth(), 40.f);
 }
 
 
