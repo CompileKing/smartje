@@ -203,6 +203,7 @@ public:
     void mouseDown (const MouseEvent& e) override
     {
         currentMousePosition.setXY(e.getScreenX(), e.getScreenY());
+
     }
     
     void mouseDoubleClick (const MouseEvent& e) override
@@ -324,7 +325,7 @@ public:
         repaint();
         fingers = 0;
         mouseClickCounter = 0;
-        mouseIsDragging = false;
+        mouseIsDragging = false;        
     }
     
     struct Trail
@@ -390,7 +391,17 @@ public:
     
     void printSliceInfo ()
     {
-        cout << sliceNameString << " " << sliceWidthString << " " << sliceHeightString << " " << sliceRotationString << " " <<  sliceEnabledString << endl;
+        cout << sliceNameString << endl <<
+        sliceXString << endl <<
+        sliceYString << endl <<
+        sliceLeftString << endl <<
+        sliceTopString << endl <<
+        sliceWidthString << endl <<
+        sliceHeightString << endl <<
+        sliceRotationString << endl <<
+        sliceEnabledString << endl <<
+        endl << "/////////" <<
+        endl << endl;;
     }
     
 private:
@@ -460,6 +471,10 @@ private:
     Colour arenaBottomGrey = Colour::fromRGB(25,25,25);
     
     String sliceNameString;
+    String sliceXString;
+    String sliceYString;
+    String sliceLeftString;
+    String sliceTopString;
     String sliceWidthString;
     String sliceHeightString;
     String sliceRotationString;

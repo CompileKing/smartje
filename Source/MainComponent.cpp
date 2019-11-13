@@ -254,10 +254,21 @@ void MainComponent::paint (Graphics& g)
                     g.fillPath(path);
                     g.setColour(Colours::orange.withAlpha(0.6f));
                     sliceNameString = rect.sliceNameArray[i];
-                    sliceWidthString = "Width: " + to_string(sliceWidth);
-                    sliceHeightString = "Height: " + to_string(sliceHeight);
+                    sliceXString = "X: " + to_string(raw.getBounds().getCentreX());
+                    sliceYString = "Y: " + to_string(raw.getBounds().getCentreY());
+                    sliceLeftString = "Left: " + to_string(raw.getBounds().getTopLeft().getX());
+                    sliceTopString = "Top: " + to_string(raw.getBounds().getTopLeft().getY());
+                    sliceWidthString = "Width: " + to_string(raw.getBounds().getWidth());
+                    sliceHeightString = "Height: " + to_string(raw.getBounds().getHeight());
                     sliceEnabledString = "Enabled: " + to_string(rect.sliceEnabledArray[i]);
                     
+//                    x         middlepoint X
+//                    y         middlePoint Y
+//                    left      topLeftCorner X
+//                    top       topLectCorner Y
+//                    width
+//                    height
+//                    rotation
                 }
                 else
                     sliceIsSelected = false;
@@ -380,11 +391,10 @@ void MainComponent::paint (Graphics& g)
         // draw slice info
         if (!mouseIsDragging)
         {
-            printSliceInfo();
             int sliceInfoWidth = 95;
             int sliceInfoHeight = 150;
             int textHeight = 13;
-            int textHeightOffset = 20;
+            int textHeightOffset = 15;
             g.setColour(arenaBottomGrey.withAlpha(0.9f));
             Rectangle<float> sliceInfoRect (0, getHeight()-sliceInfoHeight, sliceInfoWidth, sliceInfoHeight);
             g.fillRoundedRectangle(sliceInfoRect, 4.f);
@@ -392,13 +402,21 @@ void MainComponent::paint (Graphics& g)
             g.setColour(Colours::orange);
             g.setFont(15.f);
             g.drawText(sliceNameString,
-                       0, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centred);
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
             g.setColour(Colours::white);
             g.setFont(textHeight);
-            g.drawText(sliceWidthString,
-                       0, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centred);
-            g.drawText(sliceHeightString,
-                       0, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 2.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centred);
+            g.drawText(sliceXString.dropLastCharacters(4),
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
+            g.drawText(sliceYString.dropLastCharacters(4),
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 2.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
+            g.drawText(sliceLeftString.dropLastCharacters(4),
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 3.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
+            g.drawText(sliceTopString.dropLastCharacters(4),
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 4.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
+            g.drawText(sliceWidthString.dropLastCharacters(4),
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 5.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
+            g.drawText(sliceHeightString.dropLastCharacters(4),
+                       3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 6.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
         }
         
     }
