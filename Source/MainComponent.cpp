@@ -73,11 +73,6 @@ MainComponent::MainComponent()
 //    inc.setBounds       (60+1, 80+2, 55, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
-
-    //
-//    addAndMakeVisible(mouseInputLabel1);
-//    addAndMakeVisible(mouseInputLabel2);
-//    addAndMakeVisible(sourceDistanceLabel);
 }
 
 
@@ -187,15 +182,15 @@ void MainComponent::paint (Graphics& g)
                 if (drawInputMap)
                 {
                     raw.applyTransform( AffineTransform::rotation( -rect.inputSliceRotationArray[i], center.x, center.y ));
-                    SliceWidth = raw.getBounds().getWidth();
-                    SliceHeight = raw.getBounds().getHeight();
+                    sliceWidth = raw.getBounds().getWidth();
+                    sliceHeight = raw.getBounds().getHeight();
                 }
                 
                 else
                 {
                     raw.applyTransform(AffineTransform::rotation(-rect.outputSliceRotationArray[i], center.x, center.y ));
-                    SliceWidth = raw.getBounds().getWidth();
-                    SliceHeight = raw.getBounds().getHeight();
+                    sliceWidth = raw.getBounds().getWidth();
+                    sliceHeight = raw.getBounds().getHeight();
                 }
             }
             
@@ -229,7 +224,7 @@ void MainComponent::paint (Graphics& g)
                 drawV4x = moveZoom(rect.xArrayOutPtr[(4*i)+3],1) * getWidth();
                 drawV4y = moveZoom(rect.yArrayOutPtr[(4*i)+3],0) * drawOutputHeight;
             }
-
+                        
             // paint every slice as a path with a diffirent hue
             Path path;
             path.startNewSubPath (Point<float>(drawV1x ,drawV1y));
@@ -237,21 +232,39 @@ void MainComponent::paint (Graphics& g)
             path.lineTo (Point<float>(drawV3x ,drawV3y));
             path.lineTo (Point<float>(drawV4x ,drawV4y));
             path.closeSubPath();
-            g.setColour(arenaTopGrey);
+            g.setColour(arenaTopGrey.withAlpha(sliceOpacity));
             g.fillPath (path);
             
             // paint an outline and a cross over the slices
-            Path stroke;
-            stroke.startNewSubPath (Point<float>(drawV1x, drawV1y));
-            stroke.lineTo (Point<float>(drawV3x ,drawV3y));
-            stroke.lineTo (Point<float>(drawV2x ,drawV2y));
-            stroke.lineTo (Point<float>(drawV4x ,drawV4y));
-            stroke.closeSubPath();
-
-            // g.setColour(Colour::fromHSV(1., 1., 0., sliceOpacity));
-            g.setColour(arenaBrightGreen.withAlpha(0.5f));
+            Path cross;
+            cross.startNewSubPath (Point<float>(drawV1x, drawV1y));
+            cross.lineTo (Point<float>(drawV3x ,drawV3y));
+            cross.lineTo (Point<float>(drawV2x ,drawV2y));
+            cross.lineTo (Point<float>(drawV4x ,drawV4y));
+            cross.closeSubPath();
+            
+            // check for mouseclicks in bounds
+            g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
+            if (!mouseIsDragging)
+            {
+                if (path.contains(currentMousePosition.getX(), currentMousePosition.getY()))
+                {
+                    sliceIsSelected = true;
+                    g.setColour(Colours::orange.withAlpha(0.2f));
+                    g.fillPath(path);
+                    g.setColour(Colours::orange.withAlpha(0.6f));
+                    sliceNameString = rect.sliceNameArray[i];
+                    sliceWidthString = "Width: " + to_string(sliceWidth);
+                    sliceHeightString = "Height: " + to_string(sliceHeight);
+                    sliceEnabledString = "Enabled: " + to_string(rect.sliceEnabledArray[i]);
+                    
+                }
+                else
+                    sliceIsSelected = false;
+            }
+                    
             g.strokePath(path, PathStrokeType(1.));
-            g.strokePath(stroke, PathStrokeType(1.));
+            g.strokePath(cross, PathStrokeType(1.));
             
             // create text rect
             // paint the black backslice
@@ -272,10 +285,9 @@ void MainComponent::paint (Graphics& g)
                         
             if (path.getBounds().getHeight() > (textHeight + 15.f))
             {
-                g.setColour(arenaBottomGrey);
+                g.setColour(arenaBottomGrey.withAlpha(sliceOpacity));
                 g.fillRect(topslice);
                 g.fillRect(midslice);
-                
                 // paint the text overlay
                 g.setFont (textHeight/2);
                 String name = rect.sliceNameArray[i];
@@ -283,16 +295,10 @@ void MainComponent::paint (Graphics& g)
                 g.drawText(name, topslice, Justification::centred);
                 
                 g.setFont (textHeight/2);
-                String size = "W: " + to_string(SliceWidth) + " H: " + to_string(SliceHeight);
+                String size = "W: " + to_string(sliceWidth) + " H: " + to_string(sliceHeight);
                 g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
                 g.drawText(size, midslice, Justification::centred);
             }
-            
-            /*
-            String info = "extra info";
-            g.drawText(info, textSlice, Justification::centredBottom);
-             */
-
             // end of sliceloop
         }
         // draw a workfield dashed outline
@@ -370,6 +376,31 @@ void MainComponent::paint (Graphics& g)
          90,
          40,
          Justification::centred);
+        
+        // draw slice info
+        if (!mouseIsDragging)
+        {
+            printSliceInfo();
+            int sliceInfoWidth = 95;
+            int sliceInfoHeight = 150;
+            int textHeight = 13;
+            int textHeightOffset = 20;
+            g.setColour(arenaBottomGrey.withAlpha(0.9f));
+            Rectangle<float> sliceInfoRect (0, getHeight()-sliceInfoHeight, sliceInfoWidth, sliceInfoHeight);
+            g.fillRoundedRectangle(sliceInfoRect, 4.f);
+            g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
+            g.setColour(Colours::orange);
+            g.setFont(15.f);
+            g.drawText(sliceNameString,
+                       0, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centred);
+            g.setColour(Colours::white);
+            g.setFont(textHeight);
+            g.drawText(sliceWidthString,
+                       0, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centred);
+            g.drawText(sliceHeightString,
+                       0, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 2.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centred);
+        }
+        
     }
     // if an older version of resolume is detected don't draw anything but display this splashscreen
     else
@@ -388,12 +419,7 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-//    mouseInputLabel1.setJustificationType(Justification::centred);
-//    mouseInputLabel1.setBounds(getWidth()/4, getHeight()/2, getWidth(), 40.f);
-//    mouseInputLabel2.setJustificationType(Justification::centred);
-//    mouseInputLabel2.setBounds(getWidth()/8, getHeight()/2, getWidth(), 40.f);
-//    sourceDistanceLabel.setJustificationType(Justification::centred);
-//    sourceDistanceLabel.setBounds(getWidth()/8, getHeight()/2+30, getWidth(), 40.f);
+
 }
 
 

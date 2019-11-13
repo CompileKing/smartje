@@ -200,6 +200,10 @@ public:
     //                              everyThing Camera
     //=============================================================================
     
+    void mouseDown (const MouseEvent& e) override
+    {
+        currentMousePosition.setXY(e.getScreenX(), e.getScreenY());
+    }
     
     void mouseDoubleClick (const MouseEvent& e) override
     {
@@ -222,6 +226,7 @@ public:
         
     void mouseDrag (const MouseEvent& e) override
     {
+        mouseIsDragging = true;
         auto* t = getTrail (e.source);
         
         if (t == nullptr)
@@ -263,7 +268,6 @@ public:
                 
                 if (sourceDistance < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
-
             }
         }
 
@@ -273,7 +277,6 @@ public:
             deltaY = e.getDistanceFromDragStartY();
             moveX = addToMoveX(deltaX)/4000.f;
             moveY = addToMoveY(deltaY)/4000.f;
-                        
         }
         repaint();
     }
@@ -290,11 +293,11 @@ public:
     
     float getDelta (float amt)
     {
-            float value = amt;
-            static float oldValue = value;
-            value = value - oldValue;
-            return static_cast<float>(value);
-             oldValue = value;
+        float value = amt;
+        static float oldValue = value;
+        value = value - oldValue;
+        return static_cast<float>(value);
+        oldValue = value;
     }
     
     float addToMoveX (float amt)
@@ -321,6 +324,7 @@ public:
         repaint();
         fingers = 0;
         mouseClickCounter = 0;
+        mouseIsDragging = false;
     }
     
     struct Trail
@@ -384,6 +388,11 @@ public:
         return nullptr;
     }
     
+    void printSliceInfo ()
+    {
+        cout << sliceNameString << " " << sliceWidthString << " " << sliceHeightString << " " << sliceRotationString << " " <<  sliceEnabledString << endl;
+    }
+    
 private:
     //==============================================================================
     // Your private member variables go here...
@@ -428,14 +437,14 @@ private:
     int currentInputHeight;
     int currentOutputWidth;
     int currentOutputHeight;
+    Point<float> currentMousePosition;
     
     int currentScreen = 0;
     int sliceOffset;
     int sliceMax;
     
-    int SliceWidth;
-    int SliceHeight;
-    
+    int sliceWidth;
+    int sliceHeight;
     
     TextButton button1;
     TextButton button2;
@@ -450,14 +459,15 @@ private:
     Colour arenaMidGrey = Colour::fromRGB(42,42,42);
     Colour arenaBottomGrey = Colour::fromRGB(25,25,25);
     
-    Label mouseInputLabel1;
-    Label mouseInputLabel2;
-    Label sourceDistanceLabel;
-    String mouseInputString1;
-    String mouseInputString2;
-    
-    
+    String sliceNameString;
+    String sliceWidthString;
+    String sliceHeightString;
+    String sliceRotationString;
+    String sliceEnabledString;
+
+    bool mouseIsDragging = false;
     bool drawInputMap = true;
+    bool sliceIsSelected = false;
 
     unique_ptr<FilenameComponent> fileComp;
     
