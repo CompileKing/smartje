@@ -58,7 +58,7 @@ public:
         sliceOffset = 0;
         sliceMax = rect.sIndex;
         currentScreen = 1;
-        wrongResolumeVersion(rect.olderResVersionDetected);
+//        wrongResolumeVersion(rect.olderResVersionDetected);
         
         // get the right aspect ratio for the input map
         float compWidth = rect.compResX;

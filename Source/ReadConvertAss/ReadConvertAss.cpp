@@ -58,7 +58,8 @@ void InputRect::getInputRect(std::string assFile)
     
     compResX = doc.child("XmlState").child("ScreenSetup").child("CurrentCompositionTextureSize").attribute("width").as_int();
     compResY = doc.child("XmlState").child("ScreenSetup").child("CurrentCompositionTextureSize").attribute("height").as_int();
-    
+    cout << "compResX: " << compResX << endl;
+    cout << "compResY: " << compResY << endl;
     
     if (compResX > 0 || compResY > 0)
     {

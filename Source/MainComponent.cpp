@@ -132,8 +132,8 @@ void MainComponent::paint (Graphics& g)
     g.fillPath(compEdge);
 
     // for every slice
-    if (rect.olderResVersionDetected == false)
-    {
+//    if (rect.olderResVersionDetected == false)
+//    {
         for (int i=sliceOffset;i<sliceMax;i++)
         {
             // create raw slices to calculate width and height for input and output......
@@ -419,19 +419,19 @@ void MainComponent::paint (Graphics& g)
                        3, getHeight()-sliceInfoHeight - (sliceInfoHeight / 2.f) + textHeightOffset * 6.f + textHeightOffset , sliceInfoWidth, sliceInfoHeight, Justification::centredLeft);
         }
         
-    }
+//    }
     // if an older version of resolume is detected don't draw anything but display this splashscreen
-    else
-    {
-        g.setColour(Colours::darkorange);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        String drawWarningText =
-        "THIS SCREEN SETUP WAS MADE WITH AN OLDER VERSION OF RESOLUME AND THEREFORE CAN'T DISPLAY THE SLICES CORRECTLY, PLEASE USE THE LATEST VERSION";
-        g.setColour(Colours::black);
-        g.setFont(20.f);
-        g.setFont (Font("Avenir Next", 30.f, Font::bold));
-        g.drawMultiLineText(drawWarningText, getWidth()/4, getHeight()/3, getHeight());
-    }
+//    else
+//    {
+//        g.setColour(Colours::darkorange);
+//        g.fillRect(0, 0, getWidth(), getHeight());
+//        String drawWarningText =
+//        "THIS SCREEN SETUP WAS MADE WITH AN OLDER VERSION OF RESOLUME AND THEREFORE CAN'T DISPLAY THE SLICES CORRECTLY, PLEASE USE THE LATEST VERSION";
+//        g.setColour(Colours::black);
+//        g.setFont(20.f);
+//        g.setFont (Font("Avenir Next", 30.f, Font::bold));
+//        g.drawMultiLineText(drawWarningText, getWidth()/4, getHeight()/3, getHeight());
+//    }
 }
 
 
