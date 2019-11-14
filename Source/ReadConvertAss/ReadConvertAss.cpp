@@ -88,7 +88,7 @@ void InputRect::getInputRect(std::string assFile)
                     int strncmpResult = strncmp(str1, str2, sizeof(&str2));
                     if (strncmpResult == 0)
                     {
-                        if (screenParam.attribute("value").as_int() == 1)
+                        if (screenParam.attribute("value").as_int() == 1 || screenParam.attribute("value").as_int() == 0)
                         {
                             screenNameArray[screenIndex] = screen.attribute("name").as_string();
                             
