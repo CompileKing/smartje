@@ -420,7 +420,7 @@ void MainComponent::paint (Graphics& g)
             int textHeightOffset = 15;
             int textOffsetFromTop = -(sliceInfoHeight / 2.f) + textHeight;
             g.setColour(arenaBottomGrey.withAlpha(0.9f));
-            Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight);
+            Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight - 33.f);
             g.fillRoundedRectangle(sliceInfoRect, 4.f);
             g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
             g.setColour(Colours::orange);
