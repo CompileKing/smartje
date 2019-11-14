@@ -43,11 +43,11 @@ public:
     int screenIndex = 0;
     
     int sliceEnabledArray[10000]; //tells which slices are enabled
-    int screenIndexArray[100]; // shows how many slices there are per screen
-    int screenWidthArray[100];
-    int screenHeightArray[100];
+    int screenIndexArray[10000]; // shows how many slices there are per screen
+    int screenWidthArray[10000];
+    int screenHeightArray[10000];
     
-    String screenNameArray[100]; // names of all of the screens
+    String screenNameArray[10000]; // names of all of the screens
     String sliceNameArray[10000]; //names of all the slices
     String sliceName; //slice name variable
     
@@ -70,13 +70,13 @@ public:
     float yArrayOut[10000];
     float *yArrayOutPtr = yArrayOut;
     
-    float xArrayRaw[1000];
-    float yArrayRaw[1000];
-    float xArrayOutRaw[1000];
-    float yArrayOutRaw[1000];
+    float xArrayRaw[10000];
+    float yArrayRaw[10000];
+    float xArrayOutRaw[10000];
+    float yArrayOutRaw[10000];
     
-    float inputSliceRotationArray[1000];
-    float outputSliceRotationArray[1000];
+    float inputSliceRotationArray[10000];
+    float outputSliceRotationArray[10000];
     
     
     bool isFileLoaded;

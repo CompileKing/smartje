@@ -9,8 +9,8 @@
 #include "MainComponent.h"
 
 
-int screenSizeX = 1136;
-int screenSizeY = 640;
+int screenSizeX = 1334;
+int screenSizeY = 750;
 
 //1136 x 640 pixels
 

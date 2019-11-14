@@ -32,18 +32,29 @@ void InputRect::getInputRect(std::string assFile)
     sIndex = 0;
     sliceIndex = 0;
     screenIndex = 0;
-    for (int i=0;i<100;i++)
+    sliceName = "";
+    for (int i=0;i<10000;i++)
     {
+        sliceEnabledArray[i] = 0;
         screenIndexArray[i] = 0;
-    }
-    for (int i=0;i<100;i++)
-    {
         screenWidthArray[i] = 0;
-    }
-    for (int i=0;i<100;i++)
-    {
         screenHeightArray[i] = 0;
+        screenNameArray[i] = "";
+        sliceNameArray[i] = "";
+        sliceXarray[i] = 0;
+        sliceYarray[i] = 0;
+        xArray[i] = 0;
+        yArray[i] = 0;
+        xArrayOut[i] = 0;
+        yArrayOut[i] = 0;
+        xArrayRaw[i] = 0;
+        yArrayRaw[i] = 0;
+        xArrayOutRaw[i] = 0;
+        yArrayOutRaw[i] = 0;
+        inputSliceRotationArray[i] = 0;
+        outputSliceRotationArray[i] = 0;
     }
+    
     
     pugi::xml_document doc;
     pugi::xml_parse_result
@@ -111,8 +122,8 @@ void InputRect::getInputRect(std::string assFile)
                             {
                                 inputSliceRotationArray[sIndex] = slice.child("InputRect").attribute("orientation").as_float();
                                 outputSliceRotationArray[sIndex] = slice.child("OutputRect").attribute("orientation").as_float();
-                                cout << "inputRect orientation: " << inputSliceRotationArray[sIndex] << endl;
-                                cout << "outputRect orientation: " << outputSliceRotationArray[sIndex] << endl;
+//                                cout << "inputRect orientation: " << inputSliceRotationArray[sIndex] << endl;
+//                                cout << "outputRect orientation: " << outputSliceRotationArray[sIndex] << endl;
                                 for (pugi::xml_node sliceParam: slice.child("Params").children("Param"))
                                 {
                                     const char * str1 = sliceParam.attribute("name").as_string();
@@ -144,6 +155,7 @@ void InputRect::getInputRect(std::string assFile)
                                     yArrayOutRaw[vIndexOut] = value.attribute("y").as_float();
                                     vIndexOut++;
                                 }
+                                cout << sliceNameArray[sliceIndex] << "orientation: " << inputSliceRotationArray[sliceIndex] << endl;
                                 sliceIndex++;
                                 screenIndexArray[screenIndex] = sliceIndex;
                             }

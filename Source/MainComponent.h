@@ -202,7 +202,8 @@ public:
     
     void mouseDown (const MouseEvent& e) override
     {
-        currentMousePosition.setXY(e.getScreenX(), e.getScreenY());
+        currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
+        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
 
     }
     
