@@ -457,6 +457,8 @@ private:
     
     int sliceWidth;
     int sliceHeight;
+    float sliceLeft;
+    float sliceTop;
     
     TextButton button1;
     TextButton button2;

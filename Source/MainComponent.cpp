@@ -184,6 +184,8 @@ void MainComponent::paint (Graphics& g)
                     raw.applyTransform( AffineTransform::rotation( -rect.inputSliceRotationArray[i], center.x, center.y ));
                     sliceWidth = raw.getBounds().getWidth();
                     sliceHeight = raw.getBounds().getHeight();
+                    sliceLeft = raw.getBounds().getTopLeft().getX();
+                    sliceTop = raw.getBounds().getTopLeft().getY();
                 }
                 
                 else
@@ -191,6 +193,8 @@ void MainComponent::paint (Graphics& g)
                     raw.applyTransform(AffineTransform::rotation(-rect.outputSliceRotationArray[i], center.x, center.y ));
                     sliceWidth = raw.getBounds().getWidth();
                     sliceHeight = raw.getBounds().getHeight();
+                    sliceLeft = raw.getBounds().getTopLeft().getX();
+                    sliceTop = raw.getBounds().getTopLeft().getY();
                 }
             }
             
@@ -243,7 +247,7 @@ void MainComponent::paint (Graphics& g)
             cross.lineTo (Point<float>(drawV4x ,drawV4y));
             cross.closeSubPath();
             
-            // check for mouseclicks in bounds
+            // slice selection
             g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
             if (!mouseIsDragging)
             {
@@ -258,24 +262,39 @@ void MainComponent::paint (Graphics& g)
                         sliceNameString = rect.sliceNameArray[i];
                         sliceXString = "X: " + to_string(raw.getBounds().getCentreX());
                         sliceYString = "Y: " + to_string(raw.getBounds().getCentreY());
-                        sliceLeftString = "Left: " + to_string(raw.getBounds().getTopLeft().getX());
-                        sliceTopString = "Top: " + to_string(raw.getBounds().getTopLeft().getY());
+                        if (drawInputMap)
+                        {
+                            if (rect.inputSliceRotationArray[i] == 0)
+                            {
+                                sliceLeftString = "Left: " + to_string(sliceLeft);
+                                sliceTopString = "Top: " + to_string(sliceTop);
+                            }
+                            else
+                            {
+                                sliceLeftString = "Left: N/A     ";
+                                sliceTopString  = "Top: N/A     ";
+                            }
+                        }
+                        else
+                        {
+                            if (rect.outputSliceRotationArray[i] == 0)
+                            {
+                                sliceLeftString = "Left: " + to_string(sliceLeft);
+                                sliceTopString = "Top: " + to_string(sliceTop);
+                            }
+                            else
+                            {
+                                sliceLeftString = "Left: N/A     ";
+                                sliceTopString  = "Top: N/A     ";
+                            }
+                        }
                         sliceWidthString = "Width: " + to_string(raw.getBounds().getWidth());
                         sliceHeightString = "Height: " + to_string(raw.getBounds().getHeight());
                         sliceEnabledString = "Enabled: " + to_string(rect.sliceEnabledArray[i]);
-                        
-                        //                    x         middlepoint X
-                        //                    y         middlePoint Y
-                        //                    left      topLeftCorner X
-                        //                    top       topLectCorner Y
-                        //                    width
-                        //                    height
-                        //                    rotation
                     }
                     else
                         sliceIsSelected = false;
                 }
-                
             }
                     
             g.strokePath(path, PathStrokeType(1.));
