@@ -247,31 +247,35 @@ void MainComponent::paint (Graphics& g)
             g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
             if (!mouseIsDragging)
             {
-                if (path.contains(currentMousePosition.getX(), currentMousePosition.getY()))
+                if (rect.sliceEnabledArray[i] == 1)
                 {
-                    sliceIsSelected = true;
-                    g.setColour(Colours::orange.withAlpha(0.2f));
-                    g.fillPath(path);
-                    g.setColour(Colours::orange.withAlpha(0.6f));
-                    sliceNameString = rect.sliceNameArray[i];
-                    sliceXString = "X: " + to_string(raw.getBounds().getCentreX());
-                    sliceYString = "Y: " + to_string(raw.getBounds().getCentreY());
-                    sliceLeftString = "Left: " + to_string(raw.getBounds().getTopLeft().getX());
-                    sliceTopString = "Top: " + to_string(raw.getBounds().getTopLeft().getY());
-                    sliceWidthString = "Width: " + to_string(raw.getBounds().getWidth());
-                    sliceHeightString = "Height: " + to_string(raw.getBounds().getHeight());
-                    sliceEnabledString = "Enabled: " + to_string(rect.sliceEnabledArray[i]);
-                    
-//                    x         middlepoint X
-//                    y         middlePoint Y
-//                    left      topLeftCorner X
-//                    top       topLectCorner Y
-//                    width
-//                    height
-//                    rotation
+                    if (path.contains(currentMousePosition.getX(), currentMousePosition.getY()))
+                    {
+                        sliceIsSelected = true;
+                        g.setColour(Colours::orange.withAlpha(0.2f));
+                        g.fillPath(path);
+                        g.setColour(Colours::orange.withAlpha(0.6f));
+                        sliceNameString = rect.sliceNameArray[i];
+                        sliceXString = "X: " + to_string(raw.getBounds().getCentreX());
+                        sliceYString = "Y: " + to_string(raw.getBounds().getCentreY());
+                        sliceLeftString = "Left: " + to_string(raw.getBounds().getTopLeft().getX());
+                        sliceTopString = "Top: " + to_string(raw.getBounds().getTopLeft().getY());
+                        sliceWidthString = "Width: " + to_string(raw.getBounds().getWidth());
+                        sliceHeightString = "Height: " + to_string(raw.getBounds().getHeight());
+                        sliceEnabledString = "Enabled: " + to_string(rect.sliceEnabledArray[i]);
+                        
+                        //                    x         middlepoint X
+                        //                    y         middlePoint Y
+                        //                    left      topLeftCorner X
+                        //                    top       topLectCorner Y
+                        //                    width
+                        //                    height
+                        //                    rotation
+                    }
+                    else
+                        sliceIsSelected = false;
                 }
-                else
-                    sliceIsSelected = false;
+                
             }
                     
             g.strokePath(path, PathStrokeType(1.));
