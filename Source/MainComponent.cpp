@@ -17,6 +17,7 @@ int screenSizeY = 750;
 //==============================================================================
 MainComponent::MainComponent()
 {
+    
     setSize(screenSizeX, screenSizeY);
     
     arenaLAF.setColour(TextButton::buttonColourId, arenaTopGrey);
@@ -39,6 +40,12 @@ MainComponent::MainComponent()
     fileComp->addListener(this);
     fileComp->setBounds (-126, 0, 180+1, 40);
     fileComp->setLookAndFeel(&arenaLAF);
+    
+    addAndMakeVisible(reload);
+    reload.setBounds(0, 0, 55, 40);
+    reload.setButtonText("Reload");
+    reload.addListener(this);
+    reload.setLookAndFeel(&arenaLAF);
         
     addAndMakeVisible(button1);
     button1.setVisible(1);
@@ -73,6 +80,10 @@ MainComponent::MainComponent()
 //    inc.setBounds       (60+1, 80+2, 55, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
+    
+    addAndMakeVisible(fileFromMailClientLabel);
+    fileFromMailClientLabel.setBounds(dec.getBounds().getRight(), dec.getBounds().getBottom(), 600, 20);
+    
 }
 
 

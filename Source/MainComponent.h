@@ -148,6 +148,11 @@ public:
         else
             drawOutputHeight = getWidth() * 0.5625;
         
+        if (button == &reload)
+        {
+            getFileFromMail();
+        }
+        
         repaint();
 
     }
@@ -405,11 +410,35 @@ public:
         endl << endl;;
     }
     
+    void getFileFromMail()
+    {
+        importedFiles.getFirst().deleteFile();
+        bool searchRecursively = true;
+        String wildCardPattern = "*.xml";
+        int numberOfFiles = File::getSpecialLocation(File::userDocumentsDirectory).findChildFiles(importedFiles, File::findFiles, searchRecursively, wildCardPattern);
+
+        String firstFile = importedFiles.getFirst().getFileName() + " // numberOfFiles: " + to_string(numberOfFiles);
+        fileFromMailClientLabel.setText(firstFile,dontSendNotification);
+        fileFromMailClient = importedFiles.getFirst();
+        readFile(fileFromMailClient);
+    }
+    
 private:
     //==============================================================================
     // Your private member variables go here...
     
     InputRect rect;
+    
+    unique_ptr<FilenameComponent> fileComp;
+    
+    Array<File> importedFiles;
+    
+    File fileFromMailClient;
+    Label fileFromMailClientLabel;
+    
+//    Array<int> myArray;
+
+//    myArray.sort (sorter);
     
     Point<float> position0;
     Point<float> position1;
@@ -464,6 +493,7 @@ private:
     TextButton button2;
     TextButton inc;
     TextButton dec;
+    TextButton reload;
     
     LookAndFeel_V4 arenaLAF;
     Colour arenaBrightGreen = Colour::fromRGB(133,254,211);
@@ -487,7 +517,7 @@ private:
     bool drawInputMap = true;
     bool sliceIsSelected = false;
 
-    unique_ptr<FilenameComponent> fileComp;
+    
     
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
