@@ -54,7 +54,7 @@ public:
         auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
         rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
-        sourceDistance = 1.f;
+        zoomFactor = 1.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
         currentScreen = 1;
@@ -203,21 +203,21 @@ public:
     void mouseDown (const MouseEvent& e) override
     {
         currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
-        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
+//        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
 
     }
     
     void mouseDoubleClick (const MouseEvent& e) override
     {
-        cout << "doubleClick!" << endl;
+//        cout << "doubleClick!" << endl;
         resetCamera();
         repaint();
     }
     
     float moveZoom(float inputVector, bool x)
     {
-        float moveZoomX = (((inputVector + moveX ) * sourceDistance)*0.5f+0.5f);
-        float moveZoomY = (((inputVector + moveY ) * sourceDistance)*0.5f+0.5f);
+        float moveZoomX = (((inputVector + moveX ) * zoomFactor)*0.5f+0.5f);
+        float moveZoomY = (((inputVector + moveY ) * zoomFactor)*0.5f+0.5f);
         float returnValue = 0;
         if (x)
             returnValue = moveZoomX;
@@ -228,6 +228,7 @@ public:
         
     void mouseDrag (const MouseEvent& e) override
     {
+        
         mouseIsDragging = true;
         auto* t = getTrail (e.source);
         
@@ -265,11 +266,12 @@ public:
                 {
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
-                
-                sourceDistance = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 5000.f));
-                
-                if (sourceDistance < 0.4f) // make sure the user can't zoom out all the way
+
+                zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
+                cout << "zoomFactor: " << zoomFactor << endl;
+                if (zoomFactor < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
+                
             }
         }
 
@@ -277,8 +279,8 @@ public:
         {
             deltaX = e.getDistanceFromDragStartX();
             deltaY = e.getDistanceFromDragStartY();
-            moveX = addToMoveX(deltaX)/4000.f;
-            moveY = addToMoveY(deltaY)/4000.f;
+            moveX = addToMoveX(deltaX) / 8000;
+            moveY = addToMoveY(deltaY) / 8000;
         }
         repaint();
     }
@@ -288,7 +290,7 @@ public:
         moveAmtX = 0.f;
         moveAmtY = 0.f;
         zoomAmt = 0.7f;
-        sourceDistance = 0.7f;
+        zoomFactor = 0.7f;
         moveX = 0;
         moveY = 0;
     }
@@ -316,8 +318,8 @@ public:
     
     float addToZoom (float amt)
     {
-            zoomAmt += amt;
-            return static_cast<float>(zoomAmt);
+        zoomAmt += amt;
+        return static_cast<float>(zoomAmt);
     }
         
     void mouseUp (const MouseEvent& e) override
@@ -417,7 +419,7 @@ private:
     Point<float> deltaPosition1;
     
     
-    float sourceDistance = 0.f;
+    float zoomFactor = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
     int mouseClickCounter;
