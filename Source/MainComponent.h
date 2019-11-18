@@ -277,57 +277,10 @@ public:
 
         if (fingers == 0)
         {
-            int zoomFactorInt = zoomFactor;
-            float movePrecision = 7000;
-            switch (zoomFactorInt)
-            {
-                case 0:
-                    movePrecision = 7000;
-                    break;
-                case 1:
-                    movePrecision = 8000;
-                    break;
-                case 2:
-                    movePrecision = 9000;
-                    break;
-                case 3:
-                    movePrecision = 11000;
-                    break;
-                case 4:
-                    movePrecision = 12000;
-                    break;
-                case 5:
-                    movePrecision = 15000;
-                    break;
-                case 6:
-                    movePrecision = 16000;
-                    break;
-                case 7:
-                    movePrecision = 17000;
-                    break;
-                case 8:
-                    movePrecision = 18000;
-                    break;
-                case 9:
-                    movePrecision = 19000;
-                    break;
-                case 10:
-                    movePrecision = 20000;
-                    break;
-                default:
-                    movePrecision = 21000;
-            }
-            
             deltaX = e.getDistanceFromDragStartX();
             deltaY = e.getDistanceFromDragStartY();
-            moveX = addToMoveX(deltaX) / movePrecision;
-            moveY = addToMoveY(deltaY) / movePrecision;
-            
-            cout << endl;
-            cout << " ///////// " << endl;
-            
-            cout << "zoomFactorInt: " << zoomFactorInt << endl;
-            cout << "zoomPrecision: " << movePrecision << endl;
+            moveX = addToMoveX(deltaX) / 8000;
+            moveY = addToMoveY(deltaY) / 8000;
         }
         repaint();
     }
