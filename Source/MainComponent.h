@@ -70,15 +70,6 @@ public:
         
         resetCamera();
         repaint();
-        
-        cout << endl;
-        cout << "screenIndexArray: " << endl;
-        for (int i=0;i<8;i++)
-        {
-            cout << rect.screenIndexArray[i];
-        }
-        cout << endl;
-        cout << "screenIndex: " << rect.screenIndex << endl;
     }
     
     void wrongResolumeVersion(bool olderResolume)
@@ -282,8 +273,8 @@ public:
         {
             deltaX = e.getDistanceFromDragStartX();
             deltaY = e.getDistanceFromDragStartY();
-            moveX = addToMoveX(deltaX)/4000.f;
-            moveY = addToMoveY(deltaY)/4000.f;
+            moveX = addToMoveX(deltaX)/8000.f;
+            moveY = addToMoveY(deltaY)/8000.f;
         }
         repaint();
     }
@@ -412,12 +403,20 @@ public:
     
     void getFileFromMail()
     {
-        importedFiles.getFirst().deleteFile();
+        dateCreatedArray.clear();
         bool searchRecursively = true;
         String wildCardPattern = "*.xml";
         int numberOfFiles = File::getSpecialLocation(File::userDocumentsDirectory).findChildFiles(importedFiles, File::findFiles, searchRecursively, wildCardPattern);
-
-        String firstFile = importedFiles.getFirst().getFileName() + " // numberOfFiles: " + to_string(numberOfFiles);
+        
+        for (int i = 0; i < numberOfFiles; i++)
+        {
+            dateCreatedArray.add(importedFiles.getReference(i).getCreationTime());
+        }
+        
+        RelativeTime relativeFileTime = Time::getCurrentTime() - importedFiles.getFirst().getCreationTime();
+        float relativeTime = relativeFileTime.inMinutes();
+                
+        String firstFile = importedFiles.getFirst().getFileName() + " // numberOfFiles: " + to_string(numberOfFiles) + " // relativeTimeFirst: " + to_string(relativeTime);
         fileFromMailClientLabel.setText(firstFile,dontSendNotification);
         fileFromMailClient = importedFiles.getFirst();
         readFile(fileFromMailClient);
@@ -432,13 +431,15 @@ private:
     unique_ptr<FilenameComponent> fileComp;
     
     Array<File> importedFiles;
-    
+    Array<Time> dateCreatedArray;
+    DefaultElementComparator<int> sorter;
     File fileFromMailClient;
     Label fileFromMailClientLabel;
     
 //    Array<int> myArray;
-
+//    DefaultElementComparator<int> sorter;
 //    myArray.sort (sorter);
+
     
     Point<float> position0;
     Point<float> position1;

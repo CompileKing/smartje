@@ -12,19 +12,21 @@
 				<string>Icon.icns</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>XML </string>
+			<string>ASS</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>Alternate</string>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>public.xml</string>
+				<string>public.XML</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.SmartAss</string>
+	<string>com.PLC.SmartAss</string>
 	<key>CFBundleName</key>
 	<string>SmartAss</string>
 	<key>CFBundlePackageType</key>

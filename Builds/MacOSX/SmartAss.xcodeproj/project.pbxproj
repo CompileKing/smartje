@@ -29,9 +29,17 @@
 			isa = PBXBuildFile;
 			fileRef = CCA8A03BFB26913389312E2F;
 		};
+		8759301CF743ADEAD76AE2BB = {
+			isa = PBXBuildFile;
+			fileRef = 8EFEA033703005AD918B6496;
+		};
 		7761FE2EAF235DC225AAC7CB = {
 			isa = PBXBuildFile;
 			fileRef = C51500A11DD7081D656C6FC4;
+		};
+		CF559255CC0907AE80C2061B = {
+			isa = PBXBuildFile;
+			fileRef = 2A6CD5EF712761E6A55C2069;
 		};
 		E8E34F3C70AF77C4401AC043 = {
 			isa = PBXBuildFile;
@@ -93,6 +101,10 @@
 			isa = PBXBuildFile;
 			fileRef = AE1B8D1F138C1217405E84B8;
 		};
+		07783995AEDF334580667404 = {
+			isa = PBXBuildFile;
+			fileRef = 437E0793FC01C4EE39814BBC;
+		};
 		82313CA70A7A58FE5B9BC36C = {
 			isa = PBXBuildFile;
 			fileRef = CB43784D525D6BB21B946A2B;
@@ -104,6 +116,10 @@
 		4682A7A54D23934812336CDF = {
 			isa = PBXBuildFile;
 			fileRef = D63FE44D37E66BD92DA48DF5;
+		};
+		275713E403592D7644B63327 = {
+			isa = PBXBuildFile;
+			fileRef = DEDE3AA6731C9D259F9865BE;
 		};
 		254C899DC6F6C005071AA861 = {
 			isa = PBXBuildFile;
@@ -167,6 +183,13 @@
 			path = System/Library/Frameworks/Cocoa.framework;
 			sourceTree = SDKROOT;
 		};
+		2A6CD5EF712761E6A55C2069 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = DiscRecording.framework;
+			path = System/Library/Frameworks/DiscRecording.framework;
+			sourceTree = SDKROOT;
+		};
 		2D2769CBFF9426920840E053 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file.nib;
@@ -207,6 +230,20 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = BinaryData.cpp;
 			path = ../../JuceLibraryCode/BinaryData.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		433AA0962BB76B4F412B97A4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_utils";
+			path = "~/JUCE/modules/juce_audio_utils";
+			sourceTree = "<absolute>";
+		};
+		437E0793FC01C4EE39814BBC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_audio_utils.mm";
+			path = "../../JuceLibraryCode/include_juce_audio_utils.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		4C92DD2F3B060091BF1785C1 = {
@@ -258,6 +295,13 @@
 			path = "~/JUCE/modules/juce_gui_basics";
 			sourceTree = "<absolute>";
 		};
+		6041EC3DFD67C2BE5109BC11 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = SmartAss.entitlements;
+			path = SmartAss.entitlements;
+			sourceTree = "SOURCE_ROOT";
+		};
 		63383F6508D8C9EF6D2BAA20 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -292,6 +336,13 @@
 			name = AppConfig.h;
 			path = ../../JuceLibraryCode/AppConfig.h;
 			sourceTree = "SOURCE_ROOT";
+		};
+		8EFEA033703005AD918B6496 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreAudioKit.framework;
+			path = System/Library/Frameworks/CoreAudioKit.framework;
+			sourceTree = SDKROOT;
 		};
 		8F50A2F365B6998043561DFE = {
 			isa = PBXFileReference;
@@ -447,6 +498,13 @@
 			path = "Info-App.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
+		DEDE3AA6731C9D259F9865BE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_dsp.mm";
+			path = "../../JuceLibraryCode/include_juce_dsp.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		E4D8D56F7B027BD30D9E41C1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -480,6 +538,13 @@
 			lastKnownFileType = file;
 			name = "juce_core";
 			path = "~/JUCE/modules/juce_core";
+			sourceTree = "<absolute>";
+		};
+		F2FF87208B68842E69F4CA0F = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_dsp";
+			path = "~/JUCE/modules/juce_dsp";
 			sourceTree = "<absolute>";
 		};
 		FA82DB50D997E1E7C9ACA199 = {
@@ -537,9 +602,11 @@
 				911DA8A02C1DD06290ACDA0E,
 				E94A92FC8764E219AD4D5DA2,
 				C60223E0FB868A14F53FCEB2,
+				433AA0962BB76B4F412B97A4,
 				F0E8AC3655BA813283883375,
 				FA82DB50D997E1E7C9ACA199,
 				999652849CEEF92C07A46BFC,
+				F2FF87208B68842E69F4CA0F,
 				91B0771198608EB5DCA7C331,
 				E4D8D56F7B027BD30D9E41C1,
 				5F68E5AAB9B2E82837385F7D,
@@ -559,9 +626,11 @@
 				4C92DD2F3B060091BF1785C1,
 				75ABAC1BD2E7E58F47B3D1E3,
 				AE1B8D1F138C1217405E84B8,
+				437E0793FC01C4EE39814BBC,
 				CB43784D525D6BB21B946A2B,
 				08A7171F87508B2AD2033596,
 				D63FE44D37E66BD92DA48DF5,
+				DEDE3AA6731C9D259F9865BE,
 				BE91B0A58B90C6EA710E89D7,
 				53A62B214825242085910093,
 				B063E737CCAB345F47511552,
@@ -590,7 +659,9 @@
 				30F804296E1F0172728060F8,
 				29C289D2719B397090C47399,
 				CCA8A03BFB26913389312E2F,
+				8EFEA033703005AD918B6496,
 				C51500A11DD7081D656C6FC4,
+				2A6CD5EF712761E6A55C2069,
 				B1BE5BC3C113CABA0FCD0939,
 				95F708BFD6AB70384DA0F99B,
 				229B129C2CA2A8A747F4572C,
@@ -626,6 +697,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
@@ -668,6 +740,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
@@ -728,6 +801,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -774,6 +848,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -840,9 +915,11 @@
 				1697E32CA02F3489ABBAFD8F,
 				138C955DB1CE5A40268DF71E,
 				05904358953182FA7C5859D0,
+				07783995AEDF334580667404,
 				82313CA70A7A58FE5B9BC36C,
 				5D8F38E0210048CE3335DD87,
 				4682A7A54D23934812336CDF,
+				275713E403592D7644B63327,
 				254C899DC6F6C005071AA861,
 				BFBC556BC17C2890902FE5BA,
 				688D20FFBC8AB1C07C86E8D4,
@@ -860,7 +937,9 @@
 				E129336397CF176C75D5F691,
 				11CC18AE7979FA8448736786,
 				5CB28CFFFE9147478D8C6FF8,
+				8759301CF743ADEAD76AE2BB,
 				7761FE2EAF235DC225AAC7CB,
+				CF559255CC0907AE80C2061B,
 				E8E34F3C70AF77C4401AC043,
 				4A95D372D4998DEF002443A4,
 				6DE1560B3379D2DF10274EC2,
