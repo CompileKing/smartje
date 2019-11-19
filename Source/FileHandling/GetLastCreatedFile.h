@@ -22,16 +22,15 @@ public:
     FileHandler();
     ~FileHandler();
     File getLastCreatedFile();
+    
+        
+private:
     int stdSorter();
     int fillFileArrayFromDocuments();
     void debugFileArrays(string fileIndex, string relativeTimeDouble);
     void debugFileArrays(string fileName, string fileIndex, string relativeTimeDouble);
-        
-private:
     Array<File> importedFiles;
-    Array<RelativeTime> dateCreatedArray;
-    DefaultElementComparator<RelativeTime> sorter;
     File fileFromMailClient;
     std::vector<float> myVector;
-    
+    std::vector<int> mySortedVector;
 };
