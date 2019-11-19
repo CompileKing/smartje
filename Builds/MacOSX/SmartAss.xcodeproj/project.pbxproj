@@ -81,6 +81,10 @@
 			isa = PBXBuildFile;
 			fileRef = 3E7D2A96EB42E1C595A380A2;
 		};
+		85A5D3B9F034C851F901F34E = {
+			isa = PBXBuildFile;
+			fileRef = D12DC0FC93F869B06259A907;
+		};
 		00A031EDE7DD6346BE91A481 = {
 			isa = PBXBuildFile;
 			fileRef = 3FDCE7360FC11DBA86FA4084;
@@ -484,6 +488,13 @@
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
 		};
+		D12DC0FC93F869B06259A907 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = GetLastCreatedFile.cpp;
+			path = ../../Source/FileHandling/GetLastCreatedFile.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D63FE44D37E66BD92DA48DF5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -554,6 +565,13 @@
 			path = "~/JUCE/modules/juce_cryptography";
 			sourceTree = "<absolute>";
 		};
+		FCCD87526FC24B5C1C2C2980 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = GetLastCreatedFile.h;
+			path = ../../Source/FileHandling/GetLastCreatedFile.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		1CE971422C1081AFB417CBE8 = {
 			isa = PBXGroup;
 			children = (
@@ -587,10 +605,20 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		3473A7A728F4796029F59390 = {
+			isa = PBXGroup;
+			children = (
+				D12DC0FC93F869B06259A907,
+				FCCD87526FC24B5C1C2C2980,
+			);
+			name = FileHandling;
+			sourceTree = "<group>";
+		};
 		F5B21D65D547EA7F07C726D6 = {
 			isa = PBXGroup;
 			children = (
 				636DCE28980EEA5D94827712,
+				3473A7A728F4796029F59390,
 			);
 			name = SmartAss;
 			sourceTree = "<group>";
@@ -910,6 +938,7 @@
 				F1303233EF9BB420434C0E61,
 				D8560F1A4FC877968E8EA248,
 				D9C0B87C5C4E6F8206328DDE,
+				85A5D3B9F034C851F901F34E,
 				00A031EDE7DD6346BE91A481,
 				C37764077406A95CB62564FA,
 				1697E32CA02F3489ABBAFD8F,

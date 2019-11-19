@@ -10,6 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ReadConvertAss/ReadConvertAss.h"
+#include "FileHandling/GetLastCreatedFile.h"
 
 
 using namespace std;
@@ -141,7 +142,8 @@ public:
         
         if (button == &reload)
         {
-            getFileFromMail();
+            File f = fileHandler.getLastCreatedFile();
+            readFile(f);
         }
         
         repaint();
@@ -199,13 +201,13 @@ public:
     void mouseDown (const MouseEvent& e) override
     {
         currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
-        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
+//        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
 
     }
     
     void mouseDoubleClick (const MouseEvent& e) override
     {
-        cout << "doubleClick!" << endl;
+//        cout << "doubleClick!" << endl;
         resetCamera();
         repaint();
     }
@@ -401,39 +403,19 @@ public:
         endl << endl;;
     }
     
-    void getFileFromMail()
-    {
-        dateCreatedArray.clear();
-        bool searchRecursively = true;
-        String wildCardPattern = "*.xml";
-        int numberOfFiles = File::getSpecialLocation(File::userDocumentsDirectory).findChildFiles(importedFiles, File::findFiles, searchRecursively, wildCardPattern);
-        
-        for (int i = 0; i < numberOfFiles; i++)
-        {
-            dateCreatedArray.add(importedFiles.getReference(i).getCreationTime());
-        }
-        
-        RelativeTime relativeFileTime = Time::getCurrentTime() - importedFiles.getFirst().getCreationTime();
-        float relativeTime = relativeFileTime.inMinutes();
-                
-        String firstFile = importedFiles.getFirst().getFileName() + " // numberOfFiles: " + to_string(numberOfFiles) + " // relativeTimeFirst: " + to_string(relativeTime);
-        fileFromMailClientLabel.setText(firstFile,dontSendNotification);
-        fileFromMailClient = importedFiles.getFirst();
-        readFile(fileFromMailClient);
-    }
+    
     
 private:
     //==============================================================================
     // Your private member variables go here...
     
     InputRect rect;
+    FileHandler fileHandler;
+    
     
     unique_ptr<FilenameComponent> fileComp;
     
-    Array<File> importedFiles;
-    Array<Time> dateCreatedArray;
-    DefaultElementComparator<int> sorter;
-    File fileFromMailClient;
+    
     Label fileFromMailClientLabel;
     
 //    Array<int> myArray;

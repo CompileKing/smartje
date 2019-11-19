@@ -51,7 +51,7 @@ MainComponent::MainComponent()
     button1.setVisible(1);
     button1.setButtonText("Input");
     button1.setBounds   (fileComp->getBounds().getRight(), 0, 90, 40);
-    cout << "fileCompRight: " << fileComp->getBounds().getRight() << endl;
+//    cout << "fileCompRight: " << fileComp->getBounds().getRight() << endl;
     button1.addListener(this);
     button1.setLookAndFeel(&arenaLAF);
 
