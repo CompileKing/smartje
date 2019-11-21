@@ -8,18 +8,17 @@
 
 #include "MainComponent.h"
 
-
-int screenSizeX = 1334;
-int screenSizeY = 750;
-
-//1136 x 640 pixels
-
 //==============================================================================
 MainComponent::MainComponent()
 {
     startTimer(30);
     checkDocumentsFolder();
+    
+#if defined JUCE_MAC
+    int screenSizeX = 1334;
+    int screenSizeY = 750;
     setSize(screenSizeX, screenSizeY);
+#endif
     
     arenaLAF.setColour(TextButton::buttonColourId, arenaTopGrey);
     arenaLAF.setColour(TextButton::textColourOnId, Colours::white);
@@ -88,7 +87,8 @@ MainComponent::~MainComponent()
 
 //==============================================================================
 void MainComponent::paint (Graphics& g)
-{    
+{
+    sliceSelectedArray.clear();
     // draw Background Colour
     g.fillAll (arenaBottomGrey);
     
@@ -137,8 +137,6 @@ void MainComponent::paint (Graphics& g)
     g.fillPath(compEdge);
     
     // for every slice
-    //    if (rect.olderResVersionDetected == false)
-    //    {
     for (int i=sliceOffset;i<sliceMax;i++)
     {
         // create raw slices to calculate width and height for input and output......
@@ -203,15 +201,13 @@ void MainComponent::paint (Graphics& g)
                 sliceTop = raw.getBounds().getTopLeft().getY();
             }
         }
-        
-        // create a different colour for each slice
-        //            float sliceColor =  (i*0.1)/(rect.sIndex*0.1) + 0.1 ;
-        // change opacity of slice based on if a slice is enabled in the xml
+                
         if (rect.sliceEnabledArray[i] == 1)
             sliceOpacity = 0.9f;
         else
             sliceOpacity = 0.1f;
-        //            auto tileColor1  =  Colour::fromHSV (sliceColor,1.f,1.f,sliceOpacity);
+
+        // create drawable slices from xml
         if (drawInputMap)
         {
             drawV1x = moveZoom(rect.xArrayPtr[(4*i)],1) * getWidth();           //v1 upperLeft
@@ -235,7 +231,7 @@ void MainComponent::paint (Graphics& g)
             drawV4y = moveZoom(rect.yArrayOutPtr[(4*i)+3],0) * drawOutputHeight;
         }
         
-        // paint every slice as a path with a diffirent hue
+        // paint every slice as a path
         Path path;
         path.startNewSubPath (Point<float>(drawV1x ,drawV1y));
         path.lineTo (Point<float>(drawV2x ,drawV2y));
@@ -254,6 +250,8 @@ void MainComponent::paint (Graphics& g)
         cross.closeSubPath();
         
         // slice selection
+        
+        
         g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
         if (!mouseIsDragging)
         {
@@ -262,6 +260,7 @@ void MainComponent::paint (Graphics& g)
                 if (path.contains(currentMousePosition.getX(), currentMousePosition.getY()))
                 {
                     sliceIsSelected = true;
+                    sliceSelectedArray.add(sliceIsSelected);
                     g.setColour(Colours::orange.withAlpha(0.2f));
                     g.fillPath(path);
                     g.setColour(Colours::orange.withAlpha(0.6f));
@@ -300,11 +299,11 @@ void MainComponent::paint (Graphics& g)
                     sliceHeightString = "Height: " + to_string(raw.getBounds().getHeight());
                     sliceEnabledString = "Enabled: " + to_string(rect.sliceEnabledArray[i]);
                 }
-                else
-                    sliceIsSelected = false;
             }
         }
         
+
+        // draw outlines and a cross for each slice
         g.strokePath(path, PathStrokeType(1.));
         g.strokePath(cross, PathStrokeType(1.));
         
@@ -419,40 +418,44 @@ void MainComponent::paint (Graphics& g)
      40,
      Justification::centredLeft);
     
-    // draw slice info
-    if (!mouseIsDragging)
+    if (sliceSelectedArray.size() > 0)
     {
-        int sliceInfoWidth = 95;
-        int sliceInfoHeight = 150;
-        int textHeight = 13;
-        int textHeightOffset = 15;
-        int textWidthOffset = 5;
-        int textOffsetFromTop = -(sliceInfoHeight / 2.f) + textHeight;
-        g.setColour(arenaBottomGrey.withAlpha(0.9f));
-        Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight - 17.f);
-        g.fillRoundedRectangle(sliceInfoRect, 4.f);
-        g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
-        g.setColour(Colours::orange);
-        g.setFont(15.f);
-        g.drawText(sliceNameString,
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 0.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.setColour(Colours::white);
-        g.setFont(textHeight);
-        g.drawText(sliceXString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 1.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.drawText(sliceYString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 2.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.drawText(sliceLeftString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 3.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.drawText(sliceTopString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 4.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.drawText(sliceWidthString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 5.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.drawText(sliceHeightString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 6.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-        g.drawText(sliceRotationString.dropLastCharacters(4),
-                   getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 7.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+        if (!mouseIsDragging)
+        {
+                int sliceInfoWidth = 95;
+                int sliceInfoHeight = 150;
+                int textHeight = 13;
+                int textHeightOffset = 15;
+                int textWidthOffset = 5;
+                int textOffsetFromTop = -(sliceInfoHeight / 2.f) + textHeight;
+                g.setColour(arenaBottomGrey.withAlpha(0.9f));
+                Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight - 17.f);
+                g.fillRoundedRectangle(sliceInfoRect, 4.f);
+                g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
+                g.setColour(Colours::orange);
+                g.setFont(15.f);
+                g.drawText(sliceNameString,
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 0.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.setColour(Colours::white);
+                g.setFont(textHeight);
+                g.drawText(sliceXString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 1.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.drawText(sliceYString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 2.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.drawText(sliceLeftString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 3.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.drawText(sliceTopString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 4.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.drawText(sliceWidthString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 5.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.drawText(sliceHeightString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 6.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+                g.drawText(sliceRotationString.dropLastCharacters(4),
+                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 7.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+        }
     }
+    
+    
     if (ShowSplashScreen)
     {
         hideUIelements(true);

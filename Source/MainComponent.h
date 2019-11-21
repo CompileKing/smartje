@@ -53,7 +53,6 @@ public:
     //what happends when a file gets read
     void readFile(const File& fileToRead)
     {
-        
         if (!fileToRead.existsAsFile())
             return;
         
@@ -208,7 +207,7 @@ public:
     
     void mouseDown (const MouseEvent& e) override
     {
-        currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
+        
 //        cout << "mouseClickCounter: " << mouseClickCounter << endl;
 //        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
 
@@ -275,7 +274,7 @@ public:
                 }
 
                 zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
-                cout << "zoomFactor: " << zoomFactor << endl;
+//                cout << "zoomFactor: " << zoomFactor << endl;
                 if (zoomFactor < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
                 
@@ -332,6 +331,7 @@ public:
         
     void mouseUp (const MouseEvent& e) override
     {
+        currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
         trails.removeObject (getTrail (e.source));
         repaint();
         fingers = 0;
@@ -563,6 +563,7 @@ private:
     Rectangle<float> splashScreenRect;
 
     unique_ptr<FilenameComponent> fileComp;
+    Array<bool> sliceSelectedArray;
         
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
