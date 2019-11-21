@@ -20,12 +20,6 @@
 
 void InputRect::getInputRect(std::string assFile)
 {
-    cout << endl;
-    cout << endl;
-    cout << "/////////////////////////////////////PUGI/////////////////////////////////////" <<endl;
-    cout << endl;
-    cout << "pugi from param: " << assFile << endl;
-    
     // reset all values
     vIndex = 0;
     vIndexOut = 0;
@@ -55,6 +49,11 @@ void InputRect::getInputRect(std::string assFile)
         outputSliceRotationArray[i] = 0;
     }
     
+    cout << endl;
+    cout << endl;
+    cout << "/////////////////////////////////////PUGI/////////////////////////////////////" <<endl;
+    cout << endl;
+    cout << "pugi from param: " << assFile << endl;
     
     pugi::xml_document doc;
     pugi::xml_parse_result
@@ -63,9 +62,25 @@ void InputRect::getInputRect(std::string assFile)
     cout << "pugi is loaded? " << result2 << endl;
     cout << "Load result: " << result2.description() << endl;
     
+    if (result2)
+    {
+        const char * str1 = doc.child("XmlState").child("ScreenSetup").attribute("name").as_string();
+        const char * str2 = "ScreenSetup";
+        int strncmpResult = strncmp(str1, str2, sizeof(&str2));
+        if (strncmpResult == 0)
+            isAss = true;
+        else
+            isAss = false;
+        cout << "is this an ASS? " << isAss << endl;
+    }
+    else
+        cout << "whoopsiedoopsie couldn't loadsie" << endl;
+    
     cout << endl;
     cout << "/////////////////////////////////////INFO/////////////////////////////////////" <<endl;
     cout << endl;
+    
+    
     
     compResX = doc.child("XmlState").child("ScreenSetup").child("CurrentCompositionTextureSize").attribute("width").as_int();
     compResY = doc.child("XmlState").child("ScreenSetup").child("CurrentCompositionTextureSize").attribute("height").as_int();
@@ -80,7 +95,7 @@ void InputRect::getInputRect(std::string assFile)
 
     aspectRatioInput = compResY / compResX;
     cout << "aspect ratio input: " << aspectRatioInput << endl;
-    olderResVersionDetected = false;
+
     if (result2)    // if the xml is loaded in
     {
         for (pugi::xml_node screen: doc.child("XmlState").child("ScreenSetup").child("screens").children("Screen")) // for every Screen
