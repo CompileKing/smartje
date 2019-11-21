@@ -63,6 +63,7 @@ public:
         sliceOffset = 0;
         sliceMax = rect.sIndex;
         currentScreen = 1;
+        selectScreen(currentScreen);
 //        wrongResolumeVersion(rect.olderResVersionDetected);
         
         // get the right aspect ratio for the input map
@@ -516,7 +517,7 @@ private:
     int currentOutputHeight;
     Point<float> currentMousePosition;
     
-    int currentScreen = 0;
+    int currentScreen = 1;
     int sliceOffset;
     int sliceMax;
 
