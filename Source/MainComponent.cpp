@@ -377,7 +377,7 @@ void MainComponent::paint (Graphics& g)
     Rectangle<float> screenInfoBackRect
     (fileComp->getRight(),
      button1.getBottom(),
-     button1.getWidth(),
+     button1.getWidth() * 2.f,
      button1.getHeight());
     g.fillRoundedRectangle(screenInfoBackRect, 4);
     
@@ -404,20 +404,20 @@ void MainComponent::paint (Graphics& g)
     
     g.drawText
     (topText,
-     fileComp->getBounds().getRight(),
+     fileComp->getBounds().getRight() + 8.f,
      button1.getBottom()-10.f,
-     90,
+     button1.getWidth() * 2.f,
      40,
-     Justification::centred);
+     Justification::centredLeft);
     g.setColour(Colours::white);
     g.setFont(15.f);
     g.drawText
     (compScreenInfo,
-     fileComp->getBounds().getRight(),
+     fileComp->getBounds().getRight() + 8.f,
      button1.getBottom()+5,
      90,
      40,
-     Justification::centred);
+     Justification::centredLeft);
     
     // draw slice info
     if (!mouseIsDragging)
