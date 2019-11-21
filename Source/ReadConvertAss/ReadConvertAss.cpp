@@ -74,8 +74,8 @@ void InputRect::getInputRect(std::string assFile)
     
     if (compResX <= 0 || compResY <= 0)
     {
-        compResX = 1920;
-        compResY = 1080;
+        compResX = 4096;
+        compResY = 2160;
     }
 
     aspectRatioInput = compResY / compResX;
