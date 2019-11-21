@@ -45,7 +45,6 @@ MainComponent::MainComponent()
     button1.setVisible(1);
     button1.setButtonText("Input");
     button1.setBounds   (fileComp->getBounds().getRight(), 0, 90, 40);
-    cout << "fileCompRight: " << fileComp->getBounds().getRight() << endl;
     button1.addListener(this);
     button1.setLookAndFeel(&arenaLAF);
     
@@ -66,7 +65,6 @@ MainComponent::MainComponent()
     inc.setVisible(1);
     inc.setButtonText(">");
     inc.setBounds       (0, 80+2, 55, 40);
-    //    dec.setBounds       (0, 80+2, 55, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
     
@@ -74,7 +72,6 @@ MainComponent::MainComponent()
     dec.setVisible(1);
     dec.setButtonText("<");
     dec.setBounds       (0, inc.getBounds().getBottom(), 55, 40);
-    //    inc.setBounds       (60+1, 80+2, 55, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
 }
