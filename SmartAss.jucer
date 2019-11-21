@@ -24,10 +24,10 @@
       <FILE id="ys9YnQ" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
     <GROUP id="{3F38A36C-4A83-EF8D-1DAF-B39521415F00}" name="SplashScreens">
+      <FILE id="jxQX00" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
       <FILE id="KaaLP0" name="splash1.png" compile="0" resource="1" file="Source/SplashScreens/splash1.png"/>
       <FILE id="zuk4on" name="splash3.png" compile="0" resource="1" file="Source/SplashScreens/splash3.png"/>
       <FILE id="jWPIjO" name="splash2.png" compile="0" resource="1" file="Source/SplashScreens/splash2.png"/>
-      <FILE id="v2OWnE" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
