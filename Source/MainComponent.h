@@ -22,7 +22,8 @@ using namespace std;
 class MainComponent   : public Component,
 public FilenameComponentListener,
 public Button::Listener,
-public Slider::Listener
+public Slider::Listener,
+public Timer
 {
 public:
     //==============================================================================
@@ -32,6 +33,11 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
+    
+    void timerCallback() override
+    {
+        elapsed1 += 0.025f;
+    }
     
     virtual void sliderValueChanged (Slider* slider) override
     {
@@ -203,6 +209,7 @@ public:
     void mouseDown (const MouseEvent& e) override
     {
         currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
+//        cout << "mouseClickCounter: " << mouseClickCounter << endl;
 //        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
 
     }
@@ -282,6 +289,7 @@ public:
             moveX = addToMoveX(deltaX) / 8000;
             moveY = addToMoveY(deltaY) / 8000;
         }
+        
         repaint();
     }
     
@@ -328,7 +336,12 @@ public:
         repaint();
         fingers = 0;
         mouseClickCounter = 0;
-        mouseIsDragging = false;        
+        mouseIsDragging = false;
+        if (ShowSplashScreen)
+        {
+            splashScreenMouseClickCounter++;
+            cout << "splashScreenMouseClickCounter: " << splashScreenMouseClickCounter << endl;
+        }
     }
     
     struct Trail
@@ -407,25 +420,75 @@ public:
         endl << endl;;
     }
     
+    void checkDocumentsFolder()
+    {
+        Array<File> importedFiles;
+        importedFiles.clear();
+        // find files, store them in the importedFiles array and return number of files found
+        bool searchRecursively = true;
+        String wildCardPattern = "*.xml";
+        int numberOfFiles = File::getSpecialLocation(File::userDocumentsDirectory).findChildFiles(importedFiles, File::findFiles, searchRecursively, wildCardPattern);
+        if (numberOfFiles > 0)
+            ShowSplashScreen = false;
+        else if (numberOfFiles == 0)
+            ShowSplashScreen = true;
+    }
+
+    void hideUIelements (bool hide)
+    {
+        if (hide)
+        {
+            button1.setVisible(false);
+            button2.setVisible(false);
+            inc.setVisible(false);
+            dec.setVisible(false);
+            fileComp->setVisible(false);
+            
+        }
+        else
+        {
+            button1.setVisible(true);
+            button2.setVisible(true);
+            inc.setVisible(true);
+            dec.setVisible(true);
+            fileComp->setVisible(true);
+        }
+    }
+    
+    void createSplashScreenRect ()
+    {
+        splashScreenRect.setX(0.f);
+        splashScreenRect.setY(0.f);
+        splashScreenRect.setWidth(getWidth());
+        float splashScreenWidth = splashScreen1.getWidth();
+        float splashScreenHeight = splashScreen1.getHeight();
+        float splashScreenAspectRatio = splashScreenHeight / splashScreenWidth;
+        splashScreenRect.setHeight(getWidth() * splashScreenAspectRatio);
+    }
+    
+    
+    
+    
 private:
     //==============================================================================
     // Your private member variables go here...
     
     InputRect rect;
-    
+        
     Point<float> position0;
     Point<float> position1;
     Point<float> deltaPosition0;
     Point<float> deltaPosition1;
-    
-    
+        
     float zoomFactor = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
     int mouseClickCounter;
+    int splashScreenMouseClickCounter = 0;
     
     float outputScreenResolutionArray[2];
     
+    float elapsed1 = 0.0f;
     float moveX = 0;
     float moveY = 0;
     float deltaX = 0.f;
@@ -456,6 +519,7 @@ private:
     int currentScreen = 0;
     int sliceOffset;
     int sliceMax;
+
     
     int sliceWidth;
     int sliceHeight;
@@ -466,6 +530,7 @@ private:
     TextButton button2;
     TextButton inc;
     TextButton dec;
+    TextButton clearSplashButton;
     
     LookAndFeel_V4 arenaLAF;
     Colour arenaBrightGreen = Colour::fromRGB(133,254,211);
@@ -474,6 +539,7 @@ private:
     Colour arenaTopGrey = Colour::fromRGB(58,58,57);
     Colour arenaMidGrey = Colour::fromRGB(42,42,42);
     Colour arenaBottomGrey = Colour::fromRGB(25,25,25);
+    Colour smartAssOrange = Colour::fromRGB(253, 158, 43);
     
     String sliceNameString;
     String sliceXString;
@@ -488,9 +554,15 @@ private:
     bool mouseIsDragging = false;
     bool drawInputMap = true;
     bool sliceIsSelected = false;
+    bool ShowSplashScreen = false;
+    
+    Image beginScreen = ImageCache::getFromMemory (BinaryData::beginScreen_png, BinaryData::beginScreen_pngSize);
+    Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);
+    Image splashScreen2 = ImageCache::getFromMemory (BinaryData::splash2_png, BinaryData::splash2_pngSize);
+    Image splashScreen3 = ImageCache::getFromMemory (BinaryData::splash3_png, BinaryData::splash3_pngSize);
+    Rectangle<float> splashScreenRect;
 
     unique_ptr<FilenameComponent> fileComp;
-    
-    
+        
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

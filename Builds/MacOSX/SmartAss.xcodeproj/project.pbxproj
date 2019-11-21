@@ -251,6 +251,13 @@
 			path = Icon.icns;
 			sourceTree = "SOURCE_ROOT";
 		};
+		5AE12EC581640844C3A6BDDB = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = splash3.png;
+			path = ../../Source/SplashScreens/splash3.png;
+			sourceTree = "SOURCE_ROOT";
+		};
 		5F68E5AAB9B2E82837385F7D = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -398,6 +405,13 @@
 			path = ../../JuceLibraryCode/JuceHeader.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		BE1D594EA182CC294E4E1957 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = splash2.png;
+			path = ../../Source/SplashScreens/splash2.png;
+			sourceTree = "SOURCE_ROOT";
+		};
 		BE6646B36E5C13C445B31E0E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -410,6 +424,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_events.mm";
 			path = "../../JuceLibraryCode/include_juce_events.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		BFE2FCB6BC15A8DCB3C81F6A = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = beginScreen.png;
+			path = ../../Source/SplashScreens/beginScreen.png;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C51500A11DD7081D656C6FC4 = {
@@ -452,6 +473,13 @@
 			lastKnownFileType = text.plist.xml;
 			name = "Info-App.plist";
 			path = "Info-App.plist";
+			sourceTree = "SOURCE_ROOT";
+		};
+		DCD1C43426455B37CAA6F5AA = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = splash1.png;
+			path = ../../Source/SplashScreens/splash1.png;
 			sourceTree = "SOURCE_ROOT";
 		};
 		E4D8D56F7B027BD30D9E41C1 = {
@@ -529,10 +557,22 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		C100224CE0103B1A1018498B = {
+			isa = PBXGroup;
+			children = (
+				DCD1C43426455B37CAA6F5AA,
+				5AE12EC581640844C3A6BDDB,
+				BE1D594EA182CC294E4E1957,
+				BFE2FCB6BC15A8DCB3C81F6A,
+			);
+			name = SplashScreens;
+			sourceTree = "<group>";
+		};
 		F5B21D65D547EA7F07C726D6 = {
 			isa = PBXGroup;
 			children = (
 				636DCE28980EEA5D94827712,
+				C100224CE0103B1A1018498B,
 			);
 			name = SmartAss;
 			sourceTree = "<group>";
