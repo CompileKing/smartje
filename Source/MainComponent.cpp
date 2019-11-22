@@ -240,8 +240,9 @@ void MainComponent::paint (Graphics& g)
         path.lineTo (Point<float>(drawV3x ,drawV3y));
         path.lineTo (Point<float>(drawV4x ,drawV4y));
         path.closeSubPath();
+        
         if (drawSliceColours)
-            g.setColour(currentSliceColour);
+            g.setColour(currentSliceColour.withAlpha(sliceOpacity));
         else
             g.setColour(arenaTopGrey.withAlpha(sliceOpacity));
         g.fillPath (path);

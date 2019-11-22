@@ -70,8 +70,12 @@ public:
             rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
         }
         if (!rect.isAss)
+        {
+            currentScreen = 0;
+            selectScreen(currentScreen);
             return;
-
+        }
+            
         zoomFactor = 1.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
