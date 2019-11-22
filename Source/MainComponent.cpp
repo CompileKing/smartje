@@ -502,18 +502,17 @@ void MainComponent::paint (Graphics& g)
             cout << "splashScreenOff" << endl;
             showUiElementsAfterSplash = false;
         }
+        if (showFileSplash)
+        {
+            hideUIelements(true);
+            g.fillAll(arenaBottomGrey);
+            createSplashScreenRect();
+            g.drawImage(fileSplash, splashScreenRect);
+        }
+        else
+            hideUIelements(false);
     }
-    
-    if (showFileSplash)
-    {
-        hideUIelements(true);
-        g.fillAll(arenaBottomGrey);
-        createSplashScreenRect();
-        g.drawImage(fileSplash, splashScreenRect);
-    }
-    else
-        hideUIelements(false);
-    
+
 //    cout << endl;
 //    cout << "/////////////////endPaintRound//////////////////////" << endl;
 //    cout << endl;

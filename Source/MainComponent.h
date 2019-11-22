@@ -466,6 +466,7 @@ public:
             inc.setVisible(false);
             dec.setVisible(false);
             fileComp->setVisible(false);
+            sliceColourButton.setVisible(false);
             
         }
         else
@@ -475,6 +476,7 @@ public:
             inc.setVisible(true);
             dec.setVisible(true);
             fileComp->setVisible(true);
+            sliceColourButton.setVisible(true);
         }
     }
     
