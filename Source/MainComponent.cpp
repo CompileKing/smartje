@@ -380,7 +380,11 @@ void MainComponent::paint (Graphics& g)
     if (currentScreen > 0)
         topText = rect.screenNameArray[currentScreen-1];
     else
+    {
         topText = "All Screens";
+    }
+        
+    
     
     if (drawInputMap)
         compScreenInfo = to_string(currentInputWidth) + "  " + to_string(currentInputHeight);

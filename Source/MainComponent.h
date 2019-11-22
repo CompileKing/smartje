@@ -57,23 +57,25 @@ public:
         if (!fileToRead.existsAsFile())
         {
             cout << "can't open file!" << endl;
+            cantOpenFileSplash = true;
             return;
         }
-//        if (!rect.isXml)
-//            return;
-//        if (!rect.isAss)
-//            return;
-        
-        
-        auto fileText = fileToRead.loadFileAsString();
-        auto filePath = fileToRead.getFullPathName();
-        rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
+        String extentionString = fileToRead.getFileExtension();
+        cout << extentionString << endl;
+        if (extentionString == ".xml")
+        {
+            auto fileText = fileToRead.loadFileAsString();
+            auto filePath = fileToRead.getFullPathName();
+            rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
+        }
+        if (!rect.isAss)
+            return;
+
         zoomFactor = 1.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
         currentScreen = 1;
         selectScreen(currentScreen);
-//        wrongResolumeVersion(rect.olderResVersionDetected);
         
         // get the right aspect ratio for the input map
         float compWidth = rect.compResX;

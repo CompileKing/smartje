@@ -73,13 +73,13 @@ void InputRect::getInputRect(std::string assFile)
             isAss = true;
         else
             isAss = false;
-        cout << "is this an ASS XML? " << isAss << endl;
+        cout << "isAss: " << isAss << endl;
         
     }
     else
     {
         isXml = false;
-        cout << "this isn't an XML" << endl;
+        cout << "isXml: " << isXml << endl;
     }
     
     
