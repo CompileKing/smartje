@@ -139,6 +139,13 @@
 			path = "~/JUCE/modules/juce_opengl";
 			sourceTree = "<absolute>";
 		};
+		135D8322242E5CDBC4B54030 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = fileSplash.png;
+			path = ../../Source/SplashScreens/fileSplash.png;
+			sourceTree = "SOURCE_ROOT";
+		};
 		1C9AC9EB47755AF0D3FCE314 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -560,6 +567,7 @@
 		C100224CE0103B1A1018498B = {
 			isa = PBXGroup;
 			children = (
+				135D8322242E5CDBC4B54030,
 				BFE2FCB6BC15A8DCB3C81F6A,
 				DCD1C43426455B37CAA6F5AA,
 				5AE12EC581640844C3A6BDDB,

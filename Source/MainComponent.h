@@ -57,7 +57,8 @@ public:
         if (!fileToRead.existsAsFile())
         {
             cout << "can't open file!" << endl;
-            cantOpenFileSplash = true;
+            showFileSplash = true;
+            repaint();
             return;
         }
         String extentionString = fileToRead.getFileExtension();
@@ -354,6 +355,8 @@ public:
             splashScreenMouseClickCounter++;
             cout << "splashScreenMouseClickCounter: " << splashScreenMouseClickCounter << endl;
         }
+        if (showFileSplash)
+            showFileSplash = false;
     }
     
     struct Trail
@@ -566,7 +569,7 @@ private:
     bool drawInputMap = true;
     bool sliceIsSelected = false;
     bool ShowSplashScreen = false;
-    bool cantOpenFileSplash = false;
+    bool showFileSplash = false;
     bool isNotAssSplash = false;
     bool showUiElementsAfterSplash = true;
     
@@ -574,6 +577,8 @@ private:
     Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);
     Image splashScreen2 = ImageCache::getFromMemory (BinaryData::splash2_png, BinaryData::splash2_pngSize);
     Image splashScreen3 = ImageCache::getFromMemory (BinaryData::splash3_png, BinaryData::splash3_pngSize);
+    Image fileSplash = ImageCache::getFromMemory (BinaryData::fileSplash_png, BinaryData::fileSplash_pngSize);
+    
     Rectangle<float> splashScreenRect;
 
     unique_ptr<FilenameComponent> fileComp;

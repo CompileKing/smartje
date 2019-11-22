@@ -452,8 +452,7 @@ void MainComponent::paint (Graphics& g)
                            getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 7.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
         }
     }
-    
-    
+        
     if (ShowSplashScreen)
     {
         hideUIelements(true);
@@ -489,7 +488,21 @@ void MainComponent::paint (Graphics& g)
             showUiElementsAfterSplash = false;
         }
     }
+    
+    if (showFileSplash)
+    {
+        hideUIelements(true);
+        g.fillAll(arenaBottomGrey);
+        createSplashScreenRect();
+        g.drawImage(fileSplash, splashScreenRect);
+    }
+    else
+        hideUIelements(false);
+
 }
+
+
+
 
 
 void MainComponent::resized()
