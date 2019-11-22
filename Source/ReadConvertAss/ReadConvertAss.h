@@ -80,10 +80,9 @@ public:
     
     
     bool isFileLoaded;
-    
     bool result2;
-    
     bool isAss;
+    bool isXml;
 
 };
 

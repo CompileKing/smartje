@@ -53,8 +53,17 @@ public:
     //what happends when a file gets read
     void readFile(const File& fileToRead)
     {
+        // fileType checks
         if (!fileToRead.existsAsFile())
+        {
+            cout << "can't open file!" << endl;
             return;
+        }
+//        if (!rect.isXml)
+//            return;
+//        if (!rect.isAss)
+//            return;
+        
         
         auto fileText = fileToRead.loadFileAsString();
         auto filePath = fileToRead.getFullPathName();
@@ -456,6 +465,7 @@ public:
         }
     }
     
+    
     void createSplashScreenRect ()
     {
         splashScreenRect.setX(0.f);
@@ -467,9 +477,7 @@ public:
         splashScreenRect.setHeight(getWidth() * splashScreenAspectRatio);
     }
     
-    
-    
-    
+
 private:
     //==============================================================================
     // Your private member variables go here...
@@ -517,7 +525,7 @@ private:
     int currentOutputHeight;
     Point<float> currentMousePosition;
     
-    int currentScreen = 1;
+    int currentScreen = 0;
     int sliceOffset;
     int sliceMax;
 
@@ -556,6 +564,9 @@ private:
     bool drawInputMap = true;
     bool sliceIsSelected = false;
     bool ShowSplashScreen = false;
+    bool cantOpenFileSplash = false;
+    bool isNotAssSplash = false;
+    bool showUiElementsAfterSplash = true;
     
     Image beginScreen = ImageCache::getFromMemory (BinaryData::beginScreen_png, BinaryData::beginScreen_pngSize);
     Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);

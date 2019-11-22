@@ -42,14 +42,12 @@ MainComponent::MainComponent()
     fileComp->setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(button1);
-    button1.setVisible(1);
     button1.setButtonText("Input");
     button1.setBounds   (fileComp->getBounds().getRight(), 0, 90, 40);
     button1.addListener(this);
     button1.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(button2);
-    button2.setVisible(1);
     button2.setButtonText("Output");
     button2.setBounds   (button1.getBounds().getRight(),0,90,40);
     button2.addListener(this);
@@ -62,18 +60,17 @@ MainComponent::MainComponent()
     button2.setColour(TextButton::buttonColourId, arenaTopGrey);
     
     addAndMakeVisible(inc);
-    inc.setVisible(1);
     inc.setButtonText(">");
     inc.setBounds       (0, 80+2, 55, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
     
     addAndMakeVisible(dec);
-    dec.setVisible(1);
     dec.setButtonText("<");
     dec.setBounds       (0, inc.getBounds().getBottom(), 55, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
+    
 }
 
 
@@ -481,7 +478,12 @@ void MainComponent::paint (Graphics& g)
     }
     else if (!ShowSplashScreen)
     {
-        hideUIelements(false);
+        if (showUiElementsAfterSplash)
+        {
+            hideUIelements(false);
+            cout << "splashScreenOff" << endl;
+            showUiElementsAfterSplash = false;
+        }
     }
 }
 
