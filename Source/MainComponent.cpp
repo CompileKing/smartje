@@ -41,9 +41,15 @@ MainComponent::MainComponent()
     fileComp->setBounds (-126, 0, 180+1, 40);
     fileComp->setLookAndFeel(&arenaLAF);
     
+    addAndMakeVisible(sliceColourButton);
+    sliceColourButton.setBounds(fileComp->getRight(), 0, 55, 40);
+    sliceColourButton.setButtonText("Col");
+    sliceColourButton.setLookAndFeel(&arenaLAF);
+    sliceColourButton.addListener(this);
+    
     addAndMakeVisible(button1);
     button1.setButtonText("Input");
-    button1.setBounds   (fileComp->getBounds().getRight(), 0, 90, 40);
+    button1.setBounds   (sliceColourButton.getRight(), 0, 90, 40);
     button1.addListener(this);
     button1.setLookAndFeel(&arenaLAF);
     
@@ -53,12 +59,9 @@ MainComponent::MainComponent()
     button2.addListener(this);
     button2.setLookAndFeel(&arenaLAF);
     
-    addAndMakeVisible(clearSplashButton);    
-    clearSplashButton.setButtonText("X");
-    
     button1.setColour(TextButton::buttonColourId, arenaLessGreen);
     button2.setColour(TextButton::buttonColourId, arenaTopGrey);
-    
+
     addAndMakeVisible(inc);
     inc.setButtonText(">");
     inc.setBounds       (0, 80+2, 55, 40);
@@ -195,6 +198,12 @@ void MainComponent::paint (Graphics& g)
                 sliceTop = raw.getBounds().getTopLeft().getY();
             }
         }
+        // SLICE COLOUR
+        float sliceMaxFloat = sliceMax - sliceOffset;
+        float hueOffset = 1.f / sliceMaxFloat;
+        float relativeSliceIndex = i - sliceOffset;
+        float currentSliceHue = relativeSliceIndex * hueOffset;
+        Colour currentSliceColour = Colour::fromHSV(currentSliceHue, 1.f, 1.f, 0.8f);
                 
         if (rect.sliceEnabledArray[i] == 1)
             sliceOpacity = 0.9f;
@@ -232,7 +241,10 @@ void MainComponent::paint (Graphics& g)
         path.lineTo (Point<float>(drawV3x ,drawV3y));
         path.lineTo (Point<float>(drawV4x ,drawV4y));
         path.closeSubPath();
-        g.setColour(arenaTopGrey.withAlpha(sliceOpacity));
+        if (drawSliceColours)
+            g.setColour(currentSliceColour);
+        else
+            g.setColour(arenaTopGrey.withAlpha(sliceOpacity));
         g.fillPath (path);
         
         // paint an outline and a cross over the slices
@@ -245,8 +257,11 @@ void MainComponent::paint (Graphics& g)
         
         // slice selection
         
+        if (drawSliceColours)
+            g.setColour(arenaBottomGrey.withAlpha(sliceOpacity));
+        else
+            g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
         
-        g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
         if (!mouseIsDragging)
         {
             if (rect.sliceEnabledArray[i] == 1)
@@ -498,7 +513,10 @@ void MainComponent::paint (Graphics& g)
     }
     else
         hideUIelements(false);
-
+    
+//    cout << endl;
+//    cout << "/////////////////endPaintRound//////////////////////" << endl;
+//    cout << endl;
 }
 
 

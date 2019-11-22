@@ -14,14 +14,14 @@ namespace BinaryData
     extern const char*   smartAssIcon_png;
     const int            smartAssIcon_pngSize = 82279;
 
-    extern const char*   fileSplash_png;
-    const int            fileSplash_pngSize = 132300;
-
     extern const char*   beginScreen_png;
     const int            beginScreen_pngSize = 100071;
 
     extern const char*   splash1_png;
     const int            splash1_pngSize = 139875;
+
+    extern const char*   fileSplash_png;
+    const int            fileSplash_pngSize = 126509;
 
     extern const char*   splash3_png;
     const int            splash3_pngSize = 62717;

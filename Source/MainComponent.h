@@ -166,6 +166,15 @@ public:
         else
             drawOutputHeight = getWidth() * 0.5625;
         
+        if (button == &sliceColourButton)
+        {
+            drawSliceColours = !drawSliceColours;
+            if (drawSliceColours)
+                sliceColourButton.setColour(TextButton::buttonColourId, arenaLessGreen);
+            else
+                sliceColourButton.setColour(TextButton::buttonColourId, arenaTopGrey);
+        }
+        
         repaint();
 
     }
@@ -290,7 +299,6 @@ public:
 //                cout << "zoomFactor: " << zoomFactor << endl;
                 if (zoomFactor < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
-                
             }
         }
 
@@ -533,7 +541,6 @@ private:
     int currentScreen = 0;
     int sliceOffset;
     int sliceMax;
-
     
     int sliceWidth;
     int sliceHeight;
@@ -545,6 +552,7 @@ private:
     TextButton inc;
     TextButton dec;
     TextButton clearSplashButton;
+    TextButton sliceColourButton;
     
     LookAndFeel_V4 arenaLAF;
     Colour arenaBrightGreen = Colour::fromRGB(133,254,211);
@@ -572,6 +580,7 @@ private:
     bool showFileSplash = false;
     bool isNotAssSplash = false;
     bool showUiElementsAfterSplash = true;
+    bool drawSliceColours = false;
     
     Image beginScreen = ImageCache::getFromMemory (BinaryData::beginScreen_png, BinaryData::beginScreen_pngSize);
     Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);
