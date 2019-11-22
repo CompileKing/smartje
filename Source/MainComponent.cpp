@@ -85,6 +85,7 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     sliceSelectedArray.clear();
+    
     // draw Background Colour
     g.fillAll (arenaBottomGrey);
     
@@ -197,6 +198,7 @@ void MainComponent::paint (Graphics& g)
                 sliceTop = raw.getBounds().getTopLeft().getY();
             }
         }
+        
         // prepare slice colour hue offset
         float sliceMaxFloat = sliceMax - sliceOffset;
         float hueOffset = 1.f / sliceMaxFloat;
@@ -311,7 +313,6 @@ void MainComponent::paint (Graphics& g)
             }
         }
         
-
         // draw outlines and a cross for each slice
         g.strokePath(path, PathStrokeType(1.));
         g.strokePath(cross, PathStrokeType(1.));
@@ -351,6 +352,7 @@ void MainComponent::paint (Graphics& g)
         }
         // end of sliceloop
     }
+    
     // draw a workfield dashed outline
     g.setColour(arenaLessGreen);
     PathStrokeType pathStrokeType(1.f);
@@ -360,7 +362,7 @@ void MainComponent::paint (Graphics& g)
     pathStrokeType.createDashedStroke(compEdge, compEdge, dashedLength, 2);
     g.strokePath(compEdge, pathStrokeType);
     
-    // draw a nice black background for the buttons
+    // draw a black background for the buttons
     g.setColour(Colour::fromRGBA(24, 25, 25, 230));
     g.fillRoundedRectangle(0, 0, 55+2, dec.getBounds().getBottom()+2, 6);
     g.fillRoundedRectangle(0, 0, button2.getBounds().getRight()+2, 40+2, 6);
@@ -429,43 +431,45 @@ void MainComponent::paint (Graphics& g)
      40,
      Justification::centredLeft);
     
+    // draw slice info
     if (sliceSelectedArray.size() > 0)
     {
         if (!mouseIsDragging)
         {
-                int sliceInfoWidth = 95;
-                int sliceInfoHeight = 150;
-                int textHeight = 13;
-                int textHeightOffset = 15;
-                int textWidthOffset = 5;
-                int textOffsetFromTop = -(sliceInfoHeight / 2.f) + textHeight;
-                g.setColour(arenaBottomGrey.withAlpha(0.9f));
-                Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight - 17.f);
-                g.fillRoundedRectangle(sliceInfoRect, 4.f);
-                g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
-                g.setColour(Colours::orange);
-                g.setFont(15.f);
-                g.drawText(sliceNameString,
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 0.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.setColour(Colours::white);
-                g.setFont(textHeight);
-                g.drawText(sliceXString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 1.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.drawText(sliceYString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 2.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.drawText(sliceLeftString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 3.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.drawText(sliceTopString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 4.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.drawText(sliceWidthString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 5.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.drawText(sliceHeightString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 6.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
-                g.drawText(sliceRotationString.dropLastCharacters(4),
-                           getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 7.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            int sliceInfoWidth = 95;
+            int sliceInfoHeight = 150;
+            int textHeight = 13;
+            int textHeightOffset = 15;
+            int textWidthOffset = 5;
+            int textOffsetFromTop = -(sliceInfoHeight / 2.f) + textHeight;
+            g.setColour(arenaBottomGrey.withAlpha(0.9f));
+            Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight - 17.f);
+            g.fillRoundedRectangle(sliceInfoRect, 4.f);
+            g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
+            g.setColour(Colours::orange);
+            g.setFont(15.f);
+            g.drawText(sliceNameString,
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 0.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.setColour(Colours::white);
+            g.setFont(textHeight);
+            g.drawText(sliceXString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 1.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.drawText(sliceYString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 2.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.drawText(sliceLeftString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 3.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.drawText(sliceTopString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 4.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.drawText(sliceWidthString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 5.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.drawText(sliceHeightString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 6.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
+            g.drawText(sliceRotationString.dropLastCharacters(4),
+                       getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 7.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
         }
     }
         
+    // draw splash screens
     if (ShowSplashScreen)
     {
         hideUIelements(true);

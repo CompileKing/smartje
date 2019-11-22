@@ -41,7 +41,6 @@ public:
     
     virtual void sliderValueChanged (Slider* slider) override
     {
-        
     }
     
     void filenameComponentChanged(FilenameComponent* fileComponentThatHasChanged) override
@@ -75,7 +74,7 @@ public:
             selectScreen(currentScreen);
             return;
         }
-            
+        
         zoomFactor = 1.f;
         sliceOffset = 0;
         sliceMax = rect.sIndex;
@@ -149,7 +148,7 @@ public:
             {
                 currentScreen++;
             }
-        // dec button functionality
+            // dec button functionality
         }
         if (currentScreen > 0)
         {
@@ -159,7 +158,7 @@ public:
             }
         }
         selectScreen(currentScreen);
-
+        
         // get the right aspect ratio for the output map (if there is one)
         if (currentScreen > 0)
         {
@@ -178,9 +177,7 @@ public:
             else
                 sliceColourButton.setColour(TextButton::buttonColourId, arenaTopGrey);
         }
-        
         repaint();
-
     }
     // screen selection function
     void selectScreen (int index)
@@ -226,7 +223,6 @@ public:
         return output;
     }
     
-
     //=============================================================================
     //                              everyThing Camera
     //=============================================================================
@@ -234,14 +230,14 @@ public:
     void mouseDown (const MouseEvent& e) override
     {
         
-//        cout << "mouseClickCounter: " << mouseClickCounter << endl;
-//        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
-
+        //        cout << "mouseClickCounter: " << mouseClickCounter << endl;
+        //        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
+        
     }
     
     void mouseDoubleClick (const MouseEvent& e) override
     {
-//        cout << "doubleClick!" << endl;
+        //        cout << "doubleClick!" << endl;
         resetCamera();
         repaint();
     }
@@ -257,7 +253,7 @@ public:
             returnValue = moveZoomY;
         return returnValue;
     }
-        
+    
     void mouseDrag (const MouseEvent& e) override
     {
         
@@ -270,9 +266,9 @@ public:
             t->path.startNewSubPath (e.position);
             trails.add (t);
         }
-
+        
         t->pushPoint (e.position, e.mods, e.pressure, e.getDistanceFromDragStartX(),e.getDistanceFromDragStartY());
-                
+        
         if (fingers == 1)
         {
             // calculate pinch zooom
@@ -298,14 +294,14 @@ public:
                 {
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
-
+                
                 zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
-//                cout << "zoomFactor: " << zoomFactor << endl;
+                //                cout << "zoomFactor: " << zoomFactor << endl;
                 if (zoomFactor < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
             }
         }
-
+        
         if (fingers == 0)
         {
             deltaX = e.getDistanceFromDragStartX();
@@ -353,7 +349,7 @@ public:
         zoomAmt += amt;
         return static_cast<float>(zoomAmt);
     }
-        
+    
     void mouseUp (const MouseEvent& e) override
     {
         currentMousePosition.setXY(e.getMouseDownX(), e.getMouseDownY());
@@ -383,7 +379,7 @@ public:
             dragStart.setY(dragDistanceY);
             currentPosition = newPoint;
             modifierKeys = newMods;
-
+            
             if (lastPoint.getDistanceFrom (newPoint) > 1.0f)
             {
                 lastPoint = newPoint;
@@ -460,7 +456,7 @@ public:
         else if (numberOfFiles == 0)
             ShowSplashScreen = true;
     }
-
+    
     void hideUIelements (bool hide)
     {
         if (hide)
@@ -484,7 +480,6 @@ public:
         }
     }
     
-    
     void createSplashScreenRect ()
     {
         splashScreenRect.setX(0.f);
@@ -496,18 +491,18 @@ public:
         splashScreenRect.setHeight(getWidth() * splashScreenAspectRatio);
     }
     
-
+    
 private:
     //==============================================================================
     // Your private member variables go here...
     
     InputRect rect;
-        
+    
     Point<float> position0;
     Point<float> position1;
     Point<float> deltaPosition0;
     Point<float> deltaPosition1;
-        
+    
     float zoomFactor = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
@@ -525,7 +520,7 @@ private:
     double moveAmtX = 0.f;
     double moveAmtY = 0.f;
     double zoomAmt = 1.f;
-
+    
     float drawV1x;
     float drawV2x;
     float drawV3x;
@@ -578,7 +573,7 @@ private:
     String sliceHeightString;
     String sliceRotationString;
     String sliceEnabledString;
-
+    
     bool mouseIsDragging = false;
     bool drawInputMap = true;
     bool sliceIsSelected = false;
@@ -595,9 +590,9 @@ private:
     Image fileSplash = ImageCache::getFromMemory (BinaryData::fileSplash_png, BinaryData::fileSplash_pngSize);
     
     Rectangle<float> splashScreenRect;
-
+    
     unique_ptr<FilenameComponent> fileComp;
     Array<bool> sliceSelectedArray;
-        
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
