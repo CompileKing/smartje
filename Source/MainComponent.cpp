@@ -73,7 +73,6 @@ MainComponent::MainComponent()
     dec.setBounds       (0, inc.getBounds().getBottom(), 55, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
-    
 }
 
 
@@ -198,7 +197,7 @@ void MainComponent::paint (Graphics& g)
                 sliceTop = raw.getBounds().getTopLeft().getY();
             }
         }
-        // SLICE COLOUR
+        // prepare slice colour hue offset
         float sliceMaxFloat = sliceMax - sliceOffset;
         float hueOffset = 1.f / sliceMaxFloat;
         float relativeSliceIndex = i - sliceOffset;
@@ -255,13 +254,13 @@ void MainComponent::paint (Graphics& g)
         cross.lineTo (Point<float>(drawV4x ,drawV4y));
         cross.closeSubPath();
         
-        // slice selection
-        
+        // slice colour switch
         if (drawSliceColours)
             g.setColour(arenaBottomGrey.withAlpha(sliceOpacity));
         else
             g.setColour(arenaLessGreen.withAlpha(sliceOpacity));
         
+        // slice selection
         if (!mouseIsDragging)
         {
             if (rect.sliceEnabledArray[i] == 1)
@@ -270,7 +269,7 @@ void MainComponent::paint (Graphics& g)
                 {
                     sliceIsSelected = true;
                     sliceSelectedArray.add(sliceIsSelected);
-                    g.setColour(Colours::orange.withAlpha(0.2f));
+                    g.setColour(Colours::orange.withAlpha(0.9f));
                     g.fillPath(path);
                     g.setColour(Colours::orange.withAlpha(0.6f));
                     sliceNameString = rect.sliceNameArray[i];
@@ -385,7 +384,7 @@ void MainComponent::paint (Graphics& g)
     Rectangle<float> screenInfoBackRect
     (fileComp->getRight(),
      button1.getBottom(),
-     button1.getWidth() * 2.f,
+     sliceColourButton.getWidth() + button1.getWidth(),
      button1.getHeight());
     g.fillRoundedRectangle(screenInfoBackRect, 4);
     
@@ -398,9 +397,7 @@ void MainComponent::paint (Graphics& g)
     {
         topText = "All Screens";
     }
-        
-    
-    
+
     if (drawInputMap)
         compScreenInfo = to_string(currentInputWidth) + "  " + to_string(currentInputHeight);
     else
@@ -418,7 +415,7 @@ void MainComponent::paint (Graphics& g)
     (topText,
      fileComp->getBounds().getRight() + 8.f,
      button1.getBottom()-10.f,
-     button1.getWidth() * 2.f,
+     sliceColourButton.getWidth() + button1.getWidth(),
      40,
      Justification::centredLeft);
     g.setColour(Colours::white);
@@ -517,10 +514,6 @@ void MainComponent::paint (Graphics& g)
 //    cout << "/////////////////endPaintRound//////////////////////" << endl;
 //    cout << endl;
 }
-
-
-
-
 
 void MainComponent::resized()
 {
