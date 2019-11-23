@@ -188,6 +188,13 @@
 			path = System/Library/Frameworks/Carbon.framework;
 			sourceTree = SDKROOT;
 		};
+		39EDAAB67DF1235888C0C92F = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = "down-01.png";
+			path = "../../Source/icon/down-01.png";
+			sourceTree = "SOURCE_ROOT";
+		};
 		3D644A4DBD944BB617931E4A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -221,6 +228,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_devices.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		4CB386607A9396E4F4627854 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = "colourButton-02.png";
+			path = "../../Source/icon/colourButton-02.png";
 			sourceTree = "SOURCE_ROOT";
 		};
 		4DD7A8777B08B1A991E4122C = {
@@ -447,6 +461,13 @@
 			path = System/Library/Frameworks/CoreMIDI.framework;
 			sourceTree = SDKROOT;
 		};
+		C5B9D604D3A76173D4070300 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = "colourButton-01.png";
+			path = "../../Source/icon/colourButton-01.png";
+			sourceTree = "SOURCE_ROOT";
+		};
 		C60223E0FB868A14F53FCEB2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -467,6 +488,13 @@
 			name = CoreAudio.framework;
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
+		};
+		D50DF6E99AFECE86FBAD226C = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = "up-01.png";
+			path = "../../Source/icon/up-01.png";
+			sourceTree = "SOURCE_ROOT";
 		};
 		D63FE44D37E66BD92DA48DF5 = {
 			isa = PBXFileReference;
@@ -531,6 +559,19 @@
 			path = "~/JUCE/modules/juce_cryptography";
 			sourceTree = "<absolute>";
 		};
+		BA314E882333C99F4A693A59 = {
+			isa = PBXGroup;
+			children = (
+				4CB386607A9396E4F4627854,
+				C5B9D604D3A76173D4070300,
+				39EDAAB67DF1235888C0C92F,
+				D50DF6E99AFECE86FBAD226C,
+				E6FA9405CC824FD629042B36,
+				8F50A2F365B6998043561DFE,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 		1CE971422C1081AFB417CBE8 = {
 			isa = PBXGroup;
 			children = (
@@ -553,8 +594,6 @@
 		636DCE28980EEA5D94827712 = {
 			isa = PBXGroup;
 			children = (
-				E6FA9405CC824FD629042B36,
-				8F50A2F365B6998043561DFE,
 				1CE971422C1081AFB417CBE8,
 				58441D941D6C04BE058EAF7C,
 				4FDCC1FC149B08159942A34C,
@@ -579,6 +618,7 @@
 		F5B21D65D547EA7F07C726D6 = {
 			isa = PBXGroup;
 			children = (
+				BA314E882333C99F4A693A59,
 				636DCE28980EEA5D94827712,
 				C100224CE0103B1A1018498B,
 			);

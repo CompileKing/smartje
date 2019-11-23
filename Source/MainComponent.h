@@ -173,9 +173,9 @@ public:
         {
             drawSliceColours = !drawSliceColours;
             if (drawSliceColours)
-                sliceColourButton.setColour(TextButton::buttonColourId, arenaLessGreen);
+                sliceColourButton.setImages(false, true, true, colImage, 1.f, Colours::orange.withAlpha(0.f), colImage, 1.f, Colours::white.withAlpha(0.f), colImage, 0.5f, Colours::white.withAlpha(0.f));
             else
-                sliceColourButton.setColour(TextButton::buttonColourId, arenaTopGrey);
+                sliceColourButton.setImages(false, true, true, colImageOff, 1.f, Colours::orange.withAlpha(0.f), colImageOff, 1.f, Colours::white.withAlpha(0.f), colImageOff, 0.5f, Colours::white.withAlpha(0.f));
         }
         repaint();
     }
@@ -550,10 +550,10 @@ private:
     
     TextButton button1;
     TextButton button2;
-    TextButton inc;
-    TextButton dec;
+    ImageButton inc;
+    ImageButton dec;
     TextButton clearSplashButton;
-    TextButton sliceColourButton;
+    ImageButton sliceColourButton;
     
     LookAndFeel_V4 arenaLAF;
     Colour arenaBrightGreen = Colour::fromRGB(133,254,211);
@@ -588,6 +588,11 @@ private:
     Image splashScreen2 = ImageCache::getFromMemory (BinaryData::splash2_png, BinaryData::splash2_pngSize);
     Image splashScreen3 = ImageCache::getFromMemory (BinaryData::splash3_png, BinaryData::splash3_pngSize);
     Image fileSplash = ImageCache::getFromMemory (BinaryData::fileSplash_png, BinaryData::fileSplash_pngSize);
+    Image incImage = ImageCache::getFromMemory (BinaryData::up01_png, BinaryData::up01_pngSize);
+    Image decImage = ImageCache::getFromMemory (BinaryData::down01_png, BinaryData::down01_pngSize);
+    Image colImage = ImageCache::getFromMemory (BinaryData::colourButton01_png, BinaryData::colourButton01_pngSize);
+    Image colImageOff = ImageCache::getFromMemory (BinaryData::colourButton02_png, BinaryData::colourButton02_pngSize);
+    
     
     Rectangle<float> splashScreenRect;
     

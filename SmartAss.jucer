@@ -2,11 +2,19 @@
 
 <JUCERPROJECT id="KSRKVX" name="SmartAss" projectType="guiapp" jucerVersion="5.4.5">
   <MAINGROUP id="L7JLSU" name="SmartAss">
-    <GROUP id="{ADAB4E25-F904-4672-B498-FE52C03CAAE5}" name="Pugi"/>
-    <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
+    <GROUP id="{B8E8AA6E-C7FA-2B65-5758-E256CDC3A99C}" name="icons">
+      <FILE id="lg0eMw" name="colourButton-02.png" compile="0" resource="1"
+            file="Source/icon/colourButton-02.png"/>
+      <FILE id="E2a2l5" name="colourButton-01.png" compile="0" resource="1"
+            file="Source/icon/colourButton-01.png"/>
+      <FILE id="YDdrn6" name="down-01.png" compile="0" resource="1" file="Source/icon/down-01.png"/>
+      <FILE id="k4FB4c" name="up-01.png" compile="0" resource="1" file="Source/icon/up-01.png"/>
       <FILE id="rd5a84" name="shimlaIcon.png" compile="0" resource="1" file="Source/icon/shimlaIcon.png"/>
       <FILE id="XJHB6d" name="smartAssIcon.png" compile="0" resource="1"
             file="Source/icon/smartAssIcon.png"/>
+    </GROUP>
+    <GROUP id="{ADAB4E25-F904-4672-B498-FE52C03CAAE5}" name="Pugi"/>
+    <GROUP id="{7608A35B-C2E6-A0EB-E7E7-7AD01D654296}" name="Source">
       <GROUP id="{EF48B41A-C404-9A3E-E9C8-2E75AD3EA040}" name="ReadConvertAss">
         <FILE id="yjYNV1" name="ReadConvertAss.cpp" compile="1" resource="0"
               file="Source/ReadConvertAss/ReadConvertAss.cpp"/>

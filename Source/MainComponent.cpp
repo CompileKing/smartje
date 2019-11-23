@@ -46,6 +46,7 @@ MainComponent::MainComponent()
     sliceColourButton.setButtonText("Col");
     sliceColourButton.setLookAndFeel(&arenaLAF);
     sliceColourButton.addListener(this);
+    sliceColourButton.setImages(false, true, true, colImageOff, 1.f, Colours::orange.withAlpha(0.f), colImageOff, 1.f, Colours::white.withAlpha(0.f), colImageOff, 0.5f, Colours::white.withAlpha(0.f));
     
     addAndMakeVisible(button1);
     button1.setButtonText("Input");
@@ -63,16 +64,19 @@ MainComponent::MainComponent()
     button2.setColour(TextButton::buttonColourId, arenaTopGrey);
 
     addAndMakeVisible(inc);
-    inc.setButtonText(">");
-    inc.setBounds       (0, 80+2, 55, 40);
+    inc.setButtonText("");
+    inc.setBounds       (0+1, 80+2, 55, 40);
     inc.addListener(this);
     inc.setLookAndFeel(&arenaLAF);
+    inc.setImages(false, true, true, incImage, 1.f, Colours::orange.withAlpha(0.f), incImage, 1.f, Colours::white.withAlpha(0.f), incImage, 0.5f, Colours::white.withAlpha(0.f));
+    
     
     addAndMakeVisible(dec);
-    dec.setButtonText("<");
-    dec.setBounds       (0, inc.getBounds().getBottom(), 55, 40);
+    dec.setButtonText("");
+    dec.setBounds       (0+1, inc.getBounds().getBottom(), 55, 40);
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
+    dec.setImages(false, true, true, decImage, 1.f, Colours::orange.withAlpha(0.f), decImage, 1.f, Colours::white.withAlpha(0.f), decImage, 0.5f, Colours::white.withAlpha(0.f));
 }
 
 
