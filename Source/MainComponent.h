@@ -590,8 +590,8 @@ private:
     Image fileSplash = ImageCache::getFromMemory (BinaryData::fileSplash_png, BinaryData::fileSplash_pngSize);
     Image incImage = ImageCache::getFromMemory (BinaryData::up01_png, BinaryData::up01_pngSize);
     Image decImage = ImageCache::getFromMemory (BinaryData::down01_png, BinaryData::down01_pngSize);
-    Image colImage = ImageCache::getFromMemory (BinaryData::colourButton01_png, BinaryData::colourButton01_pngSize);
-    Image colImageOff = ImageCache::getFromMemory (BinaryData::colourButton02_png, BinaryData::colourButton02_pngSize);
+    Image colImage = ImageCache::getFromMemory (BinaryData::colourButton02_png, BinaryData::colourButton02_pngSize);
+    Image colImageOff = ImageCache::getFromMemory (BinaryData::colourButton01_png, BinaryData::colourButton01_pngSize);
     
     
     Rectangle<float> splashScreenRect;

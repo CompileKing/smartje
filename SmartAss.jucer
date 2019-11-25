@@ -3,11 +3,11 @@
 <JUCERPROJECT id="KSRKVX" name="SmartAss" projectType="guiapp" jucerVersion="5.4.5">
   <MAINGROUP id="L7JLSU" name="SmartAss">
     <GROUP id="{B8E8AA6E-C7FA-2B65-5758-E256CDC3A99C}" name="icons">
-      <FILE id="lg0eMw" name="colourButton-02.png" compile="0" resource="1"
-            file="Source/icon/colourButton-02.png"/>
-      <FILE id="E2a2l5" name="colourButton-01.png" compile="0" resource="1"
-            file="Source/icon/colourButton-01.png"/>
       <FILE id="YDdrn6" name="down-01.png" compile="0" resource="1" file="Source/icon/down-01.png"/>
+      <FILE id="a0twDz" name="colourButton-01.png" compile="0" resource="1"
+            file="Source/icon/colourButton-01.png"/>
+      <FILE id="L5aYmy" name="colourButton-02.png" compile="0" resource="1"
+            file="Source/icon/colourButton-02.png"/>
       <FILE id="k4FB4c" name="up-01.png" compile="0" resource="1" file="Source/icon/up-01.png"/>
       <FILE id="rd5a84" name="shimlaIcon.png" compile="0" resource="1" file="Source/icon/shimlaIcon.png"/>
       <FILE id="XJHB6d" name="smartAssIcon.png" compile="0" resource="1"
@@ -33,9 +33,9 @@
     </GROUP>
     <GROUP id="{3F38A36C-4A83-EF8D-1DAF-B39521415F00}" name="SplashScreens">
       <FILE id="jxQX00" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
+      <FILE id="yN1qHV" name="splash3.png" compile="0" resource="1" file="Source/SplashScreens/splash3.png"/>
       <FILE id="KaaLP0" name="splash1.png" compile="0" resource="1" file="Source/SplashScreens/splash1.png"/>
       <FILE id="EaLB3d" name="fileSplash.png" compile="0" resource="1" file="Source/SplashScreens/fileSplash.png"/>
-      <FILE id="zuk4on" name="splash3.png" compile="0" resource="1" file="Source/SplashScreens/splash3.png"/>
       <FILE id="jWPIjO" name="splash2.png" compile="0" resource="1" file="Source/SplashScreens/splash2.png"/>
     </GROUP>
   </MAINGROUP>

@@ -8,14 +8,14 @@
 
 namespace BinaryData
 {
-    extern const char*   colourButton02_png;
-    const int            colourButton02_pngSize = 2815;
-
-    extern const char*   colourButton01_png;
-    const int            colourButton01_pngSize = 3512;
-
     extern const char*   down01_png;
     const int            down01_pngSize = 1032;
+
+    extern const char*   colourButton01_png;
+    const int            colourButton01_pngSize = 622;
+
+    extern const char*   colourButton02_png;
+    const int            colourButton02_pngSize = 580;
 
     extern const char*   up01_png;
     const int            up01_pngSize = 1036;
@@ -29,14 +29,14 @@ namespace BinaryData
     extern const char*   beginScreen_png;
     const int            beginScreen_pngSize = 100071;
 
+    extern const char*   splash3_png;
+    const int            splash3_pngSize = 64761;
+
     extern const char*   splash1_png;
     const int            splash1_pngSize = 139875;
 
     extern const char*   fileSplash_png;
     const int            fileSplash_pngSize = 126509;
-
-    extern const char*   splash3_png;
-    const int            splash3_pngSize = 62717;
 
     extern const char*   splash2_png;
     const int            splash2_pngSize = 102915;
