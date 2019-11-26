@@ -14,12 +14,10 @@ MainComponent::MainComponent()
     startTimer(30);
     checkDocumentsFolder();
     
-#if defined JUCE_MAC
     int screenSizeX = 1334;
     int screenSizeY = 750;
     setSize(screenSizeX, screenSizeY);
-#endif
-    
+
     arenaLAF.setColour(TextButton::buttonColourId, arenaTopGrey);
     arenaLAF.setColour(TextButton::textColourOnId, Colours::white);
     
