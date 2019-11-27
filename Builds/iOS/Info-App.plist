@@ -4,7 +4,7 @@
 <plist version="1.0">
   <dict>
     <key>CFBundleDisplayName</key>
-    <string>Smart Ass</string>
+    <string>Smart A.S.S</string>
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIdentifier</key>
@@ -24,8 +24,7 @@
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>NSHumanReadableCopyright</key>
-    <string>INTELLECTUAL PROPERTY
-The Application, including without limitation all copyrights, patents, trademarks, trade secrets and other intellectual property rights are, and shall remain, the sole and exclusive property of PIXELCLONE</string>
+    <string>INTELLECTUAL PROPERTY The Application, including without limitation all copyrights, patents, trademarks, trade secrets and other intellectual property rights are, and shall remain, the sole and exclusive property of PIXELCLONE</string>
     <key>UIBackgroundModes</key>
     <array/>
     <key>UIFileSharingEnabled</key>
