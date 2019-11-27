@@ -3,38 +3,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
-    <key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
-    <key>LSRequiresIPhoneOS</key>
-    <true/>
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <false/>
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
+    <key>CFBundleDisplayName</key>
+    <string>Smart Ass</string>
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIdentifier</key>
     <string>com.pixelclone.smartje</string>
     <key>CFBundleName</key>
-    <string>SmartAss</string>
-    <key>CFBundleDisplayName</key>
-    <string>SmartAss</string>
+    <string>Smart Ass</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
-    <key>CFBundleSignature</key>
-    <string>????</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0.0</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
     <key>CFBundleVersion</key>
     <string>1.0.0</string>
-    <key>NSHumanReadableCopyright</key>
-    <string/>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
     <key>NSHighResolutionCapable</key>
     <true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>INTELLECTUAL PROPERTY
+The Application, including without limitation all copyrights, patents, trademarks, trade secrets and other intellectual property rights are, and shall remain, the sole and exclusive property of PIXELCLONE</string>
+    <key>UIBackgroundModes</key>
+    <array/>
     <key>UIFileSharingEnabled</key>
     <true/>
-    <key>UISupportsDocumentBrowser</key>
-    <true/>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
     <key>UIRequiresFullScreen</key>
     <true/>
     <key>UIStatusBarHidden</key>
@@ -44,8 +41,10 @@
       <string>UIInterfaceOrientationLandscapeLeft</string>
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
-    <key>UIBackgroundModes</key>
-    <array/>
+    <key>UISupportsDocumentBrowser</key>
+    <true/>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
     <key>UISupportedInterfaceOrientations</key>
     <array>
       <string>UIInterfaceOrientationLandscapeLeft</string>
