@@ -801,7 +801,7 @@
 				INFOPLIST_FILE = Info-App.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PLC.smartass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelclone.smartje;
 				PRODUCT_NAME = "Smart Ass";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				USE_HEADERMAP = NO;
@@ -848,7 +848,7 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LLVM_LTO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PLC.smartass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelclone.smartje;
 				PRODUCT_NAME = "Smart Ass";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				USE_HEADERMAP = NO;
