@@ -57,6 +57,14 @@
 			isa = PBXBuildFile;
 			fileRef = 5A6AAB561412627BAEDE0432;
 		};
+		A4CD5C1EB0071D8869DE2C6C = {
+			isa = PBXBuildFile;
+			fileRef = 9FD483660AED7FF5670E5FA4;
+		};
+		286C640F7E6DF23B9C7DB380 = {
+			isa = PBXBuildFile;
+			fileRef = BFAFC8A912344A5361B7BB8F;
+		};
 		19356AE37EF2501179CA571C = {
 			isa = PBXBuildFile;
 			fileRef = 9965C8B19F93DCFC41A18A7F;
@@ -370,6 +378,13 @@
 			path = "~/JUCE/modules/juce_data_structures";
 			sourceTree = "<absolute>";
 		};
+		9FD483660AED7FF5670E5FA4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = icon400x400.png;
+			path = ../../Source/icon/icon400x400.png;
+			sourceTree = "SOURCE_ROOT";
+		};
 		A2E5706E993A8F67B7A0B7CF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -445,6 +460,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_events.mm";
 			path = "../../JuceLibraryCode/include_juce_events.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		BFAFC8A912344A5361B7BB8F = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			name = icon800x800.png;
+			path = ../../Source/icon/icon800x800.png;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFE2FCB6BC15A8DCB3C81F6A = {
@@ -673,6 +695,8 @@
 				DA422229B4B6299E9B8E3B7A,
 				2D2769CBFF9426920840E053,
 				5A6AAB561412627BAEDE0432,
+				9FD483660AED7FF5670E5FA4,
+				BFAFC8A912344A5361B7BB8F,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -923,6 +947,8 @@
 			files = (
 				A7E612850F0BA366E2AA8F38,
 				07DAA5E0DDE090921A9295FF,
+				A4CD5C1EB0071D8869DE2C6C,
+				286C640F7E6DF23B9C7DB380,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,12 @@ namespace BinaryData
     extern const char*   down01_png;
     const int            down01_pngSize = 1032;
 
+    extern const char*   icon400x400_png;
+    const int            icon400x400_pngSize = 28181;
+
+    extern const char*   icon800x800_png;
+    const int            icon800x800_pngSize = 44864;
+
     extern const char*   colourButton01_png;
     const int            colourButton01_pngSize = 622;
 
@@ -42,7 +48,7 @@ namespace BinaryData
     const int            fileSplash_pngSize = 126322;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 11;
+    const int namedResourceListSize = 13;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
