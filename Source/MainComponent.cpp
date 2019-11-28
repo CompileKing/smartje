@@ -31,7 +31,7 @@ MainComponent::MainComponent()
                                          false,                    // can edit file name,
                                          false,                    // is directory,
                                          false,                    // is for saving,
-                                         {},                       // browser wildcard suffix,
+                                         "*.xml",                       // browser wildcard suffix,
                                          {},                       // enforced suffix,
                                          "Open File"));  // text when nothing selected
     addAndMakeVisible(fileComp.get());
