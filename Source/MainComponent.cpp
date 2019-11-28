@@ -520,6 +520,7 @@ void MainComponent::paint (Graphics& g)
 //    cout << endl;
 //    cout << "/////////////////endPaintRound//////////////////////" << endl;
 //    cout << endl;
+    
 }
 
 void MainComponent::resized()

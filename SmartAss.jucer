@@ -38,11 +38,11 @@
       <FILE id="ys9YnQ" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
     <GROUP id="{3F38A36C-4A83-EF8D-1DAF-B39521415F00}" name="SplashScreens">
-      <FILE id="RUfRXq" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
-      <FILE id="BhvMHL" name="splash1.png" compile="0" resource="1" file="Source/SplashScreens/splash1.png"/>
-      <FILE id="gMJOMe" name="splash2.png" compile="0" resource="1" file="Source/SplashScreens/splash2.png"/>
-      <FILE id="Cwkevn" name="splash3.png" compile="0" resource="1" file="Source/SplashScreens/splash3.png"/>
-      <FILE id="P4jZlv" name="fileSplash.png" compile="0" resource="1" file="Source/SplashScreens/fileSplash.png"/>
+      <FILE id="gjG9ky" name="fileSplash.png" compile="0" resource="1" file="Source/SplashScreens/fileSplash.png"/>
+      <FILE id="dECKXY" name="splash3.png" compile="0" resource="1" file="Source/SplashScreens/splash3.png"/>
+      <FILE id="fwCv1e" name="splash2.png" compile="0" resource="1" file="Source/SplashScreens/splash2.png"/>
+      <FILE id="RvsK3N" name="splash1.png" compile="0" resource="1" file="Source/SplashScreens/splash1.png"/>
+      <FILE id="LYSDAC" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

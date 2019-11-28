@@ -486,12 +486,18 @@ public:
     
     void createSplashScreenRect ()
     {
-        splashScreenRect.setX(0.f);
-        splashScreenRect.setY(0.f);
-        splashScreenRect.setWidth(getWidth());
+        float screenWidth = getWidth();
+        float screenHeight = getHeight();
+        float screenAspectRatio = screenHeight / screenWidth;
         float splashScreenWidth = splashScreen1.getWidth();
         float splashScreenHeight = splashScreen1.getHeight();
         float splashScreenAspectRatio = splashScreenHeight / splashScreenWidth;
+        float splashScreenYOffset = (getHeight() * (screenAspectRatio - splashScreenAspectRatio)) / 2.f;
+        
+        splashScreenRect.setX(0.f);
+        splashScreenRect.setY(splashScreenYOffset);
+        splashScreenRect.setWidth(getWidth());
+        
         splashScreenRect.setHeight(getWidth() * splashScreenAspectRatio);
     }
     
