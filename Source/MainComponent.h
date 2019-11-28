@@ -60,6 +60,7 @@ public:
             repaint();
             return;
         }
+        
         String extentionString = fileToRead.getFileExtension();
         cout << extentionString << endl;
         if (extentionString == ".xml")
@@ -68,10 +69,13 @@ public:
             auto filePath = fileToRead.getFullPathName();
             rect.getInputRect(filePath.toStdString()); // send the string to InputRect class
         }
+        
         if (!rect.isAss)
         {
             currentScreen = 0;
             selectScreen(currentScreen);
+            showFileSplash = true;
+            repaint();
             return;
         }
         
