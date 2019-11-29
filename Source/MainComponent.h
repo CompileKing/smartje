@@ -231,12 +231,18 @@ public:
     //                              everyThing Camera
     //=============================================================================
     
+#ifdef JUCE_MAC
+    void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& d) override
+    {
+        zoomFactor = abs(addToZoom(d.deltaY));
+        repaint();
+    }
+#endif
+    
     void mouseDown (const MouseEvent& e) override
     {
-        
         //        cout << "mouseClickCounter: " << mouseClickCounter << endl;
         //        cout << "mouseDownX: " << currentMousePosition.getX() << " mouseDownY: " << currentMousePosition.getY() << endl;
-        
     }
     
     void mouseDoubleClick (const MouseEvent& e) override

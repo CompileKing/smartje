@@ -13,9 +13,10 @@ MainComponent::MainComponent()
 {
     startTimer(30);
     checkDocumentsFolder();
-    
-    int screenSizeX = 1334;
-    int screenSizeY = 750;
+//    12.9
+//    2732 x 2048
+    int screenSizeX = 2732 / 2;
+    int screenSizeY = 2048 / 2;
     setSize(screenSizeX, screenSizeY);
 
     arenaLAF.setColour(TextButton::buttonColourId, arenaTopGrey);
