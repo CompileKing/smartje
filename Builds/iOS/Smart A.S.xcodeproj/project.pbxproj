@@ -97,6 +97,10 @@
 			isa = PBXBuildFile;
 			fileRef = 3E7D2A96EB42E1C595A380A2;
 		};
+		221D1D59D8602B86A7659F9F = {
+			isa = PBXBuildFile;
+			fileRef = 28DCA06C15F9CD0F1197742D;
+		};
 		00A031EDE7DD6346BE91A481 = {
 			isa = PBXBuildFile;
 			fileRef = 3FDCE7360FC11DBA86FA4084;
@@ -204,6 +208,20 @@
 			name = AudioToolbox.framework;
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
+		};
+		288016A5F7B7A310359CF82C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = CreateSettingsFolder.h;
+			path = ../../Source/CreateSettingsFolder/CreateSettingsFolder.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		28DCA06C15F9CD0F1197742D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = CreateSettingsFolder.cpp;
+			path = ../../Source/CreateSettingsFolder/CreateSettingsFolder.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		39EDAAB67DF1235888C0C92F = {
 			isa = PBXFileReference;
@@ -357,6 +375,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = pugiconfig.hpp;
 			path = ../../Source/Pugi/pugiconfig.hpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		8A9B4253BF5F16C6CC0BA202 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file.xml;
+			name = "_smartjeKruisjes.xml";
+			path = "../../Source/XML/_smartjeKruisjes.xml";
 			sourceTree = "SOURCE_ROOT";
 		};
 		8D14494CFE3D4149ADD1E0D3 = {
@@ -669,6 +694,15 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		7D4F854BF773A08E5FD9CFDD = {
+			isa = PBXGroup;
+			children = (
+				28DCA06C15F9CD0F1197742D,
+				288016A5F7B7A310359CF82C,
+			);
+			name = CreateSettingsFolder;
+			sourceTree = "<group>";
+		};
 		C100224CE0103B1A1018498B = {
 			isa = PBXGroup;
 			children = (
@@ -681,12 +715,22 @@
 			name = SplashScreens;
 			sourceTree = "<group>";
 		};
+		BB728C26C155958C14F53139 = {
+			isa = PBXGroup;
+			children = (
+				8A9B4253BF5F16C6CC0BA202,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
 		F5B21D65D547EA7F07C726D6 = {
 			isa = PBXGroup;
 			children = (
 				BA314E882333C99F4A693A59,
 				636DCE28980EEA5D94827712,
+				7D4F854BF773A08E5FD9CFDD,
 				C100224CE0103B1A1018498B,
+				BB728C26C155958C14F53139,
 			);
 			name = "Smart A.S.S";
 			sourceTree = "<group>";
@@ -1019,6 +1063,7 @@
 				F1303233EF9BB420434C0E61,
 				D8560F1A4FC877968E8EA248,
 				D9C0B87C5C4E6F8206328DDE,
+				221D1D59D8602B86A7659F9F,
 				00A031EDE7DD6346BE91A481,
 				C37764077406A95CB62564FA,
 				1697E32CA02F3489ABBAFD8F,

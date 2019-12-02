@@ -11,6 +11,7 @@
 //==============================================================================
 MainComponent::MainComponent()
 {
+    createStarterXml.save();
     startTimer(30);
     checkDocumentsFolder();
 //    12.9

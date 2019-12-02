@@ -10,6 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ReadConvertAss/ReadConvertAss.h"
+#include "CreateSettingsFolder/CreateSettingsFolder.h"
 
 
 using namespace std;
@@ -614,6 +615,7 @@ private:
     
     unique_ptr<FilenameComponent> fileComp;
     Array<bool> sliceSelectedArray;
+    CreateStarterXml createStarterXml;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

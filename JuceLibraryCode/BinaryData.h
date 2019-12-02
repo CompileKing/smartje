@@ -33,22 +33,25 @@ namespace BinaryData
     const int            smartAssIcon_pngSize = 82279;
 
     extern const char*   fileSplash_png;
-    const int            fileSplash_pngSize = 112727;
+    const int            fileSplash_pngSize = 141294;
 
     extern const char*   splash3_png;
-    const int            splash3_pngSize = 59171;
+    const int            splash3_pngSize = 63768;
 
     extern const char*   splash2_png;
-    const int            splash2_pngSize = 115115;
+    const int            splash2_pngSize = 143415;
 
     extern const char*   splash1_png;
-    const int            splash1_pngSize = 139820;
+    const int            splash1_pngSize = 157586;
 
     extern const char*   beginScreen_png;
-    const int            beginScreen_pngSize = 62776;
+    const int            beginScreen_pngSize = 62772;
+
+    extern const char*   _smartjeKruisjes_xml;
+    const int            _smartjeKruisjes_xmlSize = 394804;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 13;
+    const int namedResourceListSize = 14;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
