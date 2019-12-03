@@ -15,9 +15,6 @@ MainComponent::MainComponent()
     startTimer(30);
     checkDocumentsFolder();
     
-    
-//    12.9
-//    2732 x 2048
     int screenSizeX = 2732 / 2;
     int screenSizeY = 2048 / 2;
     setSize(screenSizeX, screenSizeY);
@@ -81,7 +78,7 @@ MainComponent::MainComponent()
     dec.setImages(false, true, true, decImage, 1.f, Colours::orange.withAlpha(0.f), decImage, 1.f, Colours::white.withAlpha(0.f), decImage, 0.5f, Colours::white.withAlpha(0.f));
     
     
-    
+
 }
 
 
@@ -93,10 +90,10 @@ MainComponent::~MainComponent()
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
-    sliceSelectedArray.clear();
-    
-    // draw Background Colour
     g.fillAll (arenaBottomGrey);
+
+    sliceSelectedArray.clear();
+    // draw Background Colour
     
     // draw input / output border edges
     Path compEdge;
@@ -454,9 +451,11 @@ void MainComponent::paint (Graphics& g)
             int textHeight = 13;
             int textHeightOffset = 15;
             int textWidthOffset = 5;
+            if (needSafeSpace())
+                textWidthOffset = 35;
             int textOffsetFromTop = -(sliceInfoHeight / 2.f) + textHeight;
             g.setColour(arenaBottomGrey.withAlpha(0.9f));
-            Rectangle<float> sliceInfoRect (getWidth()-sliceInfoWidth, 0, sliceInfoWidth, sliceInfoHeight - 17.f);
+            Rectangle<float> sliceInfoRect (getWidth() - sliceInfoWidth - textWidthOffset, 0, sliceInfoWidth + textWidthOffset, sliceInfoHeight - 17.f);
             g.fillRoundedRectangle(sliceInfoRect, 4.f);
             g.drawRoundedRectangle(sliceInfoRect, 4.f, 2.f);
             g.setColour(Colours::orange);

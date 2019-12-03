@@ -517,6 +517,26 @@ public:
         splashScreenRect.setHeight(getWidth() * splashScreenAspectRatio);
     }
     
+    bool needSafeSpace ()
+    {
+        bool safeSpaceMod = false;
+        if (getScreenRatio() > 0.55)
+            safeSpaceMod = false;
+        else
+            safeSpaceMod = true;
+        return safeSpaceMod;
+    }
+    
+    float getScreenRatio ()
+    {
+        float screenWidth = getWidth();
+        float screenHeight = getHeight();
+        float screenRatio = screenHeight / screenWidth;
+        return screenRatio;
+    }
+    
+    
+    
     
 private:
     //==============================================================================
