@@ -3,11 +3,11 @@
 	<versionInfo name="Resolume Arena" majorVersion="6" minorVersion="1" microVersion="3" revision="63441"/>
 	<ScreenSetup name="ScreenSetup">
 		<Params name="ScreenSetupParams"/>
-		<CurrentCompositionTextureSize JorisIsLiev="true" width="1920" height="1080"/>
+		<CurrentCompositionTextureSize JorisIsLiev="false" width="1920" height="1080"/>
 		<screens>
-			<Screen name="Pixel Viewer" uniqueId="1575370278123">
+			<Screen name="ScreenView" uniqueId="1575370278123">
 				<Params name="Params">
-					<Param name="Name" default="" value="Pixel Viewer"/>
+					<Param name="Name" default="" value="ScreenView"/>
 					<Param name="Enabled" default="1" value="1"/>
 					<Param name="Hidden" default="0" value="0"/>
 				</Params>
@@ -136,10 +136,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.78538501262664794922">
-							<v x="433.044891357421875" y="542.2188720703125"/>
-							<v x="783.799072265625" y="191.4739990234375"/>
+							<v x="433.04486083984375" y="542.2188720703125"/>
+							<v x="783.79901123046875" y="191.473907470703125"/>
 							<v x="1134.543701171875" y="542.2279052734375"/>
-							<v x="783.78955078125" y="892.9727783203125"/>
+							<v x="783.78961181640625" y="892.972900390625"/>
 						</InputRect>
 						<OutputRect orientation="-0.78538501262664794922">
 							<v x="433.044921875" y="542.21868896484375"/>
@@ -253,10 +253,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.78538501262664794922">
-							<v x="1307.591796875" y="542.1455078125"/>
-							<v x="1397.274658203125" y="452.465087890625"/>
-							<v x="1486.954833984375" y="542.147705078125"/>
-							<v x="1397.27197265625" y="631.828125"/>
+							<v x="1307.5916748046875" y="542.14556884765625"/>
+							<v x="1397.2745361328125" y="452.465057373046875"/>
+							<v x="1486.9547119140625" y="542.147705078125"/>
+							<v x="1397.2718505859375" y="631.82818603515625"/>
 						</InputRect>
 						<OutputRect orientation="-0.78538501262664794922">
 							<v x="1307.5914306640625" y="542.145751953125"/>
@@ -370,9 +370,9 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.78538501262664794922">
-							<v x="963.88525390625" y="198.429443359375"/>
-							<v x="1053.568115234375" y="108.74896240234375"/>
-							<v x="1397.275390625" y="452.4652099609375"/>
+							<v x="963.88525390625" y="198.4293975830078125"/>
+							<v x="1053.568115234375" y="108.7488555908203125"/>
+							<v x="1397.275390625" y="452.46514892578125"/>
 							<v x="1307.592529296875" y="542.14569091796875"/>
 						</InputRect>
 						<OutputRect orientation="-0.78538501262664794922">
@@ -487,10 +487,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.78538501262664794922">
-							<v x="1307.5924072265625" y="542.2047119140625"/>
-							<v x="1397.2755126953125" y="631.8853759765625"/>
-							<v x="1057.9188232421875" y="971.2509765625"/>
-							<v x="968.2357177734375" y="881.5703125"/>
+							<v x="1307.592529296875" y="542.20465087890625"/>
+							<v x="1397.275634765625" y="631.88531494140625"/>
+							<v x="1057.9189453125" y="971.25103759765625"/>
+							<v x="968.23577880859375" y="881.57037353515625"/>
 						</InputRect>
 						<OutputRect orientation="0.78538501262664794922">
 							<v x="1307.593017578125" y="542.2049560546875"/>
@@ -541,7 +541,7 @@
 					</Slice>
 				</layers>
 				<OutputDevice>
-					<OutputDeviceVirtual name="Pixel Viewer" deviceId="VirtualPixel Viewer" idHash="17148372147857432275" width="1920" height="1080">
+					<OutputDeviceVirtual name="ScreenView" deviceId="VirtualScreenView" idHash="6743359833473382622" width="1920" height="1080">
 						<Params name="Params">
 							<ParamRange name="Width" default="1920" value="1920">
 								<ValueRange name="defaultRange" min="1" max="16384"/>

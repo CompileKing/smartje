@@ -33,7 +33,7 @@ namespace BinaryData
     const int            smartAssIcon_pngSize = 82279;
 
     extern const char*   fileSplash_png;
-    const int            fileSplash_pngSize = 141294;
+    const int            fileSplash_pngSize = 136230;
 
     extern const char*   splash3_png;
     const int            splash3_pngSize = 63768;
@@ -48,7 +48,7 @@ namespace BinaryData
     const int            beginScreen_pngSize = 62772;
 
     extern const char*   _smartjeKruisjes_xml;
-    const int            _smartjeKruisjes_xmlSize = 26824;
+    const int            _smartjeKruisjes_xmlSize = 26860;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 14;

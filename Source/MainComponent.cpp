@@ -527,7 +527,6 @@ void MainComponent::paint (Graphics& g)
             hideUIelements(false);
     }
     
-    
     if (viewStarterXml)
     {
         readFile(getStarterXmlFile());

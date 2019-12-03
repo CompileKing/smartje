@@ -44,14 +44,14 @@
             file="Source/CreateSettingsFolder/CreateSettingsFolder.h"/>
     </GROUP>
     <GROUP id="{3F38A36C-4A83-EF8D-1DAF-B39521415F00}" name="SplashScreens">
-      <FILE id="Bho4f7" name="fileSplash.png" compile="0" resource="1" file="Source/SplashScreens/fileSplash.png"/>
+      <FILE id="Zzd5kL" name="fileSplash.png" compile="0" resource="1" file="Source/SplashScreens/fileSplash.png"/>
       <FILE id="Vf8YbV" name="splash3.png" compile="0" resource="1" file="Source/SplashScreens/splash3.png"/>
       <FILE id="fKgWGO" name="splash2.png" compile="0" resource="1" file="Source/SplashScreens/splash2.png"/>
       <FILE id="HXIVHB" name="splash1.png" compile="0" resource="1" file="Source/SplashScreens/splash1.png"/>
       <FILE id="PCNmnZ" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
     </GROUP>
     <GROUP id="{B24BCB42-A9AE-4738-CDC3-9AE2DC621897}" name="XML">
-      <FILE id="wViE4N" name="_smartjeKruisjes.xml" compile="0" resource="1"
+      <FILE id="jIj0uQ" name="_smartjeKruisjes.xml" compile="0" resource="1"
             file="Source/XML/_smartjeKruisjes.xml"/>
     </GROUP>
   </MAINGROUP>
