@@ -48,7 +48,7 @@ namespace BinaryData
     const int            beginScreen_pngSize = 62772;
 
     extern const char*   _smartjeKruisjes_xml;
-    const int            _smartjeKruisjes_xmlSize = 394804;
+    const int            _smartjeKruisjes_xmlSize = 26824;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 14;

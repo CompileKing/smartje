@@ -343,22 +343,26 @@ void MainComponent::paint (Graphics& g)
          path.getBounds().getWidth() - path.getBounds().getWidth() / textWidth,
          textHeight);
         
-        if (path.getBounds().getHeight() > (textHeight + 15.f))
+        if (drawSliceInfo)
         {
-            g.setColour(arenaBottomGrey.withAlpha(sliceOpacity));
-            g.fillRect(topslice);
-            g.fillRect(midslice);
-            // paint the text overlay
-            g.setFont (textHeight/2);
-            String name = rect.sliceNameArray[i];
-            g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
-            g.drawText(name, topslice, Justification::centred);
-            
-            g.setFont (textHeight/2);
-            String size = "W: " + to_string(sliceWidth) + " H: " + to_string(sliceHeight);
-            g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
-            g.drawText(size, midslice, Justification::centred);
+            if (path.getBounds().getHeight() > (textHeight + 15.f))
+            {
+                g.setColour(arenaBottomGrey.withAlpha(sliceOpacity));
+                g.fillRect(topslice);
+                g.fillRect(midslice);
+                // paint the text overlay
+                g.setFont (textHeight/2);
+                String name = rect.sliceNameArray[i];
+                g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
+                g.drawText(name, topslice, Justification::centred);
+                
+                g.setFont (textHeight/2);
+                String size = "W: " + to_string(sliceWidth) + " H: " + to_string(sliceHeight);
+                g.setColour(Colour::fromFloatRGBA(1.f, 1.f, 1.f, sliceOpacity*1.666666));
+                g.drawText(size, midslice, Justification::centred);
+            }
         }
+        
         // end of sliceloop
     }
     
@@ -530,6 +534,7 @@ void MainComponent::paint (Graphics& g)
         readFile(getStarterXmlFile());
         repaint();
         viewStarterXml = false;
+        drawSliceInfo = false;
     }
         
 

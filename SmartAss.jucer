@@ -51,7 +51,7 @@
       <FILE id="PCNmnZ" name="beginScreen.png" compile="0" resource="1" file="Source/SplashScreens/beginScreen.png"/>
     </GROUP>
     <GROUP id="{B24BCB42-A9AE-4738-CDC3-9AE2DC621897}" name="XML">
-      <FILE id="iyWgRs" name="_smartjeKruisjes.xml" compile="0" resource="1"
+      <FILE id="wViE4N" name="_smartjeKruisjes.xml" compile="0" resource="1"
             file="Source/XML/_smartjeKruisjes.xml"/>
     </GROUP>
   </MAINGROUP>

@@ -69,6 +69,8 @@ public:
             return;
         }
         
+        drawSliceInfo = true;
+        
         String extentionString = fileToRead.getFileExtension();
         cout << extentionString << endl;
         if (extentionString == ".xml")
@@ -607,6 +609,7 @@ private:
     bool showUiElementsAfterSplash = true;
     bool drawSliceColours = false;
     bool viewStarterXml = true;
+    bool drawSliceInfo = false;
     
     Image beginScreen = ImageCache::getFromMemory (BinaryData::beginScreen_png, BinaryData::beginScreen_pngSize);
     Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);
