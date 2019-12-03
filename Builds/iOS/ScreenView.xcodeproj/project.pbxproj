@@ -17,41 +17,57 @@
 			isa = PBXBuildFile;
 			fileRef = 27FEECDD9949F246A9BC81FE;
 		};
-		E129336397CF176C75D5F691 = {
+		98B1C9C1D07220D54795E18F = {
 			isa = PBXBuildFile;
-			fileRef = 30F804296E1F0172728060F8;
-		};
-		11CC18AE7979FA8448736786 = {
-			isa = PBXBuildFile;
-			fileRef = 29C289D2719B397090C47399;
+			fileRef = 7BFA0D190A73273EAD5AD3C5;
 		};
 		5CB28CFFFE9147478D8C6FF8 = {
 			isa = PBXBuildFile;
 			fileRef = CCA8A03BFB26913389312E2F;
 		};
+		A614E4FCDE079789DD35A750 = {
+			isa = PBXBuildFile;
+			fileRef = EB7C5428E86EA3539A5BC390;
+		};
+		71CFACA9D295755C5B2DE51F = {
+			isa = PBXBuildFile;
+			fileRef = D977F9504B0875051040DA90;
+		};
 		7761FE2EAF235DC225AAC7CB = {
 			isa = PBXBuildFile;
 			fileRef = C51500A11DD7081D656C6FC4;
 		};
-		E8E34F3C70AF77C4401AC043 = {
+		8F36BA27C2169082C34453EB = {
 			isa = PBXBuildFile;
-			fileRef = B1BE5BC3C113CABA0FCD0939;
+			fileRef = 3D3C2EEE1906827E6B4C96F0;
 		};
-		4A95D372D4998DEF002443A4 = {
+		DFF9E3CDF14DB1A01EE4785C = {
 			isa = PBXBuildFile;
-			fileRef = 95F708BFD6AB70384DA0F99B;
+			fileRef = B88A90CC7D32680FE76438FA;
+		};
+		4CA3C41868938B7B958DDC1F = {
+			isa = PBXBuildFile;
+			fileRef = 3F4CC0249C80C30BFBCCCBC6;
+		};
+		79ECC3A32D512634C6514809 = {
+			isa = PBXBuildFile;
+			fileRef = 6E2EA9B15DF8598BA318B75D;
 		};
 		6DE1560B3379D2DF10274EC2 = {
 			isa = PBXBuildFile;
 			fileRef = 229B129C2CA2A8A747F4572C;
 		};
-		9943DE92AF5498F335022A4A = {
+		2D40314A665ED3D52F33B4A4 = {
 			isa = PBXBuildFile;
-			fileRef = EB53184C95A8A5408D8E7B9E;
+			fileRef = 12B471A30FE80C5A94861699;
 		};
-		A7E612850F0BA366E2AA8F38 = {
+		5D0BAAC804AC8EAB0BE0EC47 = {
 			isa = PBXBuildFile;
-			fileRef = 2D2769CBFF9426920840E053;
+			fileRef = D1D18AF580CA9E001222FEB9;
+		};
+		0C07CF154ADF349426A7FCF8 = {
+			isa = PBXBuildFile;
+			fileRef = EE8CBDCF46A88FDCD362C963;
 		};
 		07DAA5E0DDE090921A9295FF = {
 			isa = PBXBuildFile;
@@ -151,6 +167,13 @@
 			path = "~/JUCE/modules/juce_opengl";
 			sourceTree = "<absolute>";
 		};
+		12B471A30FE80C5A94861699 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = UIKit.framework;
+			path = System/Library/Frameworks/UIKit.framework;
+			sourceTree = SDKROOT;
+		};
 		135D8322242E5CDBC4B54030 = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.png;
@@ -193,33 +216,26 @@
 			path = ../../Source/CreateSettingsFolder/CreateSettingsFolder.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		29C289D2719B397090C47399 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Cocoa.framework;
-			path = System/Library/Frameworks/Cocoa.framework;
-			sourceTree = SDKROOT;
-		};
-		2D2769CBFF9426920840E053 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file.nib;
-			name = RecentFilesMenuTemplate.nib;
-			path = RecentFilesMenuTemplate.nib;
-			sourceTree = "SOURCE_ROOT";
-		};
-		30F804296E1F0172728060F8 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = Carbon.framework;
-			path = System/Library/Frameworks/Carbon.framework;
-			sourceTree = SDKROOT;
-		};
 		39EDAAB67DF1235888C0C92F = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.png;
 			name = "down-01.png";
 			path = "../../Source/icon/down-01.png";
 			sourceTree = "SOURCE_ROOT";
+		};
+		3BCFBAA0EFBC09DBAA65FD55 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = ScreenView.entitlements;
+			path = ScreenView.entitlements;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3D3C2EEE1906827E6B4C96F0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreText.framework;
+			path = System/Library/Frameworks/CoreText.framework;
+			sourceTree = SDKROOT;
 		};
 		3D644A4DBD944BB617931E4A = {
 			isa = PBXFileReference;
@@ -234,6 +250,13 @@
 			name = Main.cpp;
 			path = ../../Source/Main.cpp;
 			sourceTree = "SOURCE_ROOT";
+		};
+		3F4CC0249C80C30BFBCCCBC6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = MobileCoreServices.framework;
+			path = System/Library/Frameworks/MobileCoreServices.framework;
+			sourceTree = SDKROOT;
 		};
 		3F8984E1576BBFDE32289C25 = {
 			isa = PBXFileReference;
@@ -326,12 +349,26 @@
 			path = "~/JUCE/modules/juce_audio_basics";
 			sourceTree = "<absolute>";
 		};
+		6E2EA9B15DF8598BA318B75D = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = OpenGLES.framework;
+			path = System/Library/Frameworks/OpenGLES.framework;
+			sourceTree = SDKROOT;
+		};
 		75ABAC1BD2E7E58F47B3D1E3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_formats.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
+		};
+		7BFA0D190A73273EAD5AD3C5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = AVFoundation.framework;
+			path = System/Library/Frameworks/AVFoundation.framework;
+			sourceTree = SDKROOT;
 		};
 		832EB876405D8CECC870E588 = {
 			isa = PBXFileReference;
@@ -374,13 +411,6 @@
 			name = "juce_events";
 			path = "~/JUCE/modules/juce_events";
 			sourceTree = "<absolute>";
-		};
-		95F708BFD6AB70384DA0F99B = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.framework;
-			name = OpenGL.framework;
-			path = System/Library/Frameworks/OpenGL.framework;
-			sourceTree = SDKROOT;
 		};
 		9965C8B19F93DCFC41A18A7F = {
 			isa = PBXFileReference;
@@ -428,14 +458,14 @@
 			isa = PBXFileReference;
 			explicitFileType = wrapper.application;
 			includeInIndex = 0;
-			path = "Pixel Viewer.app";
+			path = ScreenView.app;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
-		B1BE5BC3C113CABA0FCD0939 = {
+		B88A90CC7D32680FE76438FA = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
-			name = IOKit.framework;
-			path = System/Library/Frameworks/IOKit.framework;
+			name = Foundation.framework;
+			path = System/Library/Frameworks/Foundation.framework;
 			sourceTree = SDKROOT;
 		};
 		B9FD743586AC2F11F348D664 = {
@@ -529,6 +559,13 @@
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
 		};
+		D1D18AF580CA9E001222FEB9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder.assetcatalog;
+			name = Images.xcassets;
+			path = ScreenView/Images.xcassets;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D50DF6E99AFECE86FBAD226C = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.png;
@@ -543,6 +580,13 @@
 			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		D977F9504B0875051040DA90 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreImage.framework;
+			path = System/Library/Frameworks/CoreImage.framework;
+			sourceTree = SDKROOT;
+		};
 		DA422229B4B6299E9B8E3B7A = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.xml;
@@ -555,13 +599,6 @@
 			lastKnownFileType = image.png;
 			name = splash1.png;
 			path = ../../Source/SplashScreens/splash1.png;
-			sourceTree = "SOURCE_ROOT";
-		};
-		DDEDDFB96E8197DFD810BE5B = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "Pixel Viewer.entitlements";
-			path = "Pixel Viewer.entitlements";
 			sourceTree = "SOURCE_ROOT";
 		};
 		E4D8D56F7B027BD30D9E41C1 = {
@@ -585,12 +622,19 @@
 			path = "~/JUCE/modules/juce_audio_formats";
 			sourceTree = "<absolute>";
 		};
-		EB53184C95A8A5408D8E7B9E = {
+		EB7C5428E86EA3539A5BC390 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
-			name = WebKit.framework;
-			path = System/Library/Frameworks/WebKit.framework;
+			name = CoreGraphics.framework;
+			path = System/Library/Frameworks/CoreGraphics.framework;
 			sourceTree = SDKROOT;
+		};
+		EE8CBDCF46A88FDCD362C963 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file.storyboard;
+			name = smartjeSplash.storyboard;
+			path = ../../xcodeAssets/smartjeSplash.storyboard;
+			sourceTree = "SOURCE_ROOT";
 		};
 		F0E8AC3655BA813283883375 = {
 			isa = PBXFileReference;
@@ -688,7 +732,7 @@
 				C100224CE0103B1A1018498B,
 				BB728C26C155958C14F53139,
 			);
-			name = "Pixel Viewer";
+			name = ScreenView;
 			sourceTree = "<group>";
 		};
 		56D1F31011BDE1378FF7ADCD = {
@@ -737,7 +781,8 @@
 			isa = PBXGroup;
 			children = (
 				DA422229B4B6299E9B8E3B7A,
-				2D2769CBFF9426920840E053,
+				D1D18AF580CA9E001222FEB9,
+				EE8CBDCF46A88FDCD362C963,
 				5A6AAB561412627BAEDE0432,
 				9FD483660AED7FF5670E5FA4,
 				BFAFC8A912344A5361B7BB8F,
@@ -750,14 +795,17 @@
 			children = (
 				4DD7A8777B08B1A991E4122C,
 				27FEECDD9949F246A9BC81FE,
-				30F804296E1F0172728060F8,
-				29C289D2719B397090C47399,
+				7BFA0D190A73273EAD5AD3C5,
 				CCA8A03BFB26913389312E2F,
+				EB7C5428E86EA3539A5BC390,
+				D977F9504B0875051040DA90,
 				C51500A11DD7081D656C6FC4,
-				B1BE5BC3C113CABA0FCD0939,
-				95F708BFD6AB70384DA0F99B,
+				3D3C2EEE1906827E6B4C96F0,
+				B88A90CC7D32680FE76438FA,
+				3F4CC0249C80C30BFBCCCBC6,
+				6E2EA9B15DF8598BA318B75D,
 				229B129C2CA2A8A747F4572C,
-				EB53184C95A8A5408D8E7B9E,
+				12B471A30FE80C5A94861699,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -786,19 +834,21 @@
 		696C1839C1356710E6594AD0 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 38RSB3KTT7;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.3",
 					"JUCE_APP_VERSION_HEX=0x10003",
 					"JucePlugin_Build_VST=0",
@@ -819,9 +869,9 @@
 				INFOPLIST_FILE = Info-App.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PixelClone.PixelViewer;
-				PRODUCT_NAME = "Pixel Viewer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelclone.smartje;
+				PRODUCT_NAME = "ScreenView";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				USE_HEADERMAP = NO;
 			};
 			name = Debug;
@@ -829,19 +879,21 @@
 		399681A05902C3C58063775C = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 38RSB3KTT7;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCER_XCODE_IPHONE_5BC26AE3=1",
 					"JUCE_APP_VERSION=1.0.3",
 					"JUCE_APP_VERSION_HEX=0x10003",
 					"JucePlugin_Build_VST=0",
@@ -864,9 +916,9 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PixelClone.PixelViewer;
-				PRODUCT_NAME = "Pixel Viewer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelclone.smartje;
+				PRODUCT_NAME = "ScreenView";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
@@ -874,6 +926,7 @@
 		4E11C017AD5181FCEAD3AA57 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -893,7 +946,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -911,8 +963,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "Pixel Viewer";
+				PRODUCT_NAME = "ScreenView";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
 			};
@@ -921,6 +976,7 @@
 		8E8F889B6C2723DBD30961CE = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -940,7 +996,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -957,7 +1012,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PRODUCT_NAME = "Pixel Viewer";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = "ScreenView";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
 			};
@@ -989,7 +1047,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7E612850F0BA366E2AA8F38,
+				5D0BAAC804AC8EAB0BE0EC47,
+				0C07CF154ADF349426A7FCF8,
 				07DAA5E0DDE090921A9295FF,
 				A4CD5C1EB0071D8869DE2C6C,
 				286C640F7E6DF23B9C7DB380,
@@ -1027,14 +1086,17 @@
 			files = (
 				2AAAE3FD7E6837F32EFF56E1,
 				532703F6365457760C338335,
-				E129336397CF176C75D5F691,
-				11CC18AE7979FA8448736786,
+				98B1C9C1D07220D54795E18F,
 				5CB28CFFFE9147478D8C6FF8,
+				A614E4FCDE079789DD35A750,
+				71CFACA9D295755C5B2DE51F,
 				7761FE2EAF235DC225AAC7CB,
-				E8E34F3C70AF77C4401AC043,
-				4A95D372D4998DEF002443A4,
+				8F36BA27C2169082C34453EB,
+				DFF9E3CDF14DB1A01EE4785C,
+				4CA3C41868938B7B958DDC1F,
+				79ECC3A32D512634C6514809,
 				6DE1560B3379D2DF10274EC2,
-				9943DE92AF5498F335022A4A,
+				2D40314A665ED3D52F33B4A4,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,15 +1110,15 @@
 			);
 			buildRules = ( );
 			dependencies = ( );
-			name = "Pixel Viewer - App";
-			productName = "Pixel Viewer";
+			name = "ScreenView - App";
+			productName = ScreenView;
 			productReference = B0F91EE7ECDECD36A39F25F5;
 			productType = "com.apple.product-type.application";
 		};
 		3349903959162D2800C7CBEB = {
 			isa = PBXProject;
 			buildConfigurationList = 1766127A6510382B6F605EFC;
-			attributes = { LastUpgradeCheck = 1100; ORGANIZATIONNAME = "PixelClone"; TargetAttributes = { BB2BBDB524D03F7A64DB13AC = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
+			attributes = { LastUpgradeCheck = 1100; ORGANIZATIONNAME = "PixelClone"; TargetAttributes = { BB2BBDB524D03F7A64DB13AC = { DevelopmentTeam = 38RSB3KTT7; ProvisioningStyle = Automatic; SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = B17DF760375E2BA9A1586205;

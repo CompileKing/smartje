@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string>Icon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.PixelClone.PixelViewer</string>
+    <string>com.PixelClone.ScreenView</string>
     <key>CFBundleName</key>
-    <string>Pixel Viewer</string>
+    <string>ScreenView</string>
     <key>CFBundleDisplayName</key>
-    <string>Pixel Viewer</string>
+    <string>ScreenView</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>

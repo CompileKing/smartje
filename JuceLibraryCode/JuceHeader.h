@@ -47,7 +47,7 @@
 #if ! JUCE_DONT_DECLARE_PROJECTINFO
 namespace ProjectInfo
 {
-    const char* const  projectName    = "Pixel Viewer";
+    const char* const  projectName    = "ScreenView";
     const char* const  companyName    = "PixelClone";
     const char* const  versionString  = "1.0.3";
     const int          versionNumber  = 0x10003;

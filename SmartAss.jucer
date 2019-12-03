@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="KSRKVX" name="Pixel Viewer" projectType="guiapp" jucerVersion="5.4.5"
+<JUCERPROJECT id="KSRKVX" name="ScreenView" projectType="guiapp" jucerVersion="5.4.5"
               companyName="PixelClone" companyWebsite="www.pixelclone.com"
               companyEmail="info@pixelclone.com" version="1.0.3" userNotes="V 1.0.2&#10;&#10;Actual LaunchScreen&#10;New Splash Screens&#10;">
-  <MAINGROUP id="L7JLSU" name="Pixel Viewer">
+  <MAINGROUP id="L7JLSU" name="ScreenView">
     <GROUP id="{B8E8AA6E-C7FA-2B65-5758-E256CDC3A99C}" name="icons">
       <FILE id="YDdrn6" name="down-01.png" compile="0" resource="1" file="Source/icon/down-01.png"/>
       <FILE id="XA0Y9L" name="icon400x400.png" compile="0" resource="1" file="Source/icon/icon400x400.png"
