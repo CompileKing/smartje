@@ -14,6 +14,8 @@ MainComponent::MainComponent()
     createStarterXml.save();
     startTimer(30);
     checkDocumentsFolder();
+    
+    
 //    12.9
 //    2732 x 2048
     int screenSizeX = 2732 / 2;
@@ -77,6 +79,9 @@ MainComponent::MainComponent()
     dec.addListener(this);
     dec.setLookAndFeel(&arenaLAF);
     dec.setImages(false, true, true, decImage, 1.f, Colours::orange.withAlpha(0.f), decImage, 1.f, Colours::white.withAlpha(0.f), decImage, 0.5f, Colours::white.withAlpha(0.f));
+    
+    
+    
 }
 
 
@@ -518,6 +523,15 @@ void MainComponent::paint (Graphics& g)
         else
             hideUIelements(false);
     }
+    
+    
+    if (viewStarterXml)
+    {
+        readFile(getStarterXmlFile());
+        repaint();
+        viewStarterXml = false;
+    }
+        
 
 //    cout << endl;
 //    cout << "/////////////////endPaintRound//////////////////////" << endl;

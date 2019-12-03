@@ -50,6 +50,13 @@ public:
             readFile(fileComp->getCurrentFile());
     }
     
+    File getStarterXmlFile ()
+    {
+        File appDir = File::getSpecialLocation(File::userDocumentsDirectory);
+        File xmlFile = appDir.getChildFile("SmartjeStarter.xml");
+        return xmlFile;
+    }
+    
     //what happends when a file gets read
     void readFile(const File& fileToRead)
     {
@@ -599,6 +606,7 @@ private:
     bool isNotAssSplash = false;
     bool showUiElementsAfterSplash = true;
     bool drawSliceColours = false;
+    bool viewStarterXml = true;
     
     Image beginScreen = ImageCache::getFromMemory (BinaryData::beginScreen_png, BinaryData::beginScreen_pngSize);
     Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);
