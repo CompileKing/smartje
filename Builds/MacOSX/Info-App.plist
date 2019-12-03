@@ -8,19 +8,19 @@
     <key>CFBundleIconFile</key>
     <string>Icon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.PixelClone.SmartA_S_S</string>
+    <string>com.PixelClone.PixelViewer</string>
     <key>CFBundleName</key>
-    <string>Smart A.S.S</string>
+    <string>Pixel Viewer</string>
     <key>CFBundleDisplayName</key>
-    <string>Smart A.S.S</string>
+    <string>Pixel Viewer</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.2</string>
+    <string>1.0.3</string>
     <key>CFBundleVersion</key>
-    <string>1.0.2</string>
+    <string>1.0.3</string>
     <key>NSHumanReadableCopyright</key>
     <string></string>
     <key>NSHighResolutionCapable</key>
