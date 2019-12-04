@@ -505,8 +505,8 @@ public:
         float screenWidth = getWidth();
         float screenHeight = getHeight();
         float screenAspectRatio = screenHeight / screenWidth;
-        float splashScreenWidth = splashScreen1.getWidth();
-        float splashScreenHeight = splashScreen1.getHeight();
+        float splashScreenWidth = fileSplash.getWidth();
+        float splashScreenHeight = fileSplash.getHeight();
         float splashScreenAspectRatio = splashScreenHeight / splashScreenWidth;
         float splashScreenYOffset = (getHeight() * (screenAspectRatio - splashScreenAspectRatio)) / 2.f;
         
@@ -631,17 +631,12 @@ private:
     bool viewStarterXml = true;
     bool drawSliceInfo = false;
     
-    Image beginScreen = ImageCache::getFromMemory (BinaryData::beginScreen_png, BinaryData::beginScreen_pngSize);
-    Image splashScreen1 = ImageCache::getFromMemory (BinaryData::splash1_png, BinaryData::splash1_pngSize);
-    Image splashScreen2 = ImageCache::getFromMemory (BinaryData::splash2_png, BinaryData::splash2_pngSize);
-    Image splashScreen3 = ImageCache::getFromMemory (BinaryData::splash3_png, BinaryData::splash3_pngSize);
     Image fileSplash = ImageCache::getFromMemory (BinaryData::fileSplash_png, BinaryData::fileSplash_pngSize);
     Image incImage = ImageCache::getFromMemory (BinaryData::up01_png, BinaryData::up01_pngSize);
     Image decImage = ImageCache::getFromMemory (BinaryData::down01_png, BinaryData::down01_pngSize);
     Image colImage = ImageCache::getFromMemory (BinaryData::colourButton02_png, BinaryData::colourButton02_pngSize);
     Image colImageOff = ImageCache::getFromMemory (BinaryData::colourButton01_png, BinaryData::colourButton01_pngSize);
-    
-    
+        
     Rectangle<float> splashScreenRect;
     
     unique_ptr<FilenameComponent> fileComp;

@@ -480,52 +480,17 @@ void MainComponent::paint (Graphics& g)
                        getWidth()- sliceInfoWidth - textWidthOffset,  textHeightOffset * 7.f + textOffsetFromTop, sliceInfoWidth, sliceInfoHeight, Justification::centredRight);
         }
     }
-        
-    // draw splash screens
-    if (ShowSplashScreen)
+            
+    if (showFileSplash)
     {
         hideUIelements(true);
-        g.fillAll (arenaBottomGrey);
+        g.fillAll(arenaBottomGrey);
         createSplashScreenRect();
-        switch(splashScreenMouseClickCounter) {
-            case 0:
-                g.drawImage(beginScreen, splashScreenRect);
-                break;
-            case 2:
-                g.drawImage(splashScreen1, splashScreenRect);
-                break;
-            case 4:
-                g.drawImage(splashScreen2, splashScreenRect);
-                break;
-            case 6:
-                g.drawImage(splashScreen3, splashScreenRect);
-                break;
-            case 8:
-                ShowSplashScreen = false;
-                repaint();
-                break;
-            default:
-                ShowSplashScreen = false;
-        }
+        g.drawImage(fileSplash, splashScreenRect);
     }
-    else if (!ShowSplashScreen)
-    {
-        if (showUiElementsAfterSplash)
-        {
-            hideUIelements(false);
-            cout << "splashScreenOff" << endl;
-            showUiElementsAfterSplash = false;
-        }
-        if (showFileSplash)
-        {
-            hideUIelements(true);
-            g.fillAll(arenaBottomGrey);
-            createSplashScreenRect();
-            g.drawImage(fileSplash, splashScreenRect);
-        }
-        else
-            hideUIelements(false);
-    }
+    else
+        hideUIelements(false);
+    
     
     if (viewStarterXml)
     {
@@ -535,7 +500,6 @@ void MainComponent::paint (Graphics& g)
         drawSliceInfo = false;
     }
         
-
 //    cout << endl;
 //    cout << "/////////////////endPaintRound//////////////////////" << endl;
 //    cout << endl;
