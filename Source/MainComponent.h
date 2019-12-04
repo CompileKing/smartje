@@ -47,7 +47,19 @@ public:
     void filenameComponentChanged(FilenameComponent* fileComponentThatHasChanged) override
     {
         if (fileComponentThatHasChanged == fileComp.get())
-            readFile(fileComp->getCurrentFile());
+        {
+            if (fileComp->getCurrentFile().getSize() > 0)
+            {
+                readFile(fileComp->getCurrentFile());
+            }
+            else
+            {
+                cout << "can't open file!" << endl;
+                showFileSplash = true;
+                repaint();
+                return;
+            }
+        }
     }
     
     File getStarterXmlFile ()
