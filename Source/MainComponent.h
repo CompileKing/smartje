@@ -280,9 +280,9 @@ public:
         float moveZoomY = (((inputVector + moveY ) * zoomFactor)*0.5f+0.5f);
         float returnValue = 0;
         if (x)
-            returnValue = moveZoomX;
+            returnValue =  moveZoomX;
         else if (!x)
-            returnValue = moveZoomY;
+            returnValue =  moveZoomY;
         return returnValue;
     }
     
@@ -327,7 +327,7 @@ public:
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
                 
-                zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
+//                zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
                 //                cout << "zoomFactor: " << zoomFactor << endl;
                 if (zoomFactor < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
@@ -338,8 +338,8 @@ public:
         {
             deltaX = e.getDistanceFromDragStartX();
             deltaY = e.getDistanceFromDragStartY();
-            moveX = addToMoveX(deltaX) / 8000;
-            moveY = addToMoveY(deltaY) / 8000;
+//            moveX = addToMoveX(deltaX) / 8000;
+//            moveY = addToMoveY(deltaY) / 8000;
         }
         
         repaint();
@@ -353,6 +353,11 @@ public:
         zoomFactor = 0.7f;
         moveX = 0;
         moveY = 0;
+        
+        if (needSafeSpace())
+        {
+            moveY = -0.15;
+        }
     }
     
     float getDelta (float amt)
