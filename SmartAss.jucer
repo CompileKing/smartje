@@ -4,6 +4,12 @@
               companyName="PixelClone" companyWebsite="www.pixelclone.com"
               companyEmail="info@pixelclone.com" version="1.0.6" userNotes="V 1.0.6&#10;&#10;Disabled pan tilt zoom untill it works with on all retina screens. &#10;&#10;">
   <MAINGROUP id="L7JLSU" name="ScreenView">
+    <GROUP id="{BBFB1EC7-7DE3-B682-FAFA-73AEF557BD79}" name="MouseEventWrapper">
+      <FILE id="j4xOSK" name="MouseEventWrapper.cpp" compile="1" resource="0"
+            file="Source/MouseEventWrapper/MouseEventWrapper.cpp"/>
+      <FILE id="PrveiW" name="MouseEventWrapper.h" compile="0" resource="0"
+            file="Source/MouseEventWrapper/MouseEventWrapper.h"/>
+    </GROUP>
     <GROUP id="{B8E8AA6E-C7FA-2B65-5758-E256CDC3A99C}" name="icons">
       <FILE id="YDdrn6" name="down-01.png" compile="0" resource="1" file="Source/icon/down-01.png"/>
       <FILE id="XA0Y9L" name="icon400x400.png" compile="0" resource="1" file="Source/icon/icon400x400.png"

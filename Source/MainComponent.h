@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ReadConvertAss/ReadConvertAss.h"
 #include "CreateSettingsFolder/CreateSettingsFolder.h"
+#include "MouseEventWrapper/MouseEventWrapper.h"
 
 
 using namespace std;
@@ -276,8 +277,8 @@ public:
     
     float moveZoom(float inputVector, bool x)
     {
-        float moveZoomX = (((inputVector + moveX ) * zoomFactor)*0.5f+0.5f);
-        float moveZoomY = (((inputVector + moveY ) * zoomFactor)*0.5f+0.5f);
+        float moveZoomX = (((inputVector) * zoomFactor)*0.5f+0.5f);
+        float moveZoomY = (((inputVector) * zoomFactor)*0.5f+0.5f);
         float returnValue = 0;
         if (x)
             returnValue =  moveZoomX;
@@ -288,7 +289,6 @@ public:
     
     void mouseDrag (const MouseEvent& e) override
     {
-        
         mouseIsDragging = true;
         auto* t = getTrail (e.source);
         
@@ -327,7 +327,7 @@ public:
                     deltaPosition0.setX(deltaPosition0.getX()*-1.f);
                 }
                 
-//                zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
+                zoomFactor = abs(addToZoom((deltaPosition0.getX() + deltaPosition1.getX()) / 7000.f));
                 //                cout << "zoomFactor: " << zoomFactor << endl;
                 if (zoomFactor < 0.4f) // make sure the user can't zoom out all the way
                     zoomAmt = 0.4f;
@@ -336,10 +336,11 @@ public:
         
         if (fingers == 0)
         {
-            deltaX = e.getDistanceFromDragStartX();
-            deltaY = e.getDistanceFromDragStartY();
-//            moveX = addToMoveX(deltaX) / 8000;
-//            moveY = addToMoveY(deltaY) / 8000;
+            deltaX = getDelta(e.getDistanceFromDragStartX());
+            deltaY = getDelta(e.getDistanceFromDragStartY());
+            
+            moveX = addToMoveX(deltaX) / 50.f * (screenDpi / 100 * 0.6f);
+            moveY = addToMoveY(deltaY) / 50.f * (screenDpi / 100 * 0.6f);
         }
         
         repaint();
@@ -402,6 +403,7 @@ public:
         }
         if (showFileSplash)
             showFileSplash = false;
+        
     }
     
     struct Trail
@@ -566,6 +568,8 @@ private:
     Point<float> deltaPosition0;
     Point<float> deltaPosition1;
     
+    double screenDpi = juce::Desktop::getInstance().getDisplays().getMainDisplay().dpi;
+    
     float zoomFactor = 0.f;
     float sliceOpacity = 0.f;
     int fingers = 0;
@@ -659,6 +663,10 @@ private:
     unique_ptr<FilenameComponent> fileComp;
     Array<bool> sliceSelectedArray;
     CreateStarterXml createStarterXml;
+    
+    
+    
+    
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

@@ -57,6 +57,10 @@
 			isa = PBXBuildFile;
 			fileRef = 5A6AAB561412627BAEDE0432;
 		};
+		2972C704C2C124096DC31E29 = {
+			isa = PBXBuildFile;
+			fileRef = 17DFF2A705ACBAD0BCA31076;
+		};
 		A4CD5C1EB0071D8869DE2C6C = {
 			isa = PBXBuildFile;
 			fileRef = 9FD483660AED7FF5670E5FA4;
@@ -156,6 +160,13 @@
 			lastKnownFileType = image.png;
 			name = fileSplash.png;
 			path = ../../Source/SplashScreens/fileSplash.png;
+			sourceTree = "SOURCE_ROOT";
+		};
+		17DFF2A705ACBAD0BCA31076 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MouseEventWrapper.cpp;
+			path = ../../Source/MouseEventWrapper/MouseEventWrapper.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		1C9AC9EB47755AF0D3FCE314 = {
@@ -599,12 +610,28 @@
 			path = "~/JUCE/modules/juce_core";
 			sourceTree = "<absolute>";
 		};
+		F357384543FC60693EEF7C5E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MouseEventWrapper.h;
+			path = ../../Source/MouseEventWrapper/MouseEventWrapper.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		FA82DB50D997E1E7C9ACA199 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_cryptography";
 			path = "~/JUCE/modules/juce_cryptography";
 			sourceTree = "<absolute>";
+		};
+		8002A0F2E5D487489F4F6202 = {
+			isa = PBXGroup;
+			children = (
+				17DFF2A705ACBAD0BCA31076,
+				F357384543FC60693EEF7C5E,
+			);
+			name = MouseEventWrapper;
+			sourceTree = "<group>";
 		};
 		BA314E882333C99F4A693A59 = {
 			isa = PBXGroup;
@@ -682,6 +709,7 @@
 		F5B21D65D547EA7F07C726D6 = {
 			isa = PBXGroup;
 			children = (
+				8002A0F2E5D487489F4F6202,
 				BA314E882333C99F4A693A59,
 				636DCE28980EEA5D94827712,
 				7D4F854BF773A08E5FD9CFDD,
@@ -1000,6 +1028,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2972C704C2C124096DC31E29,
 				19356AE37EF2501179CA571C,
 				F1303233EF9BB420434C0E61,
 				D8560F1A4FC877968E8EA248,

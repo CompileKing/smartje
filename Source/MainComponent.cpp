@@ -11,6 +11,7 @@
 //==============================================================================
 MainComponent::MainComponent()
 {
+    cout << "screenDPI: " << screenDpi << endl;
     createStarterXml.save();
     startTimer(30);
     checkDocumentsFolder();
@@ -135,6 +136,8 @@ void MainComponent::paint (Graphics& g)
     compEdge.lineTo (Point<float>(inputVector4x, inputVector4y));
     compEdge.closeSubPath();
     
+    compEdge.applyTransform(AffineTransform::translation(moveX, moveY));
+    
     // draw a workField
     g.setColour(Colours::white.withAlpha(0.05f));
     g.fillPath(compEdge);
@@ -249,6 +252,8 @@ void MainComponent::paint (Graphics& g)
         path.lineTo (Point<float>(drawV4x ,drawV4y));
         path.closeSubPath();
         
+        path.applyTransform(AffineTransform::translation(moveX, moveY));
+        
         if (drawSliceColours)
             g.setColour(currentSliceColour.withAlpha(sliceOpacity));
         else
@@ -262,6 +267,8 @@ void MainComponent::paint (Graphics& g)
         cross.lineTo (Point<float>(drawV2x ,drawV2y));
         cross.lineTo (Point<float>(drawV4x ,drawV4y));
         cross.closeSubPath();
+        
+        cross.applyTransform(AffineTransform::translation(moveX, moveY));
         
         // slice colour switch
         if (drawSliceColours)
